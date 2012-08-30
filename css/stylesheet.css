@@ -1,5 +1,45 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #1D242F;
+	background-color: #F4F4EA;
+}
+
+a {
+	text-decoration: none;
+	color: #1D242F;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#topbanner{
+	position: absolute;
+	top: 1px;
+	width: 100%;
+	height: 2%;
+	background-color: #1D242F;
+}
+
 #wrapper {
-	margin-left: auto;
-	margin-right: auto;
+	margin: 10% auto 10% auto;
 	width: 60%;
+}
+
+#header {
+	font-size: 42px;
+	font-family: 'Merriweather', serif;
+}
+
+#nav {
+	margin-left: 6%;
+	margin-top: -2%;
+}
+
+#botbanner{
+	position: absolute;
+	bottom: 1px;
+	width: 100%;
+	height: 2%;
+	background-color: #1D242F;
 }
