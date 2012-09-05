@@ -10,7 +10,6 @@ a {
 }
 
 a:hover {
-	text-decoration: underline;
 	color: #EA2E49;
 }
 
@@ -52,10 +51,11 @@ a:hover {
 
 #nav ul li {
 	display: inline;
+	margin: 1em 1em;
 }
 
-#nav ul li a{
-	padding: 1em 1em;
+#nav ul li a, #content a{
+	border-bottom: 1px dotted #1D242F;
 }
 
 #content {
