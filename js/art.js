@@ -8,36 +8,23 @@ window.onload = function(){
 	c.width = w;
 	c.height = h;
 
-	var lines = [];
-	var particles = [];
 
-	var linec = 10;
-	for(var i = 0; i < linec; i++) {
-		lines.push(new line());
-	}
-	
-	function line() {
-		this.speed = {x: -2.5+Math.random()*5, y: -15+Math.random()*10}; // figure this out
-		this.color = 0; // color pallete with random to pick witch 4 or 5 colors
-		this.width = Math.random()*10;
-		this.cx1 = Math.random()*h/2; //appropriate math.random ranges?
-		this.cy1 = Math.random()*w/2;
-		this.cx2 = Math.random()*h/2;
-		this.cy2 = Math.random()*w/2;
-		this.endx = Math.random()*(h/2);
-		this.endy = Math.random()*(w/2);
-	}
-
-	for(var i = 0; i < lines.length; i++){
-		var l = lines[i];
+	for(var i = 0; i < 10; i++){
 		ctx.beginPath();
 		ctx.moveTo(w/2+Math.floor((Math.random()*100)-100), h-10);
-		ctx.bezierCurveTo(l.cx1, l.cy1, l.cx2, l.cy2, l.endx, l.endy);
-		ctx.lineWidth = l.width;
-		ctx.strokeStyle = "red";
+		ctx.bezierCurveTo(Math.random()*h, Math.random()*w, Math.random()*h, Math.random()*w, Math.random()*h, Math.random()*w);
+		ctx.lineWidth = Math.random()*8;
+		ctx.lineCap = 'round';
+		var colorp = Math.random()*5;
+		if(colorp < 3) {
+			ctx.strokeStyle = 'rgba(51,55,69,'+Math.floor((Math.random())+1)+')';
+		} else if(colorp > 3 && colorp < 4) {
+			ctx.strokeStyle = 'rgba(119,196,211,'+Math.floor((Math.random())+1)+')';
+		} else if(colorp > 4 && colorp < 5) {
+			ctx.strokeStyle = 'rgba(234,46,73,'+Math.floor((Math.random())+1)+')';
+		} 
 		ctx.stroke();
 	}
-	
 	
 }
 
