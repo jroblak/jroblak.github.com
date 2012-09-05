@@ -1,0 +1,8 @@
+var context = $('#canvas')[0].getContext('2d');
+var w = $(document).width();
+var h = $(document).height();
+img = new Image();
+img.src ='http://i201.photobucket.com/albums/aa236/Mottie1/testsite/screenshots/bg1.jpg';
+img.onload = function () {
+    context.drawImage(this, 0, 0, 300, 150);
+};

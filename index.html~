@@ -35,7 +35,7 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
-        <canvas id = 'canvas' height = '500' width='500' ></canvas>
+        <canvas id = 'canvas'></canvas>
         <div id = 'topbanner'></div>
         <div id = 'wrapper'>
             <div id = 'header'>
@@ -57,6 +57,12 @@
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi laoreet sodales imperdiet. Quisque tincidunt, quam ut venenatis mattis, eros enim cursus nisi, in posuere neque turpis vel nibh. Mauris porttitor fringilla est, ut rutrum enim lobortis a. Etiam luctus, orci id aliquam fringilla, nibh tortor cursus magna, at iaculis nulla lectus eu risus. Nulla placerat porta felis a vehicula. Vestibulum quis dolor purus. Nulla accumsan elit non libero ornare ullamcorper. Integer felis lectus, pellentesque ut dictum tempor, tempor quis lectus. Morbi a ipsum purus, et placerat ante. Nam ornare purus ut lectus blandit gravida. Nulla nec dui aliquam metus pretium molestie luctus sed diam.
 
 Sed tortor velit, ultrices sit amet malesuada sit amet, lacinia quis est. Nunc felis ipsum, euismod ut vulputate id, tristique nec dui. In auctor, enim eget molestie rhoncus, sem odio adipiscing neque, non placerat nunc nunc laoreet enim. Nam eu nisi id eros convallis dictum at at justo. Nunc hendrerit condimentum neque. Sed tristique, lectus dictum malesuada interdum, leo dolor bibendum lectus, vel adipiscing nulla felis nec leo. Nulla ac neque euismod ligula fringilla blandit at quis enim.
+
+Fusce lobortis, tortor non convallis adipiscing, sapien nisl lacinia erat, eget ultrices sapien dui sit amet ante. In hac habitasse platea dictumst. Vivamus sit amet dignissim mi. Sed vel arcu sed lorem semper ultrices vitae et lorem. Vivamus est massa, faucibus a fringilla accumsan, rutrum consequat lorem. Aliquam tortor lacus, laoreet et eleifend in, vulputate molestie purus. Sed ligula enim, egestas vel blandit ac, tristique quis tortor. Suspendisse potenti. Phasellus faucibus nibh consectetur quam consequat gravida. In nec nunc eget lectus suscipit suscipit. Cras eu nulla tortor, in accumsan enim. Fusce pellentesque magna vel neque porttitor at laoreet libero venenatis. Etiam ultrices velit et nulla accumsan sed bibendum mi consectetur.
+
+Aenean ut tellus ac nisl tincidunt tincidunt eu ut purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra cursus odio. Quisque libero eros, lobortis vitae accumsan ac, imperdiet non turpis. Phasellus tempor ultricies condimentum. Mauris pharetra commodo diam sit amet condimentum. Suspendisse mollis tincidunt enim a molestie. Phasellus interdum pellentesque magna, ut ultricies magna feugiat nec. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque euismod sem vel sapien posuere elementum. Nullam pretium aliquam orci eu vehicula. Aliquam nec orci ligula, posuere lacinia urna. In hac habitasse platea dictumst.
+
+Nam volutpat laoreet lacus, at placerat metus molestie quis. Donec hendrerit libero ut est suscipit at egestas diam luctus. Nulla porta adipiscing mollis. Etiam eget libero metus, eu mollis augue. Nam dapibus urna et odio ullamcorper vitae mollis lorem rutrum. Mauris erat purus, iaculis ut tincidunt quis, hendrerit et nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
             </div>
         </div>
         <div id = 'botbanner'></div>
