@@ -58,6 +58,12 @@ a:hover {
 	padding: 1em 1em;
 }
 
+#content {
+	padding: 20px 20px 30px 20px;
+	margin-top: 10px;
+	background: rgba(222, 222, 202, 0.7);
+}
+
 #botbanner{
 	position: fixed;
 	bottom: 1px;
