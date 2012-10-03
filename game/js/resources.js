@@ -7,7 +7,7 @@ game.resources = {
 		"rocket",
 		"bWep",
 		"mGun",
-		"rGun",
+		"RGun",
 		"char",
 		"coin",
 		"map1tiles",

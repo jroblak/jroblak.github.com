@@ -47,7 +47,7 @@ game.weapons = {
 			shape: 'round',
 			rico: false
 		},		
-		gImg: "rGun",
+		gImg: "RGun",
 		projectile: "rocket",
 		explode: true,
 		pWidth: 6,
