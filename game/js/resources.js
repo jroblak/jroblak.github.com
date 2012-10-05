@@ -7,16 +7,19 @@ game.resources = {
 		"rocket",
 		"bWep",
 		"mGun",
-		"RGun",
+		"rGun",
 		"char",
 		"coin",
 		"map1tiles",
 		"parallaxbgmt",
 		"staticbgmt",
-		"explode"
+		"explode",
+		"jetpack"
 	],
 	
 	map: [
 		"map1",
+		"map2",
+		"map3"
 	]
 };
