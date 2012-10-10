@@ -3,11 +3,8 @@
 game.resources = {
 	img: [
 		"bad1",
-		"basic",
-		"rocket",
-		"bWep",
-		"mGun",
-		"rGun",
+		"sword",
+		"wipwhip",
 		"char",
 		"coin",
 		"map1tiles",
@@ -20,6 +17,7 @@ game.resources = {
 	map: [
 		"map1",
 		"map2",
-		"map3"
+		"map3",
+		"map4"
 	]
 };

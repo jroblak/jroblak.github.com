@@ -78,7 +78,6 @@ game.Sprite = me.ObjectEntity.extend({
         }
 
         var image = (typeof(item.image) === "string" ? me.loader.getImage(item.image) : item.image);
-		
         // creates a new object
         self.children[item.name] = new (getClass(item.class))(
             self.pos.x,
@@ -89,13 +88,16 @@ game.Sprite = me.ObjectEntity.extend({
             self,
             item
         );
+
         self.composition.push(item.name);
     },
 	
 	removeCompositionItem: function(itemname) {
         if(this.children[itemname]) {
+			console.log(this.composition);
 			me.game.remove(this.children[itemname]);
-			this.composition.splice(itemname, 1);
+			this.composition = this.composition.splice(itemname, 1);
+			console.log(this.composition);
 		}
 
     },
