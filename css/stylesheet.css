@@ -1,5 +1,7 @@
 html, body {
 	height: 100%;
+	margin: 0;
+	padding: 0;
 	font-family: 'Open Sans', sans-serif;
 	color: #1D242F;
 	background-color: #F4F4EA;
@@ -34,11 +36,10 @@ a:hover {
 }
 
 #wrapper {
-	margin: 5% auto 12% auto;
 	width: 60%;
 	left: 50%;
 	margin-left: -30%;
-	top: 40px;
+	top: 105px;
 	position: absolute;
 }
 
@@ -70,7 +71,7 @@ a:hover {
 #content {
 	padding: 20px 20px 30px 20px;
 	margin-top: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 80px;
 	background: rgba(222, 222, 202, 0.7);
 }
 
@@ -80,7 +81,6 @@ a:hover {
 	right: 0;
 	bottom: 1px;
 	height: 15px;
-	margin-top: 15px;
 	background-color: #1D242F;
 }
 
