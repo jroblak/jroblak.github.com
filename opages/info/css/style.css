@@ -54,16 +54,16 @@ a, a:visited {
 	text-align: right;
 	margin-top: 6.5%;
 	width: 50%;
-	border-right: 1px dotted white;
-	padding-right: 1%;
 	float: left;
 }
 
 #rightdesc {
 	text-align: left;
 	margin-top: 7.5%;
+	border-left: 1px dotted white;
 	font-style: italic;
 	margin-left: 1%;
+	padding-left: 1%;
 	width: 450px;
 	float: left;
 }
