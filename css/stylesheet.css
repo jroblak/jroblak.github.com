@@ -17,6 +17,10 @@ a:hover {
 	color: #EA2E49;
 }
 
+h3 {
+	margin: 5px 0;
+}
+
 #canvas {
     z-index: -1;
 	top: 0px;
