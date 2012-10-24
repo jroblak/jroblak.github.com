@@ -1,0 +1,134 @@
+body {
+	background-image:url('../img/use_your_illusion.png');
+	font-family: Helvetica, Times New Roman, Times, serif;
+	font-size: 20px;
+	overflow: hidden;
+}
+
+h1 {
+	font-size: 60px;
+	font-weight: normal;
+	margin: 0;
+	font-family: 'Merriweather';
+	color: #FFF8D3;
+	line-height: 1;
+}
+
+h2 {
+	font-size: 60px;
+	font-weight: normal;
+	margin: 0;
+	color: #FFF8D3;
+	text-shadow: 0 2px 1px #000;
+	font-family: 'Merriweather';
+}
+
+h3 {
+	font-size: 48px;
+	font-weight: normal;
+	margin: 0;
+	color: #FFF8D3;
+	text-shadow: 0 2px 1px #000;
+	font-family: 'Merriweather';
+}
+
+p {
+	color: #FFF8D3;
+}
+
+li {
+	color: #FFF8D3;
+	width: 65%;
+}
+
+a, a:visited {
+	color: #77C4D3
+}
+
+.block {
+	height: 300px;
+	width: 100%;
+}
+
+#leftdesc {
+	text-align: right;
+	margin-top: 6.5%;
+	width: 50%;
+	float: left;
+}
+
+#rightdesc {
+	text-align: left;
+	margin-top: 7.5%;
+	font-style: italic;
+	margin-left: 1%;
+	padding-left: 1%;
+	border-left: 1px dotted white;
+	width: 450px;
+	float: left;
+}
+
+#rightdesc p {
+	color: #EA2E49;
+}
+
+#customer {
+	height: 250px;
+	background: #EA2E49;
+	text-align: center;
+}
+
+#customer h2 {
+	color: #202020;
+}
+
+#innercust {
+	padding: 4%;
+}
+
+#credit {
+	margin-top: 0px;
+	font-size: 14px;
+}
+
+#list {
+	height: 100%;
+	text-align: left;
+}
+
+#innerlist {
+	padding: 2%;
+	padding-left: 4%;
+	margin-bottom: 10%;
+}
+
+#innerlist img {
+	float: right;
+}
+
+#client {
+	height: 150px;
+	background: #EA2E49;
+	text-align: center;
+}
+
+#clientinner {
+	padding: 2%;
+}
+
+#client h2 {
+	color: #202020;
+	margin-bottom: -20px;
+}
+
+#howelse {
+	padding-top: 3%;
+	text-align: center;
+}
+
+#outro {
+	height: 25%;
+	padding: 3%;
+	text-align: center;
+	overflow: hidden;
+}
