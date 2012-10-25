@@ -79,6 +79,10 @@ h3 {
 	margin-top: 10px;
 	margin-bottom: 100px;
 	background: rgba(222, 222, 202, 0.7);
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
 }
 
 #botbanner{
