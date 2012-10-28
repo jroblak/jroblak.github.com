@@ -107,13 +107,13 @@ a, a:visited {
 }
 
 #client {
-	height: 150px;
+	height: 55%;
 	background: #EA2E49;
 	text-align: center;
 }
 
 #clientinner {
-	padding: 2%;
+	padding: 3%;
 }
 
 #client h2 {
@@ -123,6 +123,7 @@ a, a:visited {
 
 #howelse {
 	padding-top: 3%;
+	height: 150%;
 	text-align: center;
 }
 
