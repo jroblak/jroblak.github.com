@@ -31,27 +31,35 @@ h1 {
 #header {
 	display: block;
 	margin: 0px auto;
-	padding-top: 50px;
-	height: 100px;
+	padding: 25px 0;
 	width: 700px;
 	text-align: center;
 }
 
 #content {
 	width: 100%;
-	padding-top: 50px;
-	height: 70px;
+	padding: 15px 0;
 	margin: 0px auto;
 	background: #b5b5b5;
 	text-align: center;
 }
 
 #portfolio {
-	width: 700px;
+	width: 100%;
+	padding: 25px 0;
+	text-align: center;
 	margin: 0px auto;
 }
 
 #footer {
-	width: 700px;
+	width: 100%;
+	text-align:center;
+	padding: 5px 0;
 	margin: 0px auto;
+}
+
+.highlight {
+	background: #EEE111;
+	padding-left: 2px;
+	padding-right: 2px;
 }
