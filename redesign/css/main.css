@@ -20,33 +20,34 @@ time, mark, audio, video {
 }
 
 html {
-	font-family: 'Varela Round', sans-serif;
-	background: #EEE;
+	font-family: 'Lato', sans-serif;
+	background: #EFEFEF;
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 3em;
 }
 
 #header {
 	display: block;
 	margin: 0px auto;
-	padding: 25px 0;
-	width: 700px;
+	padding: 75px 0;
 	text-align: center;
 }
 
 #content {
 	width: 100%;
-	padding: 15px 0;
+	font-size: 1.25em;
+	padding: 50px 0;
 	margin: 0px auto;
-	background: #b5b5b5;
+	color: #AFAFAF;
+	background: #454545;
 	text-align: center;
 }
 
 #portfolio {
 	width: 100%;
-	padding: 25px 0;
+	padding: 100px 0;
 	text-align: center;
 	margin: 0px auto;
 }
@@ -59,7 +60,7 @@ h1 {
 }
 
 .highlight {
-	background: #EEE111;
+	color: #9fa8ff	;
 	padding-left: 2px;
 	padding-right: 2px;
 }
