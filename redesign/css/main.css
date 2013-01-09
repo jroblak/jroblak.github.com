@@ -25,13 +25,17 @@ html {
 }
 
 h1 {
-	font-size: 3em;
+	font-size: 2.5em;
+}
+
+b {
+	font-weight: bold;
 }
 
 #header {
 	display: block;
 	margin: 0px auto;
-	padding: 75px 0;
+	padding: 50px 0;
 	text-align: center;
 }
 
@@ -46,17 +50,34 @@ h1 {
 }
 
 #portfolio {
-	width: 100%;
-	padding: 100px 0;
-	text-align: center;
+	width: 700px;
+	padding: 25px 0;
 	margin: 0px auto;
+}
+
+#portfolio h1 {
+	margin-bottom: 10px;
+}
+
+#portfolio img:first-of-type {
+	padding-left: 0px;
+	padding-right: 23px;
+}
+
+#portfolio img:last-of-type {
+	padding-left: 23px;
+	padding-right: 0px;
 }
 
 #footer {
 	width: 100%;
+	position: absolute;
+	bottom: 0;
 	text-align:center;
 	padding: 5px 0;
 	margin: 0px auto;
+	color: #AFAFAF;
+	background: #454545;
 }
 
 .highlight {
