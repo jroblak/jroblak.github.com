@@ -170,7 +170,6 @@ $(function() {
       this.$el.html(_.template($("#manage-todos-template").html()));
       
       this.input = this.$("#new-todo");
-      this.allCheckbox = this.$("#toggle-all")[0];
 
       // Create our collection of Todos
       this.todos = new TodoList;
@@ -210,8 +209,6 @@ $(function() {
       }));
 
       this.delegateEvents();
-
-      this.allCheckbox.checked = !remaining;
     },
 
     // Filters the list based on which type of filter is selected
@@ -286,7 +283,6 @@ $(function() {
     },
 
     toggleAllComplete: function () {
-      var done = this.allCheckbox.checked;
       this.todos.each(function (todo) { todo.save({'done': done}); });
     }
   });
