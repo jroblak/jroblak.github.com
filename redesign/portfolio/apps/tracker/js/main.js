@@ -1,29 +1,27 @@
-// An example Parse.js Backbone application based on the todo app by
-// [Jérôme Gravel-Niquet](http://jgn.me/). This demo uses Parse to persist
-// the todo items and provide user authentication and sessions.
-
 $(function() {
 
   Parse.$ = jQuery;
 
-  // Initialize Parse with your Parse application javascript keys
+  // Parse initialization
   Parse.initialize("KKcMZTMG3lWdgUrxj6CUUiRqzjBcsf6oqbH754NR", "TOgQkq5SZGfyr50FAjXL6pmwmhwR46vLbDZdFS22");
 
-  // Todo Model
-  // ----------
-
-  // Our basic Todo model has `content`, `order`, and `done` attributes.
+  // Progress Tracker Model
+  // 
+  // Basic model with a title, units, a goal, and a current progress
   var Todo = Parse.Object.extend("Todo", {
     // Default attributes for the todo.
     defaults: {
-      content: "empty todo...",
+      title: "empty todo...",
+	  goal: 0,
+	  current: 0,
+	  unit: "",
       done: false
     },
 
     // Ensure that each todo created has `content`.
     initialize: function() {
-      if (!this.get("content")) {
-        this.set({"content": this.defaults.content});
+      if (!this.get("title")) {
+        this.set({"title": this.defaults.title});
       }
     },
 
@@ -122,7 +120,7 @@ $(function() {
 
     // Close the `"editing"` mode, saving changes to the todo.
     close: function() {
-      this.model.save({content: this.input.val()});
+      this.model.save({title: this.input.val()});
       $(this.el).removeClass("editing");
     },
 
@@ -268,7 +266,7 @@ $(function() {
       if (e.keyCode != 13) return;
 
       this.todos.create({
-        content: this.input.val(),
+        title: this.input.val(),
         order:   this.todos.nextOrder(),
         done:    false,
         user:    Parse.User.current(),
