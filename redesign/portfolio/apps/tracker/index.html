@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <title>Parse JavaScript Todo App</title>
     <link href="css/main.css" media="all" rel="stylesheet" type="text/css"/>
-    <script src="js/vendor/jquery.min.js"></script>
-    <script src="js/vendor/underscore-min.js"></script>
-    <script src="http://www.parsecdn.com/js/parse-1.0.18.min.js"></script>
-    <script src="js/main.js"></script>
+	<link href="css/jquery-ui.custom.css" rel="stylesheet" type="text/css"/>
   </head>
 
   <body>
@@ -18,16 +15,16 @@
       <div class="title">
         <h1>Parse Todos</h1>
       </div>
-
+		<div id="progressbar"></div>
       <div class="content">
       </div>
     </div>
 
-    <div id="credits">
-      Powered by <a href="https://www.parse.com">Parse</a> using the <a href="https://www.parse.com/docs/js_guide">JavaScript SDK</a>
-    </div>
-
-    <!-- Templates -->
+	<script src="js/vendor/jquery.min.js"></script>
+	<script src="js/vendor/jquery-ui.min.js"></script>
+    <script src="js/vendor/underscore-min.js"></script>
+    <script src="js/vendor/parse-1.1.15.min.js"></script>
+    <script src="js/main.js"></script>
 
     <script type="text/template" id="login-template">
       <header id="header"></header>
