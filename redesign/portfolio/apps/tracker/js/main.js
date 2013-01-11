@@ -403,7 +403,5 @@ $(function() {
   new AppRouter;
   new AppView;
   Parse.history.start();
-  $( "#progressbar" ).progressbar({
-    value: 59
-  });
+
 });

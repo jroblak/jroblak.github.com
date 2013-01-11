@@ -8,14 +8,11 @@
   </head>
 
   <body>
-
-    <!-- Todo App Interface -->
-
+	
     <div id="todoapp">
       <div class="title">
-        <h1>Parse Todos</h1>
+        <h1>Progress Tracker</h1>
       </div>
-		<div id="progressbar"></div>
       <div class="content">
       </div>
     </div>
@@ -54,13 +51,9 @@
 
       <div class="section">
 
-        <header id="header">
           <input id="new-todo" placeholder="What needs to be done?" type="text" />
-        </header>
 
         <div id="main">
-          <input id="toggle-all" type="checkbox">
-          <label for="toggle-all">Mark all as complete</label>
           
           <ul id="todo-list">
             <img src='images/spinner.gif' class='spinner' />
@@ -72,6 +65,7 @@
     </script>
 
     <script type="text/template" id="item-template">
+	<div id="progressbar"></div>
       <li class="<%= done ? 'completed' : '' %>">
 	<div class="view">
 	  <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
