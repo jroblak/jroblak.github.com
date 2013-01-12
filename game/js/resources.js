@@ -13,6 +13,10 @@ game.resources = {
 		"explode",
 		"jetpack",
 		"cavebg",
+		"testpar",
+		"mainsplash",
+		"chargib",
+		"bad2"
 	],
 	
 	map: [
@@ -20,6 +24,6 @@ game.resources = {
 		"map2",
 		"map3",
 		"map4",
-		"map5",
+		"map5"
 	]
 };
