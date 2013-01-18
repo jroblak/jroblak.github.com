@@ -22,7 +22,6 @@ time, mark, audio, video {
 html {
 	font-family: 'Lato', sans-serif;
 	color: #EFEFEF;
-	background-image: url("../img/debut_dark.png");
 }
 
 h1 {
@@ -46,34 +45,65 @@ a:hover {
 	border-bottom: 1px dotted #9fa8ff;
 }
 
-.contain {
-	margin-left: 50px;
-	margin-top: 100px;
+#header {
+	margin: 30px auto;
+	text-align: center;
+	height: 75px;
 }
 
-.head {
+.middle a {
+	margin: 0 50px;
+}
+
+.middle img {
+	vertical-align: middle;
+}
+
+#header img {
+	margin: 0 50px;
+}
+
+#content {
+	box-shadow: 0 2px 2px #888888;
 	width: 100%;
-	font-size: 4em;
+	font-size: 1.25em;
 	padding: 50px 0;
+	margin: 0px auto;
 	color: #AFAFAF;
+	text-align: center;
+	background-image: url("../img/debut_dark.png");
 }
 
-.innercontain {
-	width: 470px;
-	text-align: right;
+#portfolio {
+	width: 700px;
+	padding: 25px 0;
+	margin: auto;
 }
 
-.portfolio {
-
+#porthold {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .skills {
-
+	height: 150px;
+	width: 700px;
+	margin: 0 auto;
 }
 
-.footer {
-	position: absolute;
-	bottom: 10px;
+footer {
+	position: relative;
+	box-shadow: 0 0 2px 2px #888888;
+	width: 100%;	
+	height: 150px;
+	overflow: hidden;
+	text-align:center;
+	padding: 5px 0;
+	margin: 0px auto;
+	color: #AFAFAF;
+	bottom: 0;
+	background-image: url("../img/debut_dark.png");
 }
 
 .highlight {
