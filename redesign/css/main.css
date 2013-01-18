@@ -46,9 +46,19 @@ a:hover {
 	border-bottom: 1px dotted #9fa8ff;
 }
 
-.contain {
+.rightcontain {
 	margin-left: 50px;
 	margin-top: 100px;
+	width: 700px;
+	float: left;
+}
+
+.leftcontain {
+	margin-left: 50px;
+	margin-top: 150px;
+	width: 600px;
+	float: right;
+	text-align: left;
 }
 
 .head {
