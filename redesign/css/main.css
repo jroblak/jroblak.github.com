@@ -54,10 +54,9 @@ a:hover {
 }
 
 .leftcontain {
-	margin-left: 50px;
 	margin-top: 150px;
-	width: 600px;
-	float: right;
+	width: 200px;
+	float: left;
 	text-align: left;
 }
 
