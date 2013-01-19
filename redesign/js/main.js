@@ -32,7 +32,7 @@
 		var height = $(window).height(); 
 		var width = $(window).width();
 	
-		var contentDiv = width - 730;
+		var contentDiv = width - 725;
 	
 		$('.rightcontain').width(contentDiv);
 	
