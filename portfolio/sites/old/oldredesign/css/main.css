@@ -1,0 +1,164 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+html {
+	font-family: 'Lato', sans-serif;
+	color: #EFEFEF;
+}
+
+h1 {
+	font-size: 2.5em;
+}
+
+b {
+	font-weight: bold;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: .85em;
+	color: #808080;
+	border-bottom: 1px dotted #808080;
+}
+
+a:hover {
+	color: #9fa8ff;
+	border-bottom: 1px dotted #9fa8ff;
+}
+
+#header {
+	margin: 30px auto;
+	text-align: center;
+	height: 75px;
+}
+
+.middle a {
+	margin: 0 50px;
+}
+
+.middle img {
+	vertical-align: middle;
+}
+
+#header img {
+	margin: 0 50px;
+}
+
+#content {
+	box-shadow: 0 2px 2px #888888;
+	width: 100%;
+	font-size: 1.25em;
+	padding: 50px 0;
+	margin: 0px auto;
+	color: #AFAFAF;
+	text-align: center;
+	background-image: url("../img/debut_dark.png");
+}
+
+#portfolio {
+	width: 700px;
+	padding: 25px 0;
+	margin: auto;
+}
+
+#porthold {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.skills {
+	height: 150px;
+	width: 700px;
+	margin: 0 auto;
+}
+
+footer {
+	position: relative;
+	box-shadow: 0 0 2px 2px #888888;
+	width: 100%;	
+	height: 150px;
+	overflow: hidden;
+	text-align:center;
+	padding: 5px 0;
+	margin: 0px auto;
+	color: #AFAFAF;
+	bottom: 0;
+	background-image: url("../img/debut_dark.png");
+}
+
+.highlight {
+	color: #bc7bd4;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.highlight:hover{
+	color: #f29090;
+}
+
+.highlight {
+animation: myfirst 5s linear 2s infinite alternate;
+/* Firefox: */
+-moz-animation: myfirst 5s linear 2s infinite alternate;
+/* Safari and Chrome: */
+-webkit-animation: myfirst 5s linear 2s infinite alternate;
+/* Opera: */
+-o-animation: myfirst 5s linear 2s infinite alternate;
+}
+
+
+@keyframes myfirst
+{
+0%   {color: #f29090;}
+25%  {color: #f2d890;}
+50%  {color: #90c3f2;}
+75%  {color: #bc7bd4;}
+100% {color: #f29090;}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+0%   {color: #f29090;}
+25%  {color: #f2d890;}
+50%  {color: #90c3f2; left:200px; top:200px;}
+75%  {color: #bc7bd4; left:0px; top:200px;}
+100% {color: #f29090; left:0px; top:0px;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+0%   {color: #f29090;}
+25%  {color: #f2d890;}
+50%  {color: #90c3f2;}
+75%  {color: #bc7bd4;}
+100% {color: #f29090;}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+0%   {color: #f29090;}
+25%  {color: #f2d890;}
+50%  {color: #90c3f2;}
+75%  {color: #bc7bd4;}
+100% {color: #f29090;}
+}
