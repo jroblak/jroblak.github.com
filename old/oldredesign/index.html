@@ -7,7 +7,6 @@
 		
 		<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/mobile.css" media='screen and (max-device-width: 768px) and (orientation: portrait), screen and (max-device-width: 1024px) and (orientation: landscape)'/>
 		<link rel="shortcut icon" href="favicon.ico">
 		
 		<script type="text/javascript">
@@ -26,30 +25,33 @@
 	</head>
 	<body>
 		
-		<div class = "leftcontain">
-			<div class = "head">
-				<b class = "highlight">Justin Oblak</b> <span>has:</span>
-			</div>
-			<div class = "innercontain">
-				<div class = "nav" id = "about">
-					<h1>an about me</h1>
-				</div>
-				<div class = "nav" id = "portfolio">
-					<h1>a portfolio</h1>
-				</div>
-				<div class = "nav" id = "skills">
-					<h1>a resume</h1>
-				</div>
-				<div class = "nav" id = "contact">
-					<h1>contact information</h1>
-				</div>
-				<div class = "nav" id = "blog">
-					<h1><a href="http://blog.justinoblak.com">a blog</a></h1>
+		<div id = "maincontainer">
+			<div id ="header">
+				<div class = "middle">
+				<a href="blog">about</a>
+				<a href="blog">blog</a>
+				<img src="../redesign/img/logo.png">
+				<a href="blog">portfolio</a>
+				<a href="blog">resume</a>
 				</div>
 			</div>
-		</div>
-		<div class = "rightcontain">
-			<div class = "content"></div>
+			<div id = "content">
+				<h2>Welcome! My name is <b class = "highlight">Justin Oblak</b>. I'm a tech consultant, designer, and developer.</h2>
+			</div>
+			<div id = "portfolio">
+				<h1>portfolio</h1>
+				<div id = "porthold">
+					<img src="../redesign/img/placeholder.png" />
+					<img src="../redesign/img/placeholder.png" />
+					<img src="../redesign/img/placeholder.png" />
+				</div>
+			</div>
+			<div class = "skills">
+				<h1>skills</h1>
+			</div>
+			<footer>
+				(c)justin oblak 2013
+			</footer>
 		</div>
 		
 		<script src="js/jquery.js"></script>

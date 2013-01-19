@@ -1,16 +1,67 @@
-$(document).ready(function() {
+;$(function(){
 	
-	$('#content').children().hide();
-	$('.selected').show();
+	console.log($(window).width());
+	// Check for mobile devices
+	if ($(window).width() < 480 || $(window).height() < 480) {
+		$('.nav').click(function() {
+			$(this)
+			if ($(this).is('#skills')) {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').load('pages/skills.html').hide().fadeIn();
+			} else if ($(this).is('#about')) {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').load('pages/about.html').hide().fadeIn();
+			} else if ($(this).is('#portfolio')) {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').load('portfolio/index.html').hide().fadeIn();
+			} else if ($(this).is('#contact'))	 {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').load('pages/contact.html').hide().fadeIn();
+			} else {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').html('<a href="http://blog.justinoblak.com">a blog!</a>').hide().fadeIn();
+			}
+		});
+	} else {
+		// First, set up size of the content div based on the screen size
+		var width = $(window).width();
 	
-	$('a').click(function() {
-		$elem = $(this).attr('href');
-		
-		$('div').removeClass('selected');
-		
-		$($elem).addClass('selected');
-		$('#content').children().hide();
-		$('.selected').show();
-		
-	})
+		var contentDiv = width - 700;
+	
+		$('.rightcontain').width(contentDiv);
+	
+		// Next, set up the click handlers for displaying that content
+		var loaded = false;
+		var selected = null;
+	
+		$('.nav').click(function() {
+			$(this)
+			if ($(this).is('#skills')) {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').load('pages/skills.html').hide().fadeIn();
+			} else if ($(this).is('#about')) {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').load('pages/about.html').hide().fadeIn();
+			} else if ($(this).is('#portfolio')) {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').load('portfolio/index.html').hide().fadeIn();
+			} else if ($(this).is('#contact'))	 {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').load('pages/contact.html').hide().fadeIn();
+			} else {
+				$(this).addClass('highlight').css('font-size', 18);
+				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$('.content').html('<a href="http://blog.justinoblak.com">a blog!</a>').hide().fadeIn();
+			}
+		});
+	}
 });
