@@ -46,17 +46,19 @@ a:hover {
 	border-bottom: 1px dotted #9fa8ff;
 }
 
-.rightcontain {
+.leftcontain {
 	margin-left: 50px;
+	margin-right: 25px;
 	margin-top: 100px;
-	width: 700px;
+	width: 600px;
 	float: left;
 }
 
-.leftcontain {
-	margin-top: 150px;
+.rightcontain {
+	margin-top: 180px;
+	padding-right: 25px;
 	width: 200px;
-	float: left;
+	float: right;
 	text-align: left;
 }
 
@@ -73,66 +75,68 @@ a:hover {
 	text-align: right;
 }
 
-.portfolio {
+.content {
+	font-size: 24px;
+}
+
+#portfolio {
 
 }
 
-.skills {
+#skills {
 
-}
-
-.footer {
-	position: absolute;
-	bottom: 10px;
 }
 
 .highlight {
 	color: #bc7bd4;
 }
 
-.highlight {
-animation: myfirst 2s linear 0 infinite alternate;
-/* Firefox: */
--moz-animation: myfirst 2s linear 0 infinite alternate;
-/* Safari and Chrome: */
--webkit-animation: myfirst 2s linear 0 infinite alternate;
-/* Opera: */
--o-animation: myfirst 2s linear 0 infinite alternate;
+.highlight, .nav:hover {
+	animation: color 2s linear 0 infinite alternate;
+	-moz-animation: color 2s linear 0 infinite alternate;
+	-webkit-animation: color 2s linear 0 infinite alternate;
+	-o-animation: color 2s linear 0 infinite alternate;
 }
 
-
-@keyframes myfirst
-{
-0%   {color: #f29090;}
-25%  {color: #f2d890;}
-50%  {color: #90c3f2;}
-75%  {color: #bc7bd4;}
-100% {color: #f29090;}
+@keyframes color {
+	0%   {color: #f29090;}
+	25%  {color: #f2d890;}
+	50%  {color: #90c3f2;}
+	75%  {color: #bc7bd4;}
+	100% {color: #f29090;}
 }
 
-@-moz-keyframes myfirst /* Firefox */
-{
-0%   {color: #f29090;}
-25%  {color: #f2d890;}
-50%  {color: #90c3f2; left:200px; top:200px;}
-75%  {color: #bc7bd4; left:0px; top:200px;}
-100% {color: #f29090; left:0px; top:0px;}
+@-moz-keyframes color {
+	0%   {color: #f29090;}
+	25%  {color: #f2d890;}
+	50%  {color: #90c3f2;}
+	75%  {color: #bc7bd4;}
+	100% {color: #f29090;}
 }
 
-@-webkit-keyframes myfirst /* Safari and Chrome */
-{
-0%   {color: #f29090;}
-25%  {color: #f2d890;}
-50%  {color: #90c3f2;}
-75%  {color: #bc7bd4;}
-100% {color: #f29090;}
+@-webkit-keyframes color {
+	0%   {color: #f29090;}
+	25%  {color: #f2d890;}
+	50%  {color: #90c3f2;}
+	75%  {color: #bc7bd4;}
+	100% {color: #f29090;}
 }
 
-@-o-keyframes myfirst /* Opera */
-{
-0%   {color: #f29090;}
-25%  {color: #f2d890;}
-50%  {color: #90c3f2;}
-75%  {color: #bc7bd4;}
-100% {color: #f29090;}
+@-o-keyframes color {
+	0%   {color: #f29090;}
+	25%  {color: #f2d890;}
+	50%  {color: #90c3f2;}
+	75%  {color: #bc7bd4;}
+	100% {color: #f29090;}
+}
+ 
+.nav {
+ 	transition: font-size .25s;
+	-moz-transition: font-size .25s;
+	-webkit-transition: font-size .25s; 
+	-o-transition: font-size .25s; 
+}
+
+.nav:hover {
+	font-size: 24px;
 }
