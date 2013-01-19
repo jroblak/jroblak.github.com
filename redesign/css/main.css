@@ -88,22 +88,16 @@ a:hover {
 
 .highlight {
 	color: #bc7bd4;
-	padding-left: 2px;
-	padding-right: 2px;
-}
-
-.highlight:hover{
-	color: #f29090;
 }
 
 .highlight {
-animation: myfirst 5s linear 2s infinite alternate;
+animation: myfirst 2s linear 0 infinite alternate;
 /* Firefox: */
--moz-animation: myfirst 5s linear 2s infinite alternate;
+-moz-animation: myfirst 2s linear 0 infinite alternate;
 /* Safari and Chrome: */
--webkit-animation: myfirst 5s linear 2s infinite alternate;
+-webkit-animation: myfirst 2s linear 0 infinite alternate;
 /* Opera: */
--o-animation: myfirst 5s linear 2s infinite alternate;
+-o-animation: myfirst 2s linear 0 infinite alternate;
 }
 
 
