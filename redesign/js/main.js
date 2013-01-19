@@ -28,11 +28,10 @@
 			}
 		});
 	} else {
-	// First, set up size of the content div based on the screen size
-		var height = $(window).height(); 
+		// First, set up size of the content div based on the screen size
 		var width = $(window).width();
 	
-		var contentDiv = width - 725;
+		var contentDiv = width - 690;
 	
 		$('.rightcontain').width(contentDiv);
 	
