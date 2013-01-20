@@ -1,0 +1,38 @@
+*{
+	background: #000;
+	text-align: center;
+	margin-left:auto;
+	margin-right: auto;
+	color: white;
+	font-family: 'Open Sans';
+}
+
+#cr-stage{
+	z-index: 1;
+	position: absolute;
+	border: 6px solid;
+	border-bottom: 0px;
+	border-color: #505050;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+#gamepanel{
+	border: 6px solid;
+	border-color: #505050;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	width: 480px;
+	height: auto;
+	min-height: 18px;
+	font-size: 12px;
+	position:relative;
+	color: black;
+}
+
+#gamepanel span {
+	bottom:0pt;
+	left:0pt;
+	top: 1pt;
+	width:100%;
+}
