@@ -148,9 +148,6 @@ $(function() {
   // The main view that lets a user manage their todo items
   var ManageTodosView = Parse.View.extend({
 
-    // Our template for the line of statistics at the bottom of the app.
-    statsTemplate: _.template($('#stats-template').html()),
-
     // Delegated events for creating new items, and clearing completed ones.
     events: {
       "keypress #new-todo":  "createOnEnter",
@@ -189,7 +186,6 @@ $(function() {
       // Fetch all the todo items for this user
       this.todos.fetch();
 
-      state.on("change", this.filter, this);
     },
 
     // Logs out the user and shows the login view
@@ -205,12 +201,6 @@ $(function() {
     render: function() {
       var done = this.todos.done().length;
       var remaining = this.todos.remaining().length;
-
-      this.$('#todo-stats').html(this.statsTemplate({
-        total:      this.todos.length,
-        done:       done,
-        remaining:  remaining
-      }));
 
       this.delegateEvents();
     },
@@ -375,33 +365,8 @@ $(function() {
     }
   });
 
-  var AppRouter = Parse.Router.extend({
-    routes: {
-      "all": "all",
-      "active": "active",
-      "completed": "completed"
-    },
 
-    initialize: function(options) {
-    },
-
-    all: function() {
-      state.set({ filter: "all" });
-    },
-
-    active: function() {
-      state.set({ filter: "active" });
-    },
-
-    completed: function() {
-      state.set({ filter: "completed" });
-    }
-  });
-
-  var state = new AppState;
-
-  new AppRouter;
   new AppView;
-  Parse.history.start();
+
 
 });
