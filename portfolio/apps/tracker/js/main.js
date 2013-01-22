@@ -7,7 +7,6 @@ $(function() {
   Parse.initialize("KKcMZTMG3lWdgUrxj6CUUiRqzjBcsf6oqbH754NR", "TOgQkq5SZGfyr50FAjXL6pmwmhwR46vLbDZdFS22");
 
   // Tracker Model
-
   var Todo = Parse.Object.extend("Todo", {
     // Default attributes
     defaults: {
@@ -29,12 +28,18 @@ $(function() {
 	  if (!this.get("unit")) {
         this.set({"unit": this.defaults.unit});
       }
+
     },
 
     // Toggle the `done` state of this todo item.
     toggle: function() {
       this.save({done: !this.get("done")});
-    }
+    },
+
+	addOne: function() {
+		this.save({progress: progress+=1});
+	}
+	
   });
 
   // This is the transient application state, not persisted on Parse
@@ -45,39 +50,21 @@ $(function() {
   });
 
   // Todo Collection
-  // ---------------
-
   var TodoList = Parse.Collection.extend({
 
     // Reference to this collection's model.
     model: Todo,
-
-    // Filter down the list of all todo items that are finished.
-    done: function() {
-      return this.filter(function(todo){ return todo.get('done'); });
-    },
-
-    // Filter down the list to only todo items that are still not finished.
-    remaining: function() {
-      return this.without.apply(this, this.done());
-    },
 
     // We keep the Todos in sequential order, despite being saved by unordered
     // GUID in the database. This generates the next order number for new items.
     nextOrder: function() {
       if (!this.length) return 1;
       return this.last().get('order') + 1;
-    },
-
-    // Todos are sorted by their original insertion order.
-    comparator: function(todo) {
-      return todo.get('order');
     }
 
   });
 
   // Todo Item View
-  // --------------
 
   // The DOM element for a todo item...
   var TodoView = Parse.View.extend({
@@ -91,6 +78,7 @@ $(function() {
     // The DOM events specific to an item.
     events: {
       "click .toggle"              : "toggleDone",
+	  "click .add"				   : "addProgress",
       "dblclick label.todo-content" : "edit",
       "click .todo-destroy"   : "clear",
       "keypress .edit"      : "updateOnEnter",
@@ -112,11 +100,14 @@ $(function() {
       this.input = this.$('.edit');
       return this;
     },
-
-    // Toggle the `"done"` state of the model.
+   
     toggleDone: function() {
       this.model.toggle();
     },
+
+	addProgress: function() {
+	  this.model.addOne();
+	},
 
     // Switch this view into `"editing"` mode, displaying the input field.
     edit: function() {
@@ -142,9 +133,6 @@ $(function() {
 
   });
 
-  // The Application
-  // ---------------
-
   // The main view that lets a user manage their todo items
   var ManageTodosView = Parse.View.extend({
 
@@ -162,7 +150,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addAll', 'addSome', 'render', 'logOut', 'createOnEnter');
+      _.bindAll(this, 'addOne', 'addAll', 'render', 'logOut', 'createOnEnter');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
@@ -179,7 +167,7 @@ $(function() {
       this.todos.bind('add',     this.addOne);
       this.todos.bind('reset',   this.addAll);
       this.todos.bind('all',     this.render);
-
+	
       // Fetch all the todo items for this user
       this.todos.fetch();
 
@@ -196,9 +184,6 @@ $(function() {
     // Re-rendering the App just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function() {
-      var done = this.todos.done().length;
-      var remaining = this.todos.remaining().length;
-
       this.delegateEvents();
     },
 
@@ -210,16 +195,9 @@ $(function() {
     },
 
     // Add all items in the Todos collection at once.
-    addAll: function(collection, filter) {
+    addAll: function() {
       this.$("#todo-list").html("");
       this.todos.each(this.addOne);
-    },
-
-    // Only adds some todos, based on a filtering function that is passed in
-    addSome: function(filter) {
-      var self = this;
-      this.$("#todo-list").html("");
-      this.todos.chain().filter(filter).each(function(item) { self.addOne(item) });
     },
 
     // If you hit return in the main input field, create new Todo model
@@ -236,16 +214,6 @@ $(function() {
       });
 
       this.input.val('');
-    },
-
-    // Clear all done todo items, destroying their models.
-    clearCompleted: function() {
-      _.each(this.todos.done(), function(todo){ todo.destroy(); });
-      return false;
-    },
-
-    toggleAllComplete: function () {
-      this.todos.each(function (todo) { todo.save({'done': done}); });
     }
   });
 
@@ -335,6 +303,4 @@ $(function() {
 
 
   new AppView;
-
-
 });
