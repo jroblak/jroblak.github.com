@@ -69,6 +69,7 @@
     <script type="text/template" id="item-template">
 	
       <li class="<%= done ? 'completed' : '' %>">
+		<div id = "progressbar"><%= title %></div>
 	    <div class="view">
 	      <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
 	      <label class="todo-content"><%= title %></label>

@@ -11,7 +11,7 @@ $(function() {
     // Default attributes
     defaults: {
       title: "Something",
-      progress: 0,
+      progress: 10,
 	  goal: 1,
 	  unit: "items",
       done: false
@@ -28,7 +28,6 @@ $(function() {
 	  if (!this.get("unit")) {
         this.set({"unit": this.defaults.unit});
       }
-
     },
 
     // Toggle the `done` state of this todo item.
@@ -38,6 +37,10 @@ $(function() {
 
 	addOne: function() {
 		this.save({progress: progress+=1});
+	},
+	
+	getValue: function() {
+		return this.get("progress");
 	}
 	
   });
@@ -96,6 +99,9 @@ $(function() {
 
     // Re-render the contents of the todo item.
     render: function() {
+	  $( "#progressbar" ).progressbar({
+        value: this.model.getValue()
+	  });
       $(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
       return this;
