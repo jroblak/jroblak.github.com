@@ -12,7 +12,7 @@ $(function() {
     defaults: {
       title: "Something",
       progress: 10,
-	  goal: 1,
+	  target: 1,
 	  unit: "items",
       done: false
     },
@@ -22,8 +22,8 @@ $(function() {
       if (!this.get("title")) {
         this.set({"title": this.defaults.title});
       }
-	  if (!this.get("goal")) {
-        this.set({"goal": this.defaults.goal});
+	  if (!this.get("target")) {
+        this.set({"target": this.defaults.target});
       }
 	  if (!this.get("unit")) {
         this.set({"unit": this.defaults.unit});
@@ -99,9 +99,6 @@ $(function() {
 
     // Re-render the contents of the todo item.
     render: function() {
-	  $( "#progressbar" ).progressbar({
-        value: this.model.getValue()
-	  });
       $(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
       return this;
@@ -213,6 +210,8 @@ $(function() {
 
       this.todos.create({
         title: this.input.val(),
+        target: this.$('#target').val(),
+		unit: this.$('#type').val(),
         order:   this.todos.nextOrder(),
         done:    false,
         user:    Parse.User.current(),
