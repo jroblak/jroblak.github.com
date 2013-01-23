@@ -100,6 +100,10 @@ $(function() {
     // Re-render the contents of the todo item.
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
+	  console.log(this.model.get("title"));
+	  for(var i = 0; i <= 4; i++) {
+		$("#"+this.model.get("title")+"bar").append("|");
+	  }
       this.input = this.$('.edit');
       return this;
     },
