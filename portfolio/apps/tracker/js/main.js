@@ -11,7 +11,7 @@ $(function() {
     // Default attributes
     defaults: {
       title: "default",
-      progress: 1,
+      progress: 0,
 	  multiplier: 1,
 	  target: 100,
 	  unit: "items",
@@ -36,7 +36,11 @@ $(function() {
 
 	addOne: function() {
 		var add = this.get("progress") + (1*this.get("multiplier"));
-		this.save({"progress": add});
+		if(add <= 100) {
+			this.save({"progress": add});
+		} else {
+			return;
+		}
 	},
 	
 	getProgress: function() {
