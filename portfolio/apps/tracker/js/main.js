@@ -20,11 +20,9 @@ $(function() {
 
     // Ensure that each todo created has `content`.
     initialize: function() {
+	  this.set({"progress": this.defaults.progress});
       if (!this.get("title")) {
         this.set({"title": this.defaults.title});
-      }
-	  if (!this.get("progress")) {
-        this.set({"progress": this.defaults.progress});
       }
 	  if (!this.get("unit")) {
         this.set({"unit": this.defaults.unit});
@@ -40,7 +38,7 @@ $(function() {
 		this.save({progress: progress+=1});
 	},
 	
-	getValue: function() {
+	getProgress: function() {
 		return this.get("progress");
 	}
 	
@@ -82,16 +80,21 @@ $(function() {
       this.model.bind('destroy', this.remove);
     },
 
-    // Re-render the contents of the item
+    // Render the contents of the item
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
-	  for(var i = 0; i <= 4; i++) {
-		$("#"+this.model.get("title")+"bar").append("|");
-	  }
       this.input = this.$('.edit');
       return this;
     },
-   
+    
+    displayBar: function() {
+	  var bar = "";
+	  for(var i = 0; i < this.model.getProgress(); i++) {
+		bar += "|";
+	  }
+	  return bar;
+    },
+
     toggleDone: function() {
       this.model.toggle();
     },
