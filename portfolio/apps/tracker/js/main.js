@@ -7,12 +7,13 @@ $(function() {
   Parse.initialize("KKcMZTMG3lWdgUrxj6CUUiRqzjBcsf6oqbH754NR", "TOgQkq5SZGfyr50FAjXL6pmwmhwR46vLbDZdFS22");
 
   // Tracker Model
-  var Todo = Parse.Object.extend("Todo", {
+  var Tracker = Parse.Object.extend("Tracker", {
     // Default attributes
     defaults: {
-      title: "Something",
-      progress: 10,
-	  target: 1,
+      title: "default",
+      progress: 1,
+	  multiplier: 1,
+	  target: 100,
 	  unit: "items",
       done: false
     },
@@ -22,8 +23,8 @@ $(function() {
       if (!this.get("title")) {
         this.set({"title": this.defaults.title});
       }
-	  if (!this.get("target")) {
-        this.set({"target": this.defaults.target});
+	  if (!this.get("progress")) {
+        this.set({"progress": this.defaults.progress});
       }
 	  if (!this.get("unit")) {
         this.set({"unit": this.defaults.unit});
@@ -45,18 +46,9 @@ $(function() {
 	
   });
 
-  // This is the transient application state, not persisted on Parse
-  var AppState = Parse.Object.extend("AppState", {
-    defaults: {
-      filter: "all"
-    }
-  });
+  var TrackerList = Parse.Collection.extend({
 
-  // Todo Collection
-  var TodoList = Parse.Collection.extend({
-
-    // Reference to this collection's model.
-    model: Todo,
+    model: Tracker,
 
     // We keep the Todos in sequential order, despite being saved by unordered
     // GUID in the database. This generates the next order number for new items.
@@ -67,40 +59,32 @@ $(function() {
 
   });
 
-  // Todo Item View
+  // Main tracker item view
+  var TrackerView = Parse.View.extend({
 
-  // The DOM element for a todo item...
-  var TodoView = Parse.View.extend({
-
-    //... is a list tag.
-    tagName:  "li",
-
-    // Cache the template function for a single item.
-    template: _.template($('#item-template').html()),
+    // "Load" the template for a item
+    template: _.template($('#trackertemplate').html()),
 
     // The DOM events specific to an item.
     events: {
       "click .toggle"              : "toggleDone",
 	  "click .add"				   : "addProgress",
-      "dblclick label.todo-content" : "edit",
-      "click .todo-destroy"   : "clear",
+      "dblclick label.innercontent" : "edit",
+      "click .destroyme"   : "clear",
       "keypress .edit"      : "updateOnEnter",
       "blur .edit"          : "close"
     },
 
-    // The TodoView listens for changes to its model, re-rendering. Since there's
-    // a one-to-one correspondence between a Todo and a TodoView in this
-    // app, we set a direct reference on the model for convenience.
+    // Listen for 'changes' and call render whenever it's changed
     initialize: function() {
       _.bindAll(this, 'render', 'close', 'remove');
       this.model.bind('change', this.render);
       this.model.bind('destroy', this.remove);
     },
 
-    // Re-render the contents of the todo item.
+    // Re-render the contents of the item
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
-	  console.log(this.model.get("title"));
 	  for(var i = 0; i <= 4; i++) {
 		$("#"+this.model.get("title")+"bar").append("|");
 	  }
@@ -116,67 +100,69 @@ $(function() {
 	  this.model.addOne();
 	},
 
-    // Switch this view into `"editing"` mode, displaying the input field.
+    // Probably remove me
     edit: function() {
       $(this.el).addClass("editing");
       this.input.focus();
     },
 
-    // Close the `"editing"` mode, saving changes to the todo.
+    // Prob remove me
     close: function() {
       this.model.save({title: this.input.val()});
       $(this.el).removeClass("editing");
     },
 
-    // If you hit `enter`, we're through editing the item.
+    // Prob remove me
     updateOnEnter: function(e) {
       if (e.keyCode == 13) this.close();
     },
 
-    // Remove the item, destroy the model.
+    // Remove the item
     clear: function() {
       this.model.destroy();
     }
 
   });
 
-  // The main view that lets a user manage their todo items
-  var ManageTodosView = Parse.View.extend({
 
-    // Delegated events for creating new items, and clearing completed ones.
+  // The "main" view for the bulk of the app. Controls setting up, displaying
+  // adding, etc.
+
+  var ManageTrackersView = Parse.View.extend({
+
+    // Delegated events
     events: {
-      "keypress #new-todo":  "createOnEnter",
+      "keypress #newtracker":  "createOnEnter",
+	  "keypress #target":  "createOnEnter",
+	  "keypress #type":  "createOnEnter",
       "click .log-out": "logOut",
     },
 
     el: ".content",
 
-    // At initialization we bind to the relevant events on the `Todos`
-    // collection, when items are added or changed. Kick things off by
-    // loading any preexisting todos that might be saved to Parse.
     initialize: function() {
       var self = this;
 
       _.bindAll(this, 'addOne', 'addAll', 'render', 'logOut', 'createOnEnter');
 
-      // Main todo management template
-      this.$el.html(_.template($("#manage-todos-template").html()));
+      // "load" the main template
+      this.$el.html(_.template($("#managetrackerstemplate").html()));
       
-      this.input = this.$("#new-todo");
+      this.input = this.$("#newtracker");
 
-      // Create our collection of Todos
-      this.todos = new TodoList;
+      // Create our list of "things" to track
+      this.trackers = new TrackerList;
 
-      // Setup the query for the collection to look for todos from the current user
-      this.todos.query = new Parse.Query(Todo);
-      this.todos.query.equalTo("user", Parse.User.current());
+      // Setup the query for the collection to look for items for the current user
+      this.trackers.query = new Parse.Query(Tracker);
+      this.trackers.query.equalTo("user", Parse.User.current());
         
-      this.todos.bind('add',     this.addOne);
-      this.todos.bind('reset',   this.addAll);
-      this.todos.bind('all',     this.render);
+      this.trackers.bind('add',     this.addOne);
+      this.trackers.bind('reset',   this.addAll);
+      this.trackers.bind('all',     this.render);
 	
-      // Fetch all the todo items for this user
-      this.todos.fetch();
+      // Fetch the items
+      this.trackers.fetch();
 
     },
 
@@ -194,38 +180,42 @@ $(function() {
       this.delegateEvents();
     },
 
-    // Add a single todo item to the list by creating a view for it, and
-    // appending its element to the `<ul>`.
-    addOne: function(todo) {
-      var view = new TodoView({model: todo});
-      this.$("#todo-list").append(view.render().el);
+    // Add an item to the list by creating a view for it, and
+    // appending its element
+    addOne: function(tracker) {
+      var view = new TrackerView({model: tracker});
+      this.$("#trackerlist").append(view.render().el);
     },
 
-    // Add all items in the Todos collection at once.
+    // Clear the list then show everything
     addAll: function() {
-      this.$("#todo-list").html("");
-      this.todos.each(this.addOne);
+      this.$("#trackerlist").html("");
+      this.trackers.each(this.addOne);
     },
 
-    // If you hit return in the main input field, create new Todo model
+    // If you hit return in any input, create the new tracker item
     createOnEnter: function(e) {
       var self = this;
       if (e.keyCode != 13) return;
 
-      this.todos.create({
+      this.trackers.create({
         title: this.input.val(),
         target: this.$('#target').val(),
+		multiplier: 100/this.$('#target').val(),
 		unit: this.$('#type').val(),
-        order:   this.todos.nextOrder(),
+        order:   this.trackers.nextOrder(),
         done:    false,
         user:    Parse.User.current(),
         ACL:     new Parse.ACL(Parse.User.current())
       });
 
       this.input.val('');
+	  this.$('#target').val();
+	  this.$('#type').val();
     }
   });
 
+  // LogIn view for the user to sign up for an account or log into one
   var LogInView = Parse.View.extend({
     events: {
       "submit form.login-form": "logIn",
@@ -291,11 +281,11 @@ $(function() {
     }
   });
 
-  // The main view for the app
+  // We start here -- AppView checks if the user is logged into Parse
+  // If yes, we move onto the Manage view, otherwise we go to a logon view
   var AppView = Parse.View.extend({
-    // Instead of generating a new element, bind to the existing skeleton of
-    // the App already present in the HTML.
-    el: $("#todoapp"),
+
+    el: $("#trackerapp"),
 
     initialize: function() {
       this.render();
@@ -303,13 +293,13 @@ $(function() {
 
     render: function() {
       if (Parse.User.current()) {
-        new ManageTodosView();
+        new ManageTrackersView();
       } else {
         new LogInView();
       }
     }
   });
 
-
+  // Start app!
   new AppView;
 });
