@@ -35,7 +35,8 @@ $(function() {
     },
 
 	addOne: function() {
-		this.save({progress: progress+=1});
+		var add = this.get("progress") + (1*this.get("multiplier"));
+		this.save({"progress": add});
 	},
 	
 	getProgress: function() {
