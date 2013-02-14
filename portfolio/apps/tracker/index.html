@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>Progress Tracker</title>
     <link href="css/main.css" media="all" rel="stylesheet" type="text/css"/>
-	<link href="css/jquery-ui.custom.css" rel="stylesheet" type="text/css"/>
   </head>
 
   <body>
@@ -18,7 +17,6 @@
     </div>
 
 	<script src="js/vendor/jquery.min.js"></script>
-	<script src="js/vendor/jquery-ui.min.js"></script>
     <script src="js/vendor/underscore-min.js"></script>
     <script src="js/vendor/parse-1.1.15.min.js"></script>
     <script src="js/main.js"></script>
@@ -69,7 +67,7 @@
 	
       <li class="<%= done ? 'completed' : '' %>">
 	    <div class="view">
-	      <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
+	
 		  <button class="add">add</button>
 		  <button class="remove">remove</button>
 	      <label class="innercontent"><%= title %></label>
@@ -77,6 +75,7 @@
 	      <label class="innercontent"><%= unit %></label>
 		  <div class = "pBar" id = "<%= title %>bar"><%= this.displayBar() %></div>
 	      <button class="destroyme">delete</button>
+	
 	    </div>
       </li>
 

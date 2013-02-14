@@ -5,6 +5,63 @@ html, body {
 	color: #FFCC00;
 	background: #262626;
 }
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin-left: 0;
+}
+
+button.add {
+	border: 1px solid #777777;
+    background: #6e9e2d;
+    color: white;
+    font: bold 11px 'Trebuchet MS';
+    padding: 4px;
+    cursor: pointer;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+button.remove {
+	border: 1px solid #777777;
+    background: #ccc;
+    color: white;
+    font: bold 11px 'Trebuchet MS';
+    padding: 4px;
+    cursor: pointer;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+button.destroyme {
+	border: 1px solid #777777;
+    background: #ccc;
+    color: white;
+    font: bold 11px 'Trebuchet MS';
+    padding: 4px;
+    cursor: pointer;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+#trackerapp {
+	margin-left: 20px;
+}
+
+.title {
+	font-size: 24px;
+}
+
+.content {
+	width: 700px;
+}
+
 .pBar {
 	width: 400px;
 	height: 1em;
