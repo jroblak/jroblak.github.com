@@ -70,14 +70,14 @@
       <li class="<%= done ? 'completed' : '' %>">
 	    <div class="view">
 	      <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
-		  <button class="add"></button>
+		  <button class="add">add</button>
+		  <button class="remove">remove</button>
 	      <label class="innercontent"><%= title %></label>
 	      <label class="innercontent"><%= target %></label>
 	      <label class="innercontent"><%= unit %></label>
 		  <div class = "pBar" id = "<%= title %>bar"><%= this.displayBar() %></div>
-	      <button class="destroyme"></button>
+	      <button class="destroyme">delete</button>
 	    </div>
-	    <input class="edit" value="<%= title %>">
       </li>
 
     </script>
