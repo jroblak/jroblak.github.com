@@ -43,6 +43,15 @@ $(function() {
 		}
 	},
 	
+	removeOne: function() {
+		var remove = this.get("progress") - (1*this.get("multiplier"));
+		if(remove >= 0) {
+			this.save({"progress": remove});
+		} else {
+			return;
+		}
+	},
+	
 	getProgress: function() {
 		return this.get("progress");
 	}
@@ -72,15 +81,13 @@ $(function() {
     events: {
       "click .toggle"              : "toggleDone",
 	  "click .add"				   : "addProgress",
-      "dblclick label.innercontent" : "edit",
+	  "click .remove"			   : "removeProgress",
       "click .destroyme"   : "clear",
-      "keypress .edit"      : "updateOnEnter",
-      "blur .edit"          : "close"
     },
 
     // Listen for 'changes' and call render whenever it's changed
     initialize: function() {
-      _.bindAll(this, 'render', 'close', 'remove');
+      _.bindAll(this, 'render', 'remove');
       this.model.bind('change', this.render);
       this.model.bind('destroy', this.remove);
     },
@@ -107,23 +114,10 @@ $(function() {
 	addProgress: function() {
 	  this.model.addOne();
 	},
-
-    // Probably remove me
-    edit: function() {
-      $(this.el).addClass("editing");
-      this.input.focus();
-    },
-
-    // Prob remove me
-    close: function() {
-      this.model.save({title: this.input.val()});
-      $(this.el).removeClass("editing");
-    },
-
-    // Prob remove me
-    updateOnEnter: function(e) {
-      if (e.keyCode == 13) this.close();
-    },
+	
+	removeProgress: function() {
+	  this.model.removeOne();
+	},
 
     // Remove the item
     clear: function() {
