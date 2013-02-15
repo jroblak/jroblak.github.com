@@ -10,26 +10,11 @@ $(function() {
   var Tracker = Parse.Object.extend("Tracker", {
     // Default attributes
     defaults: {
-      title: "Read",
       progress: 0,
-	  multiplier: 100,
-	  target: 5,
-	  type: "Books",
-      done: false
     },
 
-    // Ensure that each todo created has `content`.
     initialize: function() {
 	  this.set({"progress": this.defaults.progress});
-      if (!this.get("title")) {
-        this.set({"title": this.defaults.title});
-      }
-	  if (!this.get("unit")) {
-        this.set({"unit": this.defaults.type});
-      }
-	  if (!this.get("target")) {
-        this.set({"unit": this.defaults.target});
-      }
     },
 
 	addOne: function() {
