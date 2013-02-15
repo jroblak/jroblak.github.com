@@ -10,11 +10,11 @@ $(function() {
   var Tracker = Parse.Object.extend("Tracker", {
     // Default attributes
     defaults: {
-      title: "default",
+      title: "Read",
       progress: 0,
-	  multiplier: 1,
-	  target: 100,
-	  unit: "items",
+	  multiplier: 100,
+	  target: 5,
+	  type: "Books",
       done: false
     },
 
@@ -25,7 +25,10 @@ $(function() {
         this.set({"title": this.defaults.title});
       }
 	  if (!this.get("unit")) {
-        this.set({"unit": this.defaults.unit});
+        this.set({"unit": this.defaults.type});
+      }
+	  if (!this.get("target")) {
+        this.set({"unit": this.defaults.target});
       }
     },
 
@@ -138,7 +141,7 @@ $(function() {
     events: {
       "keypress #newtracker":  "createOnEnter",
 	  "keypress #target":  "createOnEnter",
-	  "keypress #type":  "createOnEnter",
+	  "keypress #unit":  "createOnEnter",
       "click .log-out": "logOut",
     },
 
@@ -208,7 +211,7 @@ $(function() {
         title: this.input.val(),
         target: this.$('#target').val(),
 		multiplier: 100/this.$('#target').val(),
-		unit: this.$('#type').val(),
+		type:    this.$('#unit').val(),
         order:   this.trackers.nextOrder(),
         done:    false,
         user:    Parse.User.current(),
@@ -217,7 +220,7 @@ $(function() {
 
       this.input.val('');
 	  this.$('#target').val();
-	  this.$('#type').val();
+	  this.$('#unit').val();
     }
   });
 
