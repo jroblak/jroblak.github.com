@@ -208,7 +208,7 @@ $(function() {
       if (e.keyCode != 13) return;
 
       this.trackers.create({
-        title: this.input.val(),
+        title: this.$('#title').val(),
         target: this.$('#target').val(),
 		multiplier: 100/this.$('#target').val(),
 		type:    this.$('#unit').val(),
@@ -219,8 +219,8 @@ $(function() {
       });
 
       this.input.val('');
-	  this.$('#target').val();
-	  this.$('#unit').val();
+	  this.$('#target').val('');
+	  this.$('#unit').val('');
     }
   });
 
