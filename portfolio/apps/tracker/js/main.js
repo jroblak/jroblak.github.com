@@ -73,7 +73,9 @@ $(function() {
 
   // Main tracker item view
   var TrackerView = Parse.View.extend({
-
+	
+	tagName: 'li',
+	
     // "Load" the template for a item
     template: _.template($('#trackertemplate').html()),
 
@@ -90,21 +92,21 @@ $(function() {
       _.bindAll(this, 'render', 'remove');
       this.model.bind('change', this.render);
       this.model.bind('destroy', this.remove);
+      this.displayBar();
     },
 
     // Render the contents of the item
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
-      this.input = this.$('.edit');
+      this.displayBar();
       return this;
     },
     
     displayBar: function() {
-	  var bar = "";
-	  for(var i = 0; i < this.model.getProgress(); i++) {
-		bar += "|";
-	  }
-	  return bar;
+	  var pBar = $('#'+this.model.get("title")+"bar");
+	  var poverlay = $('#'+this.model.get("title")+"overlay");
+	  pBar.progressbar({ value: this.model.getProgress() });
+	  poverlay.html(this.model.getProgress()+"%");
     },
 
     toggleDone: function() {
@@ -180,6 +182,7 @@ $(function() {
     // of the app doesn't change.
     render: function() {
       this.delegateEvents();
+	  return this;
     },
 
     // Add an item to the list by creating a view for it, and
@@ -187,6 +190,7 @@ $(function() {
     addOne: function(tracker) {
       var view = new TrackerView({model: tracker});
       this.$("#trackerlist").append(view.render().el);
+	  view.render();
     },
 
     // Clear the list then show everything

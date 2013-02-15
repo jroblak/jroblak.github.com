@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Progress Tracker</title>
     <link href="css/main.css" media="all" rel="stylesheet" type="text/css"/>
+	<link href="css/jqueryui.css" media="all" rel="stylesheet" type="text/css"/>
   </head>
 
   <body>
@@ -17,6 +18,7 @@
     </div>
 
 	<script src="js/vendor/jquery.min.js"></script>
+	<script src="js/vendor/jqueryui.min.js"></script>
     <script src="js/vendor/underscore-min.js"></script>
     <script src="js/vendor/parse-1.1.15.min.js"></script>
     <script src="js/main.js"></script>
@@ -73,7 +75,8 @@
 	      <label class="innercontent"><%= title %></label>
 	      <label class="innercontent"><%= target %></label>
 	      <label class="innercontent"><%= unit %></label>
-		  <div class = "pBar" id = "<%= title %>bar"><%= this.displayBar() %></div>
+		  <div class = "progressbar" id = "<%= title %>bar"></div>
+		  <div class = "poverlay" id = "<%= title %>overlay"></div>
 	      <button class="destroyme">delete</button>
 	
 	    </div>

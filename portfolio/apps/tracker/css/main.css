@@ -68,3 +68,9 @@ button.destroyme {
 	color: #FFF;
 	background: #555;
 }
+
+.poverlay {
+	margin-top: -28px;
+	margin-left: 350px;
+	height: 28px;
+}
