@@ -32,11 +32,6 @@ $(function() {
       }
     },
 
-    // Toggle the `done` state of this todo item.
-    toggle: function() {
-      this.save({done: !this.get("done")});
-    },
-
 	addOne: function() {
 		var add = this.get("progress") + (1*this.get("multiplier"));
 		if(add <= 100) {
@@ -139,7 +134,7 @@ $(function() {
 
     // Delegated events
     events: {
-      "keypress #newtracker":  "createOnEnter",
+      "keypress #title":  "createOnEnter",
 	  "keypress #target":  "createOnEnter",
 	  "keypress #unit":  "createOnEnter",
       "click .log-out": "logOut",
@@ -206,6 +201,10 @@ $(function() {
     createOnEnter: function(e) {
       var self = this;
       if (e.keyCode != 13) return;
+	  if (!this.$('#title').val() || !this.$('#target').val() || !this.$('#unit').val()) {
+		alert("Please fill all fields");
+		return;
+	  }
 
       this.trackers.create({
         title: this.$('#title').val(),
@@ -218,7 +217,7 @@ $(function() {
         ACL:     new Parse.ACL(Parse.User.current())
       });
 
-      this.input.val('');
+      this.$('#title').val('');
 	  this.$('#target').val('');
 	  this.$('#unit').val('');
     }
