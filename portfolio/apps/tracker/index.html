@@ -67,7 +67,7 @@
 
     <script type="text/template" id="trackertemplate">
 	
-      <li class="<%= done ? 'completed' : '' %>">
+      <li>
 	    <div class="view">
 	
 		  <button class="add">add</button>
@@ -75,8 +75,8 @@
 	      <label class="innercontent"><%= title %></label>
 	      <label class="innercontent"><%= target %></label>
 	      <label class="innercontent"><%= type %></label>
-		  <div class = "progressbar" id = "<%= title %>bar"></div>
-		  <div class = "poverlay" id = "<%= title %>overlay"></div>
+		  <div class = "progressbar" id = "<%= rnum %>b"></div>
+		  <div class = "poverlay" id = "<%= rnum %>o"></div>
 	      <button class="destroyme">delete</button>
 	
 	    </div>

@@ -86,8 +86,8 @@ $(function() {
     },
     
     displayBar: function() {
-	  var pBar = $('#'+this.model.get("title")+"bar");
-	  var poverlay = $('#'+this.model.get("title")+"overlay");
+	  var pBar = $('#'+this.model.get("rnum")+"b");
+	  var poverlay = $('#'+this.model.get("rnum")+"o");
 	  pBar.progressbar({ value: this.model.getProgress() });
 	  poverlay.html(this.model.getProgress()+"%");
     },
@@ -193,6 +193,7 @@ $(function() {
 
       this.trackers.create({
         title: this.$('#title').val(),
+		rnum: Math.floor(Math.random()*10000),
         target: this.$('#target').val(),
 		multiplier: 100/this.$('#target').val(),
 		type:    this.$('#unit').val(),
