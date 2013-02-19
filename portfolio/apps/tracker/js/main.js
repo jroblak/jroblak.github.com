@@ -111,7 +111,6 @@ $(function() {
 
   });
 
-
   // The "main" view for the bulk of the app. Controls setting up, displaying
   // adding, etc.
 
@@ -275,7 +274,7 @@ $(function() {
     }
   });
 
-  // We start here -- AppView checks if the user is logged into Parse
+  // AppView checks if the user is logged into Parse
   // If yes, we move onto the Manage view, otherwise we go to a logon view
   var AppView = Parse.View.extend({
 
