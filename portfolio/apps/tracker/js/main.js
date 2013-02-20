@@ -86,10 +86,10 @@ $(function() {
     },
     
     displayBar: function() {
-	  var pBar = $('#'+this.model.get("rnum")+"b");
-	  var poverlay = $('#'+this.model.get("rnum")+"o");
-	  pBar.progressbar({ value: this.model.getProgress() });
-	  poverlay.html(this.model.getProgress()+"%");
+	    var pBar = $('#'+this.model.get("rnum")+"b");
+	    var poverlay = $('#'+this.model.get("rnum")+"o");
+	    pBar.progressbar({ value: this.model.getProgress() });
+	    poverlay.html(this.model.getProgress()+"%");
     },
 
     toggleDone: function() {
@@ -273,7 +273,7 @@ $(function() {
       this.delegateEvents();
     }
   });
-
+	
   // AppView checks if the user is logged into Parse
   // If yes, we move onto the Manage view, otherwise we go to a logon view
   var AppView = Parse.View.extend({
