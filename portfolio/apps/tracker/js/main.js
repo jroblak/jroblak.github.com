@@ -10,11 +10,11 @@ $(function() {
   var Tracker = Parse.Object.extend("Tracker", {
     // Default attributes
     defaults: {
-      progress: 0,
+      progress: 0
     },
 
     initialize: function() {
-	  this.set({"progress": this.defaults.progress});
+      this.set({"progress": this.defaults.progress});
     },
 
 	addOne: function() {
