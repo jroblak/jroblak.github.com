@@ -133,3 +133,109 @@ a:hover {
 	75%  {color: #bc7bd4;}
 	100% {color: #f29090;}
 }
+
+.porthead {
+  font-size: 1.8em;
+  border-bottom: 1px dotted #9fa8ff;
+  margin-bottom: 10px;
+}
+
+.small {
+	font-size: .75em;
+	font-style: oblique;
+}
+
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  /* some CSS here */
+}
+
+@media screen and (max-device-width: 640px) and (orientation: landscape){
+  /* some CSS here */
+}
+
+@media screen and (max-device-width: 640px) {
+  body {
+		margin: 0px;
+		width: 100%;
+	}
+	
+	h1 {
+		font-size: .75em;
+  }
+
+  .leftcontain {
+		padding-left: 2%;
+		margin: 0;
+		margin-top: -20px;
+		padding-right: 2%;
+		text-align: center;
+		width: 100%;
+  }
+
+  .rightcontain {
+		padding-left: 2%;
+		padding-right: 2%;
+		margin: 0;
+		text-align: center;
+		width: 100%;
+  }
+
+	a {
+		text-decoration: none;
+		font-weight: bold;
+		font-size: .75em;
+		color: #808080;
+		border-bottom: 1px dotted #808080;
+	}
+
+	a:hover {
+		color: #9fa8ff;
+		border-bottom: 1px dotted #9fa8ff;
+	}
+
+	.head {
+		width: 100%;
+		margin-top: 0;
+		font-size: 3em;
+		text-align: center;
+		color: #AFAFAF;
+	}
+
+	.innercontain {
+		width: 100%;
+		font-size: 16px;
+		text-align: right;
+	}
+
+	.content {
+		font-size: 20px;
+	}
+
+	.highlight {
+		color: #bc7bd4;
+	}
+	
+	.nav {
+	  font-size: 3em;
+		text-align:center;
+	}
+	.nav:hover {
+		font-size: 3em;
+	}
+	
+	.porthead {
+	  font-size: 1.8em;
+	  border-bottom: 1px dotted #9fa8ff;
+	  margin-bottom: 10px;
+	}
+
+	.small {
+		font-size: .75em;
+		font-style: oblique;
+	}
+
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px){
+  /* some CSS here */
+}

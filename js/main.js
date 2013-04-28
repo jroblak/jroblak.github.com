@@ -1,27 +1,27 @@
 ;$(function(){
 
 	// Check for mobile devices or small screens - I don't really care about height
-	if ($(window).width() < 700) {
+	if ($(window).width() < 640) {
 		$('.nav').click(function() {
 			if ($(this).is('#skills')) {
-				$(this).addClass('highlight').css('font-size', 18);
-				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$(this).addClass('highlight').css('font-size', '3.5em');
+				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
 				$('.content').load('pages/skills.html').hide().fadeIn();
 			} else if ($(this).is('#about')) {
-				$(this).addClass('highlight').css('font-size', 18);
-				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$(this).addClass('highlight').css('font-size', '3.5em');
+				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
 				$('.content').load('pages/about.html').hide().fadeIn();
 			} else if ($(this).is('#portfolio')) {
-				$(this).addClass('highlight').css('font-size', 18);
-				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$(this).addClass('highlight').css('font-size', '3.5em');
+				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
 				$('.content').load('portfolio/index.html').hide().fadeIn();
 			} else if ($(this).is('#contact'))	 {
-				$(this).addClass('highlight').css('font-size', 18);
-				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$(this).addClass('highlight').css('font-size', '3.5em');
+				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
 				$('.content').load('pages/contact.html').hide().fadeIn();
 			} else {
-				$(this).addClass('highlight').css('font-size', 18);
-				$(this).siblings().css('font-size', 10).removeClass('highlight');
+				$(this).addClass('highlight').css('font-size', '3.5em');
+				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
 				$('.content').html('<a href="http://blog.justinoblak.com">a blog!</a>').hide().fadeIn();
 			}
 		});
