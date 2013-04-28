@@ -189,7 +189,9 @@ button.destroyme {
 }
 
 .poverlay {
+	position: absolute;
 	margin-top: -28px;
-	margin-left: 350px;
+	margin-left: 330px;
 	height: 28px;
+	z-index: 9999;
 }
