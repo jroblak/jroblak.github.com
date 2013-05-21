@@ -30,7 +30,7 @@ game.playScreen = me.ScreenObject.extend({
         me.game.sort();
 
         // http://westward.aws.af.cm
-        socket = io.connect("http://jroblak-server.jit.su/", {port: 8000, transports: ["websocket"]});
+        socket = io.connect("http://jroblak-server.jit.su/", {port: 80, transports: ["websocket"]});
 
         socket.on("connect", this.onSocketConnected);
         socket.on("new player", this.onNewPlayer);
