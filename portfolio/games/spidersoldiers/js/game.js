@@ -5,6 +5,8 @@ var global = {
     DOUBLE: true,
     DEBUG: true,
     state: {
+        latency: 0,
+        emitTime: 0,
         localPlayer: undefined,
         remotePlayers: []
     }
@@ -78,9 +80,6 @@ var game = {
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.LEFT, "left");
         me.input.bindKey(me.input.KEY.SPACE, "jump");
-
-        //me.entityPool.add("player", game.Player, 35, 260);
-        //me.entityPool.add("virgil", game.Virgil);
 
         // Load texture.
         game.texture = new me.TextureAtlas(

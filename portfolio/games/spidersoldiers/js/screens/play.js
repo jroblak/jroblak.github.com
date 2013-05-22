@@ -3,6 +3,9 @@ game.playScreen = me.ScreenObject.extend({
         me.game.onLevelLoaded = this.onLevelLoaded.bind(this);
 
         me.levelDirector.loadLevel("main");
+        me.game.addHUD(0, 0, global.WIDTH, 20, "rgba(0, 0, 0, 0.5)");
+        me.game.HUD.addItem("latency", new game.Info(10, 5, "latency"));
+        me.game.HUD.addItem("connected", new game.Info(100, 5, "connected players"));
 
         playerById = function(id) {
             var i;
@@ -29,12 +32,13 @@ game.playScreen = me.ScreenObject.extend({
         me.game.add(global.state.localPlayer, 4);
         me.game.sort();
 
-        socket = io.connect("http://jroblak-server.nodejitsu.com", {port: 80, transports: ["websocket"]});
+        socket = io.connect("http://localhost", {port: 8000, transports: ["websocket"]});
 
         socket.on("connect", this.onSocketConnected);
         socket.on("new player", this.onNewPlayer);
         socket.on("move player", this.onMovePlayer);
         socket.on("remove player", this.onRemovePlayer);
+        socket.on("pong", this.updateLatency);
     },
 
     onDestroyEvent: function () {
@@ -48,6 +52,16 @@ game.playScreen = me.ScreenObject.extend({
     onSocketConnected: function() {
         console.log("Connected to socket server");
         socket.emit("new player", {x: global.state.localPlayer.pos.x, y: global.state.localPlayer.pos.y})
+        setInterval(function () {
+            global.state.emitTime = +new Date;
+            socket.emit('ping');
+        }, 500);
+    },
+
+    updateLatency: function() {
+        global.state.latency = (+new Date - global.state.emitTime)
+        console.log(global.state.latency);
+        me.game.HUD.setItemValue("latency", global.state.latency);
     },
 
     onNewPlayer: function(data) {
@@ -64,7 +78,7 @@ game.playScreen = me.ScreenObject.extend({
         me.game.add(newPlayer, 3);
         me.game.sort(game.sort);
 
-        console.log("I now see "+global.state.remotePlayers.length+" players, plus myself");
+        me.game.HUD.setItemValue("connected", global.state.remotePlayers.length);
     },
 
     onRemovePlayer: function(data) {
