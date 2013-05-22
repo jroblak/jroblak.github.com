@@ -32,7 +32,7 @@ game.playScreen = me.ScreenObject.extend({
         me.game.add(global.state.localPlayer, 4);
         me.game.sort();
 
-        socket = io.connect("http://localhost", {port: 8000, transports: ["websocket"]});
+        socket = io.connect("http://jroblak-server.jit.su", {port: 80, transports: ["websocket"]});
 
         socket.on("connect", this.onSocketConnected);
         socket.on("new player", this.onNewPlayer);
