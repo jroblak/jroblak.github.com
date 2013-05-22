@@ -1,3 +1,4 @@
+// Simple HUD item to output text
 game.Info = me.HUD_Item.extend({
     init : function (x, y, name) {
         this.parent(x, y);

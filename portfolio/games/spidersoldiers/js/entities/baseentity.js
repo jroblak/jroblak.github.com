@@ -5,6 +5,9 @@ game.Entity = me.ObjectEntity.extend({
 
     update : function () {
         if (this.moving) {
+
+            // Look into replacing this with dispatch tables
+            // http://designpepper.com/blog/drips/using-dispatch-tables-to-avoid-conditionals-in-javascript
             switch (this.direction) {
                 case "left":
                     if (!this.renderable.isCurrentAnimation("left"))
@@ -21,11 +24,6 @@ game.Entity = me.ObjectEntity.extend({
                     break;
             }
 
-        }
-
-        if(this.jumping) {
-            this.accel.y -= this.gravity * me.timer.tick;
-            this.vel.y -= this.accel.y * me.timer.tick;
         }
 
         this.updateMovement();
