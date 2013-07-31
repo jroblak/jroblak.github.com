@@ -4,6 +4,14 @@ var global = {
     HEIGHT: 640,
     DOUBLE: true,
     DEBUG: true,
+    network: {
+        host: "http://ec2-54-234-85-69.compute-1.amazonaws.com",
+        port: 80,
+        totlatency: 0,
+        latency: 0,
+        emitTime: 0,
+        emits: 0
+    },
     state: {
         localPlayer: undefined,
         remotePlayers: []
@@ -20,9 +28,11 @@ var game = {
         me.sys.preRender = true;
         me.sys.useNativeAnimFrame = true;
         me.sys.stopOnAudioError = false;
-        me.debug.renderCollisionMap = true;
-        me.debug.renderHitBox = true;
-        me.debug.renderVelocity = true;
+
+        me.debug.renderCollisionMap = global.DEBUG;
+        me.debug.renderHitBox = global.DEBUG;
+        me.debug.renderVelocity = global.DEBUG;
+        me.sys.pauseOnBlur = !global.DEBUG;
 
         me.loader.onload = this.loaded.bind(this);
         this.loadResources();
@@ -72,15 +82,11 @@ var game = {
         me.state.set(me.state.MENU, new game.startScreen());
         game.playscreen = new game.playScreen();
         me.state.set(me.state.PLAY, game.playscreen);
-        me.state.set(me.state.GAME_END, new game.EndScreen());
 
         me.input.bindKey(me.input.KEY.ENTER, "action");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.LEFT, "left");
         me.input.bindKey(me.input.KEY.SPACE, "jump");
-
-        //me.entityPool.add("player", game.Player, 35, 260);
-        //me.entityPool.add("virgil", game.Virgil);
 
         // Load texture.
         game.texture = new me.TextureAtlas(

@@ -3,60 +3,38 @@
     <head>
         <title>spidersoliders</title>
         <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
-        <meta id="viewport" name="viewport"
-            content="width=320.1, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+            <script type="text/javascript">
+                    var _gaq = _gaq || [];
+                    _gaq.push(['_setAccount', 'UA-34413759-1']);
+                    _gaq.push(['_trackPageview']);
+
+                    (function() {
+                        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                    })();
+    </script>
     </head>
     <body>
         <div id="screen"></div>
             <script type="text/javascript" src="lib/melonJS-0.9.7.js"></script>
-            <script src="http://jroblak-server.nodejitsu.com/socket.io/socket.io.js"></script>
+            <script src="http://ec2-54-234-85-69.compute-1.amazonaws.com/socket.io/socket.io.js"></script>
+
             <script type="text/javascript" src="js/game.js"></script>
             <script type="text/javascript" src="js/resources.js"></script>
+            <script type="text/javascript" src="js/hud.js"></script>
 
             <script type="text/javascript" src="js/screens/load.js"></script>
             <script type="text/javascript" src="js/screens/start.js"></script>
             <script type="text/javascript" src="js/screens/play.js"></script>
-            <script type="text/javascript" src="js/screens/end.js"></script>
-            <script type="text/javascript" src="js/hud.js"></script>
 
             <script type="text/javascript" src="js/entities/baseentity.js"></script>
             <script type="text/javascript" src="js/entities/player.js"></script>
-            <script type="text/javascript" src="js/entities/virgil.js"></script>
 
             <script type="text/javascript">
                 // Start game
                 window.onReady(function () {
                     game.onload();
-
-                    // Mobile browser hacks
-                    if (me.sys.isMobile && !navigator.isCocoonJS) {
-                        // Prevent the webview from moving on a swipe
-                        document.addEventListener("touchmove", function (e) {
-                            e.preventDefault();
-                            window.scroll(0, 0);
-                            return false;
-                        }, false);
-
-                        // Scroll away mobile GUI
-                        (function () {
-                            window.scrollTo(0, 1);
-                        }).defer();
-
-                        me.event.subscribe(
-                            me.event.WINDOW_ONRESIZE, function (e) {
-                                window.scrollTo(0, 1);
-                            }
-                        );
-
-                        if (window.devicePixelRatio > 1) {
-                            document.getElementById("viewport").setAttribute(
-                                "content",
-                                "width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=0"
-                            );
-                        }
-                    }
                 });
             </script>
         </div>
