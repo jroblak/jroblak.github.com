@@ -8,6 +8,8 @@ title: main.scss
 @import "blog";
 @import "post";
 
+$bgcolor: #1c1d21;
+
 * {
   margin: 0;
   padding: 0;
@@ -16,10 +18,10 @@ title: main.scss
 html, body { height: 100%; }
 
 body {
-  background-color: #1c1d21;
+  background-color: $bgcolor;
+  font-family: 'Open Sans', sans-serif;
   color: #eeeff7;
-  font: 13.34px Helvetica, Arial, sans-serif;
-  font-size: small;
+  font-size: 1em;
   text-align: center;
 }
 
@@ -29,8 +31,10 @@ h1, h2, h3, h4, h5, h6 {
 h1 { margin-bottom: 1em; }
 p { margin: 1em 0; }
 
-a:hover   { color: #000; }
-a:visited { color: #a0a; }
+a {
+  &:hover   { color: #000; }
+  &:visited { color: #a0a; }
+}
 
 div.site {
   @include outer-container;
@@ -42,16 +46,16 @@ div.site {
 
 .site .header {
   @include span-columns(12);
+  text-align: center;
 }
 
-.site .header a {
+.header a {
   font-weight: bold;
   text-decoration: none;
 }
 
-.site .header h1.title {
-  display: inline-block;
-  margin-bottom: 2em;
+.nav {
+  @extend .header;
 }
 
 .site .header h1.title a {
@@ -62,24 +66,27 @@ div.site {
   color: #eeeff7;
 }
 
-.site .header a.extra {
+.nav a.extra {
   color: #eeeff7;
-  margin-left: 1em;
+  font-size: .75em;
+  margin-left: 4em;
+  font-weight: normal;
+  letter-spacing: 10px;
 }
 
-.site .header a.extra:hover {
+.nav a.extra:first-child {
+  margin-left: 0em;
+}
+
+.nav a.extra:hover {
   color: #a00;
-}
-
-.site .meta {
-  color: #aaa;
 }
 
 .site .footer {
   @include span-columns(12);
   font-size: 80%;
   color: #666;
-  border-top: 4px solid #eee;
+  border-top: 2px solid #eee;
   margin-top: 2em;
   overflow: hidden;
 }
