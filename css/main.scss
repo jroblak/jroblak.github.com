@@ -8,7 +8,14 @@ title: main.scss
 @import "blog";
 @import "post";
 
-$bgcolor: #1c1d21;
+@include font-face(Canter, 'fonts/Canter Bold');
+@include font-face(Canter-Stripes, 'fonts/Canter Stripes');
+@include font-face(Canter-Outline, 'fonts/Canter Outline');
+
+$bgcolor: #1D1C1F;
+$accent: #FFB836;
+$accent2: #FFB836;
+
 
 * {
   margin: 0;
@@ -19,7 +26,7 @@ html, body { height: 100%; }
 
 body {
   background-color: $bgcolor;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Cardo', sans-serif;
   color: #eeeff7;
   font-size: 1em;
   text-align: center;
@@ -28,24 +35,32 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-size: 100%; }
 
-h1 { margin-bottom: 1em; }
+h1 { margin-bottom: .25em; }
 p { margin: 1em 0; }
 
 a {
-  &:hover   { color: #000; }
-  &:visited { color: #a0a; }
+  color: #eeeff7;
+  &:hover   { color: $accent; }
+  &:visited { color: $accent; }
 }
 
 div.site {
   @include outer-container;
+  width: 65%;
   font-size: 115%;
   text-align: justify;
   margin: 3em auto 2em;
   line-height: 1.5em;
+  position: relative;
 }
 
 .site .header {
   @include span-columns(12);
+  font-size: 5em;
+  font-family: 'Canter';
+  letter-spacing: .20em;
+  max-width: 100%;
+  height: auto;
   text-align: center;
 }
 
@@ -59,7 +74,7 @@ div.site {
 }
 
 .site .header h1.title a {
-  color: #a00;
+  color: $accent;
 }
 
 .site .header h1.title a:hover {
@@ -68,7 +83,7 @@ div.site {
 
 .nav a.extra {
   color: #eeeff7;
-  font-size: .75em;
+  font-size: .25em;
   margin-left: 4em;
   font-weight: normal;
   letter-spacing: 10px;
@@ -79,14 +94,20 @@ div.site {
 }
 
 .nav a.extra:hover {
-  color: #a00;
+  color: $accent;
+}
+
+.content {
+  @include span-columns(12);
+  height: auto;
+  margin-top: 2em;
 }
 
 .site .footer {
   @include span-columns(12);
   font-size: 80%;
   color: #666;
-  border-top: 2px solid #eee;
+  border-top: 2px solid $accent;
   margin-top: 2em;
   overflow: hidden;
 }
