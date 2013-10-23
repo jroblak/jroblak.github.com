@@ -23,18 +23,24 @@ body {
   color: $base;
   font-size: 1em;
   text-align: center;
+  border-top: 10px solid $accent2;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-size: 100%; }
 
 h1 { margin-bottom: .25em; }
-p { margin: 1em 0; }
+p { margin: .75em 0; }
+ul { margin-left: 1em; }
 
 a {
   color: $base;
+  &:visited { color: $accent2; }
   &:hover   { color: $accent; }
-  &:visited { color: $accent; }
+}
+
+.small {
+  font-size: 75%;
 }
 
 div.site {
@@ -50,7 +56,7 @@ div.site {
   font-size: 5em;
   font-family: 'Canter';
   letter-spacing: .20em;
-  text-shadow: 3px 3px 0px #2c2e38, 4px 4px 0px #5c5f72;
+  text-shadow: 3px 3px 0px #2c2e38, 4px 4px 0px $accent2;
   max-width: 100%;
   text-align: center;
 }
@@ -101,10 +107,27 @@ div.site {
   margin-top: 2em;
 }
 
+.portfolio a {
+  text-decoration: none;
+  margin: 2px;
+}
+
+.portfolio img {
+  border: 1px solid $accent2;
+  filter: brightness(60%);
+  -webkit-filter: brightness(60%);
+}
+
+.portfolio img:hover {
+  border: 1px solid $accent;
+  filter: brightness(100%);
+  -webkit-filter: brightness(100%);
+}
+
 .site .footer {
   @include span-columns(12);
   font-size: 80%;
-  color: #666;
+  color: $accent2;
   border-top: 2px solid $accent;
   margin-top: 2em;
   overflow: hidden;
@@ -116,7 +139,7 @@ div.site {
 }
 
 .site .footer .contact a {
-  color: #8085C1;
+  color: $accent2;
 }
 
 .site .footer .rss {
