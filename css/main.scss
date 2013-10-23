@@ -1,6 +1,10 @@
 ---
 title: main.scss
 ---
+$bgcolor: #1D1C1F;
+$accent: #FFB836;
+$accent2: #FFB836;
+$base: #eeeff7;
 
 @import "bourbon/bourbon";
 @import "neat/neat";
@@ -9,13 +13,6 @@ title: main.scss
 @import "post";
 
 @include font-face(Canter, 'fonts/Canter Bold');
-@include font-face(Canter-Stripes, 'fonts/Canter Stripes');
-@include font-face(Canter-Outline, 'fonts/Canter Outline');
-
-$bgcolor: #1D1C1F;
-$accent: #FFB836;
-$accent2: #FFB836;
-
 
 * {
   margin: 0;
@@ -27,7 +24,7 @@ html, body { height: 100%; }
 body {
   background-color: $bgcolor;
   font-family: 'Cardo', sans-serif;
-  color: #eeeff7;
+  color: $base;
   font-size: 1em;
   text-align: center;
 }
@@ -46,12 +43,10 @@ a {
 
 div.site {
   @include outer-container;
-  width: 65%;
+  width: 45%;
   font-size: 115%;
   text-align: justify;
-  margin: 3em auto 2em;
-  line-height: 1.5em;
-  position: relative;
+  margin: 2em auto 2em;
 }
 
 .site .header {
@@ -59,8 +54,8 @@ div.site {
   font-size: 5em;
   font-family: 'Canter';
   letter-spacing: .20em;
+  text-shadow: 3px 3px 0px #2c2e38, 4px 4px 0px #5c5f72;
   max-width: 100%;
-  height: auto;
   text-align: center;
 }
 
@@ -70,7 +65,13 @@ div.site {
 }
 
 .nav {
-  @extend .header;
+  text-align: center;
+}
+
+.nav a {
+  text-decoration: none;
+  font-family: 'Canter';
+  letter-spacing: .25em;
 }
 
 .site .header h1.title a {
@@ -78,14 +79,15 @@ div.site {
 }
 
 .site .header h1.title a:hover {
-  color: #eeeff7;
+  color: $base;
 }
 
 .nav a.extra {
-  color: #eeeff7;
-  font-size: .25em;
+  color: $base;
+  font-size: 1.25em;
   margin-left: 4em;
   font-weight: normal;
+  text-shadow: none;
   letter-spacing: 10px;
 }
 
