@@ -1,12 +1,8 @@
 ---
 title: main.scss
 ---
-$bgcolor: #1D1C1F;
-$accent: #FFB836;
-$accent2: #FFB836;
-$base: #eeeff7;
-
 @import "bourbon/bourbon";
+@import "variables";
 @import "neat/neat";
 @import "syntax";
 @import "blog";
@@ -36,7 +32,7 @@ h1 { margin-bottom: .25em; }
 p { margin: 1em 0; }
 
 a {
-  color: #eeeff7;
+  color: $base;
   &:hover   { color: $accent; }
   &:visited { color: $accent; }
 }
