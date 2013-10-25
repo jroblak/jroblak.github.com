@@ -1,0 +1,16 @@
+.blog-post {
+  border-bottom: 1px solid $accent;
+}
+
+.blog-post:last-child {
+  border-bottom: none;
+}
+
+.blog-header {
+  font-size: 100%;
+}
+
+.excerpt {
+  font-style: italic;
+  font-size: 95%;
+}

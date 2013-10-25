@@ -1,64 +1,10 @@
-;$(function(){
+window.onload = function() {
+  console.log("  __             __   __              __    __       __    ");
+  console.log(" |__.--.--.-----|  |_|__.-----..-----|  |--|  .---.-|  |--.");
+  console.log(" |  |  |  |__ --|   _|  |     ||  _  |  _  |  |  _  |    < ");
+  console.log(" |  |_____|_____|____|__|__|__||_____|_____|__|___._|__|__|");
+  console.log("|___|                                                      ");
+  console.log("        j  u  s  t  i  n  o  b  l  a  k  .  c  o  m        ");
 
-	// Check for mobile devices or small screens - I don't really care about height
-	if ($(window).width() < 640) {
-		$('.nav').click(function() {
-			if ($(this).is('#skills')) {
-				$(this).addClass('highlight').css('font-size', '3.5em');
-				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
-				$('.content').load('pages/skills.html').hide().fadeIn();
-			} else if ($(this).is('#about')) {
-				$(this).addClass('highlight').css('font-size', '3.5em');
-				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
-				$('.content').load('pages/about.html').hide().fadeIn();
-			} else if ($(this).is('#portfolio')) {
-				$(this).addClass('highlight').css('font-size', '3.5em');
-				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
-				$('.content').load('portfolio/index.html').hide().fadeIn();
-			} else if ($(this).is('#contact'))	 {
-				$(this).addClass('highlight').css('font-size', '3.5em');
-				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
-				$('.content').load('pages/contact.html').hide().fadeIn();
-			} else {
-				$(this).addClass('highlight').css('font-size', '3.5em');
-				$(this).siblings().css('font-size', '2.5em').removeClass('highlight');
-				$('.content').html('<a href="http://blog.justinoblak.com">a blog!</a>').hide().fadeIn();
-			}
-		});
-	} else {
-      // First, set up size of the content div based on the screen size
-      var width = $(window).width();
 
-      var contentDiv = width - 700;
-
-      $('.rightcontain').width(contentDiv);
-
-      // Next, set up the click handlers for displaying that content
-      var loaded = false;
-      var selected = null;
-
-      $('.nav').click(function() {
-        if ($(this).is('#skills')) {
-          $(this).addClass('highlight').css('font-size', 18);
-          $(this).siblings().css('font-size', 10).removeClass('highlight');
-          $('.content').load('pages/skills.html').hide().fadeIn();
-        } else if ($(this).is('#about')) {
-          $(this).addClass('highlight').css('font-size', 18);
-          $(this).siblings().css('font-size', 10).removeClass('highlight');
-          $('.content').load('pages/about.html').hide().fadeIn();
-        } else if ($(this).is('#portfolio')) {
-          $(this).addClass('highlight').css('font-size', 18);
-          $(this).siblings().css('font-size', 10).removeClass('highlight');
-          $('.content').load('portfolio/index.html').hide().fadeIn();
-        } else if ($(this).is('#contact'))	 {
-          $(this).addClass('highlight').css('font-size', 18);
-          $(this).siblings().css('font-size', 10).removeClass('highlight');
-          $('.content').load('pages/contact.html').hide().fadeIn();
-        } else {
-          $(this).addClass('highlight').css('font-size', 18);
-          $(this).siblings().css('font-size', 10).removeClass('highlight');
-          $('.content').html('<a href="http://blog.justinoblak.com">a blog!</a>').hide().fadeIn();
-        }
-		});
-	}
-});
+};

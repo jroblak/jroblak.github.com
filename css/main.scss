@@ -1,0 +1,236 @@
+---
+title: main.scss
+---
+@import "bourbon/bourbon";
+@import "variables";
+@import "neat/neat";
+@import "syntax";
+@import "blog";
+@import "post";
+
+@include font-face(Canter, 'fonts/Canter Bold');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body { height: 100%; }
+
+body {
+  background-color: $bgcolor;
+  font-family: 'Cardo', sans-serif;
+  color: $base;
+  font-size: 1em;
+  text-align: center;
+  border-top: 10px solid $accent2;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%; }
+
+h1 { margin-bottom: .25em; }
+p { margin: .75em 0; }
+ul {
+  margin-left: 1em;
+  @include media($mobile) {
+    list-style: none;
+  }
+  @include media($tablet) {
+    list-style: none;
+  }
+}
+
+a {
+  color: $base;
+  &:visited { color: $accent2; }
+  &:hover   { color: $accent; }
+}
+
+.small {
+  font-size: 75%;
+  clear: left;
+}
+
+div.site {
+  @include outer-container;
+  font-size: 115%;
+  text-align: justify;
+  margin: 2em auto 2em;
+  @include media($mobile) {
+    text-align: center;
+  }
+  @include media($tablet) {
+    text-align: center;
+  }
+}
+
+.site .header {
+  @include span-columns(6);
+  @include shift(3);
+  font-size: 5em;
+  @include media($tablet) {
+    font-size: 3em;
+    @include span-columns(8);
+    @include shift(2);
+  }
+  @include media($mobile) {
+    font-size: 2.5em;
+    @include span-columns(12);
+    @include shift(0);
+  }
+  text-align: center;
+  font-family: 'Canter';
+  letter-spacing: .20em;
+  text-shadow: 3px 3px 0px #2c2e38, 4px 4px 0px $accent2;
+  max-width: 100%
+}
+
+.header a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav {
+  @include span-columns(6);
+  @include shift(3);
+  @include media($tablet) {
+    @include span-columns(8);
+    @include shift(2);
+  }
+  @include media($mobile) {
+    @include span-columns(12);
+    @include shift(0);
+  }
+  text-align: center;
+}
+
+.nav a {
+  text-decoration: none;
+  font-family: 'Canter';
+  letter-spacing: .25em;
+  @include media($mobile) {
+    letter-spacing: .10em;
+  }
+}
+
+.site .header h1.title a {
+  color: $accent;
+}
+
+.site .header h1.title a:hover {
+  color: $base;
+}
+
+.nav a.extra {
+  color: $base;
+  font-size: 1.25em;
+  margin-left: 4em;
+  font-weight: normal;
+  text-shadow: none;
+  letter-spacing: 10px;
+  @include media($tablet) {
+    letter-spacing: 5px;
+    margin-left: 2em;
+    font-size: 1em;
+  }
+  @include media($mobile) {
+    letter-spacing: 2px;
+    margin-left: 1em;
+    font-size: .80em;
+  }
+}
+
+.nav a.extra:first-child {
+  margin-left: 0em;
+}
+
+.nav a.extra:hover {
+  color: $accent;
+}
+
+.content {
+  @include span-columns(6);
+  @include shift(3);
+
+  @include media($mobile) {
+    @include span-columns(12);
+    @include shift(0);
+    margin-left: .2em;
+    margin-right: .2em;
+  }
+  margin-top: 2em;
+}
+
+.content h2 {
+  border-bottom: 1px solid $accent2;
+  font-weight: 700;
+  font-size: 115%;
+}
+
+.portfolio a {
+  text-decoration: none;
+  float: none;
+}
+
+.portfolio .image-contain {
+  text-align: center;
+}
+
+.portfolio .image-contain .image-row {
+  position: relative;
+  display: inline-block;
+  float: left;
+}
+
+.portfolio img {
+  border: 1px solid $accent2;
+  width: 190px;
+  height: 190px;
+  margin: 3px;
+  filter: brightness(60%);
+  -webkit-filter: brightness(60%);
+}
+
+.portfolio img:hover {
+  border: 1px solid $accent;
+  filter: brightness(100%);
+  -webkit-filter: brightness(100%);
+}
+
+.site .footer {
+  @include span-columns(6);
+  @include shift(3);
+  @include media($tablet) {
+    @include span-columns(8);
+    @include shift(2);
+    text-align: center;
+  }
+  @include media($mobile) {
+    @include span-columns(12);
+    @include shift(0);
+    text-align: center;
+  }
+  font-size: 80%;
+  color: $accent2;
+  border-top: 2px solid $accent;
+  margin-top: 2em;
+  overflow: hidden;
+}
+
+.site .footer .contact {
+  float: left;
+  margin-right: 3em;
+  @include media($mobile) {
+    margin-right: 0em;
+    float: none;
+  }
+  @include media($tablet) {
+    margin-right: 0em;
+    float: none;
+  }
+}
+
+.site .footer .contact a {
+  color: $accent2;
+}

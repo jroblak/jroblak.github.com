@@ -1,0 +1,36 @@
+.post {
+  font-family: 'Cardo', serif;
+}
+
+.post pre {
+  background-color: $bgcolor;
+  padding: 0 .4em;
+}
+
+.post ul, .post ol {
+  margin-left: 1.35em;
+}
+
+.post code {
+  background-color: $bgcolor;
+  padding: 0 .2em;
+}
+
+.highlight {
+  border-top: 1px solid $accent2;
+  border-bottom: 1px solid $accent2;
+}
+
+.post pre code {
+  border: none;
+}
+
+/* terminal */
+.post pre.terminal {
+  background-color: $bgcolor;
+  color: #FFF;
+}
+
+.post pre.terminal code {
+  background-color: $bgcolor;
+}
