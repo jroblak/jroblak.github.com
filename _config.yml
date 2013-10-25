@@ -1,3 +1,4 @@
 name: justinoblak
 markdown: redcarpet
 pygments: true
+safe: true
