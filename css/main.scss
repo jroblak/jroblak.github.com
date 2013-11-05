@@ -190,12 +190,14 @@ div.site {
   margin: 3px;
   filter: brightness(60%);
   -webkit-filter: brightness(60%);
+  filter: brightness(60%);
 }
 
 .portfolio img:hover {
   border: 1px solid $accent;
   filter: brightness(100%);
   -webkit-filter: brightness(100%);
+  filter: brightness(100%);
 }
 
 .site .footer {
