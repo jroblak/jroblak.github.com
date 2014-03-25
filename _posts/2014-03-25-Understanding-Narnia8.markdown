@@ -1,16 +1,16 @@
 ---
 layout: post
 title:  "Understanding Narnia 8"
-date:   2014-03-25 28:42:60
+date:   2014-03-25 18:42:60
 categories: wargames hacking narnia overthewire re
 ---
 I noticed that one of my more informative posts went down, so here it is, recreated. It's interesting to read back on how challenging this sort of thing used to be:
 
 While progressing through [overthewire.org](overthewire.org)'s various wargames, I hit a snag on *Narnia 8*, and found close to no documentation on its solution (let alone a hint!). Therefore, I've taken it upon myself to provide some insight; hopefully this gets propagated to anyone who needs it. Feel free to send me any tips to shorten my solution!
 
-First, for those of you who don't want to see how to solve it: don't look any further than the next couple of lines. 
+First, for those of you who don't want to see how to solve it: don't look any further than the next couple of lines.
 
-Here's your hint: 
+Here's your hint:
 > Why isn't your full input getting printed via printf in _void func(char *b)_, and why are seemingly random characters there instead? Where are those characters coming from, and how can we get _bok_ to keep pulling the data from _blah_?
 
 Now, for the explanation: First, let's take a look at the code (Since it's available for narnia. You won't always have this luxury), and try to get a feel for the type of exploit we need to use.
@@ -27,15 +27,15 @@ Here we inject a simple NOP-sled led, 26 bytes execve /bin/sh shellcode payload 
 
 ![step1]({{ site.url }}/img/narnia8/gdb1.png)
 ![step1]({{ site.url }}/img/narnia8/gdb2.png)
-  
-The first thing we need to do is get a proper breakpoint set up, so we can examine memory properly. We know that we are going into a function named _func_, so let's set a breakpoint there. 
+
+The first thing we need to do is get a proper breakpoint set up, so we can examine memory properly. We know that we are going into a function named _func_, so let's set a breakpoint there.
 
 ![step1]({{ site.url }}/img/narnia8/gdb3.png)
 
 Lets also set our disassembly flavor to intel (Personal preference. I think it's easier to read).
 
 ![step1]({{ site.url }}/img/narnia8/gdb4.png)
- 
+
 Unfortunately, our breakpoint at the start of _func_ isn't going to cut it. We need to be able to see what the memory looks like after it's been copied from _blah_ to _bok_. So, we start the program with just one character (so we don't get stuck doing 20 iterations of the loop), and step through the program using nexti, until we see the printf fire.
 
 ![step1]({{ site.url }}/img/narnia8/gdb5.png)
@@ -51,7 +51,7 @@ Now we run the program again, and overflow the _bok_ buffer this time. This seco
 So if we sketch out our proposed solution now, we have the following:
 
           bok (20 bytes)        blah (4)         junk (12)   return address (4)
-     [AAAAAAAAAAAAAAAAAAAA][address of b\blah][AAAAAAAAAAAA][EGG address] 
+     [AAAAAAAAAAAAAAAAAAAA][address of b\blah][AAAAAAAAAAAA][EGG address]
 
 Let's use this, and see if we can overflow the return address:
 
