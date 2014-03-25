@@ -2,7 +2,7 @@
 layout: post
 title:  "Understanding Narnia 8"
 date:   2014-03-25 28:42:60
-categories: wargames hacking narnia overthewire
+categories: wargames hacking narnia overthewire re
 ---
 I noticed that one of my more informative posts went down, so here it is, recreated. It's interesting to read back on how challenging this sort of thing used to be:
 
