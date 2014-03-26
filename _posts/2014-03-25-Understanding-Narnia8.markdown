@@ -6,7 +6,7 @@ categories: wargames hacking narnia overthewire re
 ---
 I noticed that one of my more informative posts went down, so here it is, recreated. It's interesting to read back on how challenging this sort of thing used to be:
 
-While progressing through [overthewire.org](overthewire.org)'s various wargames, I hit a snag on *Narnia 8*, and found close to no documentation on its solution (let alone a hint!). Therefore, I've taken it upon myself to provide some insight; hopefully this gets propagated to anyone who needs it. Feel free to send me any tips to shorten my solution!
+While progressing through [overthewire.org](http://overthewire.org)'s various wargames, I hit a snag on *Narnia 8*, and found close to no documentation on its solution (let alone a hint!). Therefore, I've taken it upon myself to provide some insight; hopefully this gets propagated to anyone who needs it. Feel free to send me any tips to shorten my solution!
 
 First, for those of you who don't want to see how to solve it: don't look any further than the next couple of lines.
 
