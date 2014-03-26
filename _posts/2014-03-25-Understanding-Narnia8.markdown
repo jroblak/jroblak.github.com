@@ -62,7 +62,7 @@ Let's use this, and see if we can overflow the return address:
 
 ![step1]({{ site.url }}/img/narnia8/gdb7.png)
 
-As we can see from the first run, we still have a small hiccup: as the size of our input changes, so does the address of <span style="color: #ff8e51">_b / blah_</span>, so that they still don't match. However, if we use the <span style="color:#7975FF">new address of _b_ in our next run, it works; the overflow continues, and we overwrite our <span style="color: #ff2d62">return address</span> with 4 A's. Our last step is to simple replace those A's with the address of EGG, and we have shell as narnia9!
+As we can see from the first run, we still have a small hiccup: as the size of our input changes, so does the address of <span style="color: #ff8e51">_b / blah_</span>, so that they still don't match. However, if we use the <span style="color:#7975FF">new address of _b_</span> in our next run, it works; the overflow continues, and we overwrite our <span style="color: #ff2d62">return address</span> with 4 A's. Our last step is to simple replace those A's with the address of EGG, and we have shell as narnia9!
 
 ![step1]({{ site.url }}/img/narnia8/gdb8.png)
 
