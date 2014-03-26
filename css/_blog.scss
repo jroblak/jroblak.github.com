@@ -1,9 +1,11 @@
 .blog-post {
   border-bottom: 1px solid $accent;
+  margin-bottom: 15px;
 }
 
 .blog-post:last-child {
   border-bottom: none;
+  margin-bottom: 0px;
 }
 
 .blog-header {
