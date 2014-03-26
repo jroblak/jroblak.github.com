@@ -258,10 +258,12 @@
 
 /* Literal.Number.Integer.Long */
 .blog-post {
-  border-bottom: 1px solid #ffb836; }
+  border-bottom: 1px solid #ffb836;
+  margin-bottom: 15px; }
 
 .blog-post:last-child {
-  border-bottom: none; }
+  border-bottom: none;
+  margin-bottom: 0px; }
 
 .blog-header {
   font-size: 100%; }
