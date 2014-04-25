@@ -14,7 +14,7 @@ Now you're going to want to set up a folder where you want your backups to go. A
 
 Next, open a text editor of your choice, so we can create a .BAT file to backup your Database as frequently as you want. Type or copy the following into the editor:
 
-{% hightlight bat %}
+{% highlight bat %}
 @ECHO OFF
 
 :: Edit this to be wherever your Dropbox database is
@@ -34,7 +34,7 @@ set DATE_YY=%DATE:~12,2%
 set SAVE_DATE=%DATE_YYYY%%DATE_MM%%DATE_DD%
 
 XCOPY %BackupFolder% %RemoteLoc%\%SAVE_DATE%_EvernoteDatabase /E /C /R /I /K /Y
-{% endhightlight %}
+{% endhighlight %}
 
 Then save this file as a .BAT file, and place it anywhere (I put it in the same folder as my Evernote back ups), but be sure to note where you save it.
 
@@ -42,10 +42,10 @@ Finally, open up the Windows Task Scheduler, and in the right pane, click on "Cr
 
 An optional step is zipping the backed up folder to save space. To do this, you have to add a zipping programing to your PATH (Control Panel -> System -> Advanced system settings -> Environment Variables.. -> Path (under System Variables) -> Edit...; type in the path to the zipping program - be sure to start with a semi-colon [e.g. ;C:\Program Files\7-Zip]). Then you can just add the following to the bottom of the .BAT file:
 
-{% hightlight bat %}
+{% highlight bat %}
 7z a -t7z %RemoteLoc%\%SAVE_DATE%_EvernoteDatabase.7z %RemoteLoc%\%SAVE_DATE%_EvernoteDatabase
 
 rmdir /s /q %RemoteLoc%\%SAVE_DATE%_EvernoteDatabase
-{% endhightlight %}
+{% endhighlight %}
 
 And that's it! Your Evernote database is backed up as frequently as you want. 
