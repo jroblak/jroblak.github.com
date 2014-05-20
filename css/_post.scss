@@ -33,8 +33,9 @@
 
 .post pre.terminal code {
   background-color: $bgcolor;
+  display: inline-block;
 }
 
-code {
-  display: inline-block;
+p img {
+  width: 100%;
 }
