@@ -18,12 +18,12 @@ Next, open a text editor of your choice, so we can create a .BAT file to backup 
 @ECHO OFF
 
 :: Edit this to be wherever your Dropbox database is
-SET BackupFolder=C:\Users\[UserName]\AppData\Local\Evernote\Evernote\Databases
+SET BackupFolder=%HOME%\AppData\Local\Evernote\Evernote\Databases
 :: Edit this to be wherever your want your backups to go
-:: e.g. for Dropbox: SET RemoteLoc=C:\Users\[UserName]\Dropbox\EvernoteBackup
+:: e.g. for Dropbox: SET RemoteLoc=%HOME%\Dropbox\EvernoteBackup
 SET RemoteLoc=D:\Backups\Evernote
 
-:: This sets up variable for time, so we can put timestamps on our backups
+:: This sets up variable for time for timestamps on our backups
 @For /F "tokens=1-4 delims=/.- " %%A in ('date /T') do (
    set DATE_DOW=%%A
    set DATE_MM=%%B
@@ -33,7 +33,8 @@ SET RemoteLoc=D:\Backups\Evernote
 set DATE_YY=%DATE:~12,2%
 set SAVE_DATE=%DATE_YYYY%%DATE_MM%%DATE_DD%
 
-XCOPY %BackupFolder% %RemoteLoc%\%SAVE_DATE%_EvernoteDatabase /E /C /R /I /K /Y
+XCOPY %BackupFolder% %RemoteLoc%\%SAVE_DATE%_EvernoteDatabase
+/E /C /R /I /K /Y
 {% endhighlight %}
 
 Then save this file as a .BAT file, and place it anywhere (I put it in the same folder as my Evernote back ups), but be sure to note where you save it.
@@ -48,4 +49,4 @@ An optional step is zipping the backed up folder to save space. To do this, you 
 rmdir /s /q %RemoteLoc%\%SAVE_DATE%_EvernoteDatabase
 {% endhighlight %}
 
-And that's it! Your Evernote database is backed up as frequently as you want. 
+And that's it! Your Evernote database is backed up as frequently as you want.
