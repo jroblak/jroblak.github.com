@@ -276,7 +276,8 @@
   font-family: 'Cardo', serif; }
 
 .post pre {
-  background-color: #1d1c1f; }
+  background-color: #1d1c1f;
+  overflow-x: auto; }
 
 .post ul, .post ol {
   margin-left: 1.35em; }
@@ -286,7 +287,8 @@
 
 code {
   display: inline-block;
-  max-width: 100%; }
+  max-width: 100%;
+  overflow-x: auto; }
 
 .highlight {
   border: 1px solid #5c5f72; }

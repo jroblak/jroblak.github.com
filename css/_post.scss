@@ -4,6 +4,7 @@
 
 .post pre {
   background-color: $bgcolor;
+  overflow-x: auto;
 }
 
 .post ul, .post ol {
@@ -17,6 +18,7 @@
 code {
   display: inline-block;
   max-width: 100%;
+  overflow-x: auto;
 }
 
 .highlight {
