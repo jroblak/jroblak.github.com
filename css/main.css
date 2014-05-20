@@ -284,16 +284,11 @@
 
 .post code {
   background-color: #1d1c1f;
-  padding: 0 .2em;
+  padding: 1em 0;
   display: inline-block; }
 
 .highlight {
-  border-top: 1px solid #5c5f72;
-  border-bottom: 1px solid #5c5f72; }
-
-.post pre code {
-  border: none;
-  background-color: #1d1c1f; }
+  border: 1px solid #5c5f72; }
 
 /* terminal */
 .post pre.terminal {

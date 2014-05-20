@@ -13,18 +13,12 @@
 
 .post code {
   background-color: $bgcolor;
-  padding: 0 .2em;
+  padding: 1em 0;
   display: inline-block;
 }
 
 .highlight {
-  border-top: 1px solid $accent2;
-  border-bottom: 1px solid $accent2;
-}
-
-.post pre code {
-  border: none;
-  background-color: $bgcolor;
+  border: 1px solid $accent2;
 }
 
 /* terminal */
