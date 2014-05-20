@@ -63,12 +63,12 @@ div.site {
 }
 
 .site .header {
-  @include span-columns(9);
+  @include span-columns(6);
   @include shift(3);
   font-size: 5em;
   @include media($tablet) {
     font-size: 3em;
-    @include span-columns(10);
+    @include span-columns(8);
     @include shift(2);
   }
   @include media($mobile) {
@@ -89,10 +89,10 @@ div.site {
 }
 
 .nav {
-  @include span-columns(9);
+  @include span-columns(6);
   @include shift(3);
   @include media($tablet) {
-    @include span-columns(10);
+    @include span-columns(8);
     @include shift(2);
   }
   @include media($mobile) {
@@ -151,10 +151,9 @@ div.site {
   @include shift(3);
 
   @include media($tablet) {
-    @include span-columns(10);
+    @include span-columns(8);
     @include shift(2);
   }
-
   @include media($mobile) {
     @include span-columns(12);
     @include shift(0);
@@ -203,10 +202,10 @@ div.site {
 }
 
 .site .footer {
-  @include span-columns(9);
+  @include span-columns(6);
   @include shift(3);
   @include media($tablet) {
-    @include span-columns(10);
+    @include span-columns(8);
     @include shift(2);
     text-align: center;
   }
