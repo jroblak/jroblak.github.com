@@ -34,3 +34,7 @@
 .post pre.terminal code {
   background-color: $bgcolor;
 }
+
+code {
+  display: inline-block;
+}
