@@ -14,6 +14,7 @@
 .post code {
   background-color: $bgcolor;
   padding: 0 .2em;
+  display: inline-block;
 }
 
 .highlight {
@@ -23,17 +24,13 @@
 
 .post pre code {
   border: none;
+  background-color: $bgcolor;
 }
 
 /* terminal */
 .post pre.terminal {
   background-color: $bgcolor;
   color: #FFF;
-}
-
-.post pre code {
-  background-color: $bgcolor;
-  display: inline-block;
 }
 
 p img {

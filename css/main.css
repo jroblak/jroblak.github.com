@@ -284,23 +284,21 @@
 
 .post code {
   background-color: #1d1c1f;
-  padding: 0 .2em; }
+  padding: 0 .2em;
+  display: inline-block; }
 
 .highlight {
   border-top: 1px solid #5c5f72;
   border-bottom: 1px solid #5c5f72; }
 
 .post pre code {
-  border: none; }
+  border: none;
+  background-color: #1d1c1f; }
 
 /* terminal */
 .post pre.terminal {
   background-color: #1d1c1f;
   color: #FFF; }
-
-.post pre.terminal code {
-  background-color: #1d1c1f;
-  display: inline-block; }
 
 p img {
   max-width: 100%; }
