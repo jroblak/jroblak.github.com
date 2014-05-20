@@ -4,7 +4,6 @@
 
 .post pre {
   background-color: $bgcolor;
-  padding: 0 .4em;
 }
 
 .post ul, .post ol {
@@ -12,9 +11,12 @@
 }
 
 .post code {
-  background-color: $bgcolor;
   padding: 1em 0;
+}
+
+code {
   display: inline-block;
+  max-width: 100%;
 }
 
 .highlight {

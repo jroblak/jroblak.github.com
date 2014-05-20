@@ -276,16 +276,17 @@
   font-family: 'Cardo', serif; }
 
 .post pre {
-  background-color: #1d1c1f;
-  padding: 0 .4em; }
+  background-color: #1d1c1f; }
 
 .post ul, .post ol {
   margin-left: 1.35em; }
 
 .post code {
-  background-color: #1d1c1f;
-  padding: 1em 0;
-  display: inline-block; }
+  padding: 1em 0; }
+
+code {
+  display: inline-block;
+  max-width: 100%; }
 
 .highlight {
   border: 1px solid #5c5f72; }
