@@ -374,7 +374,7 @@ div.site {
   display: block;
   float: left;
   margin-right: 2.35765%;
-  width: 48.82117%;
+  width: 74.41059%;
   margin-left: 25.58941%;
   font-size: 5em;
   text-align: center;
@@ -413,7 +413,7 @@ div.site {
   display: block;
   float: left;
   margin-right: 2.35765%;
-  width: 48.82117%;
+  width: 74.41059%;
   margin-left: 25.58941%;
   text-align: center; }
   .nav:last-child {
@@ -479,11 +479,20 @@ div.site {
   display: block;
   float: left;
   margin-right: 2.35765%;
-  width: 48.82117%;
+  width: 74.41059%;
   margin-left: 25.58941%;
   margin-top: 2em; }
   .content:last-child {
     margin-right: 0; }
+  @media screen and (max-width: 960px) {
+    .content {
+      display: block;
+      float: left;
+      margin-right: 2.35765%;
+      width: 82.94039%;
+      margin-left: 17.05961%; }
+      .content:last-child {
+        margin-right: 0; } }
   @media screen and (max-width: 480px) {
     .content {
       display: block;
@@ -532,7 +541,7 @@ div.site {
   display: block;
   float: left;
   margin-right: 2.35765%;
-  width: 48.82117%;
+  width: 74.41059%;
   margin-left: 25.58941%;
   font-size: 80%;
   color: #5c5f72;
@@ -546,7 +555,7 @@ div.site {
       display: block;
       float: left;
       margin-right: 2.35765%;
-      width: 65.88078%;
+      width: 82.94039%;
       margin-left: 17.05961%;
       text-align: center; }
       .site .footer:last-child {
