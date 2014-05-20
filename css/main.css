@@ -299,7 +299,11 @@
   color: #FFF; }
 
 .post pre.terminal code {
-  background-color: #1d1c1f; }
+  background-color: #1d1c1f;
+  display: inline-block; }
+
+p img {
+  max-width: 100%; }
 
 @font-face {
   font-family: Canter;
@@ -392,7 +396,7 @@ div.site {
       display: block;
       float: left;
       margin-right: 2.35765%;
-      width: 65.88078%;
+      width: 82.94039%;
       margin-left: 17.05961%; }
       .site .header:last-child {
         margin-right: 0; } }
@@ -425,7 +429,7 @@ div.site {
       display: block;
       float: left;
       margin-right: 2.35765%;
-      width: 65.88078%;
+      width: 82.94039%;
       margin-left: 17.05961%; }
       .nav:last-child {
         margin-right: 0; } }
@@ -521,12 +525,14 @@ div.site {
   height: 190px;
   margin: 3px;
   filter: brightness(60%);
-  -webkit-filter: brightness(60%); }
+  -webkit-filter: brightness(60%);
+  filter: brightness(60%); }
 
 .portfolio img:hover {
   border: 1px solid #ffb836;
   filter: brightness(100%);
-  -webkit-filter: brightness(100%); }
+  -webkit-filter: brightness(100%);
+  filter: brightness(100%); }
 
 .site .footer {
   display: block;
