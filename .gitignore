@@ -1,5 +1,7 @@
 .DS_Store
-'deploy' 
+'deploy'
 _plugins
 .sass-cache
 _site
+_sass
+_data
