@@ -345,7 +345,7 @@ ul {
     ul {
       list-style: none; } }
 
-img:not('lb-image') {
+img:not(.lb-image) {
   max-width: 100%; }
 
 a {
