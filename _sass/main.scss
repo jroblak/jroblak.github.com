@@ -39,7 +39,7 @@ ul {
   }
 }
 
-img { max-width: 100%; }
+img:not('lb-image') { max-width: 100%; }
 
 a {
   color: $base;
