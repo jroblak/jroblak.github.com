@@ -39,6 +39,8 @@ ul {
   }
 }
 
+img { max-width: 100%; }
+
 a {
   color: $base;
   &:visited { color: $accent2; }
@@ -48,6 +50,12 @@ a {
 .small {
   font-size: 75%;
   clear: left;
+}
+
+.center-img {
+  margin: 5px auto;
+  display: block;
+  border: 1px solid $accent;
 }
 
 div.site {
