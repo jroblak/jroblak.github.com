@@ -1,6 +1,8 @@
 name: justinoblak
 markdown: redcarpet
-pygments: true
+highlighter: true
 safe: true
 production_url: justinoblak.com
 BASE_PATH: false
+gems:
+- jekyll-compass

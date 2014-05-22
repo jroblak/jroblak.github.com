@@ -1,0 +1,36 @@
+.post {
+  font-family: 'Cardo', serif;
+}
+
+.post pre {
+  background-color: $bgcolor;
+  overflow-x: auto;
+}
+
+.post ul, .post ol {
+  margin-left: 1.35em;
+}
+
+.post code {
+  padding: 1em 0.2em;
+}
+
+code {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.highlight {
+  border: 1px solid $accent2;
+}
+
+/* terminal */
+.post pre.terminal {
+  background-color: $bgcolor;
+  color: #FFF;
+}
+
+p img {
+  max-width: 100%;
+}
