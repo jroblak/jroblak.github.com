@@ -1,6 +1,7 @@
 /* GLOBALS */
 var gl;
-var currentId;
+var currentId = "one";
+var webgl = {};
 
 
 jQuery.loadScript = function (url, callback) {
@@ -18,37 +19,33 @@ function degToRad(degrees) {
 }
 
 
-function enableSelect() {
+function enableSelector() {
     $("#rightValues").prop('disabled', false);
 }
-    
+
 
 $(function() {
 	var canvas = document.getElementById("canvas");
     canvas.width = $('.content').width();
     canvas.height = 500;
 	initGL(canvas);
-	currentId = 1;
 
 	// Load default WebGL project
 	testAndLoad();
 
 	$("#rightValues").change(function() {
-		$(this).prop('disabled', 'disabled');
-		currentId = parseInt($(this).val());
+        $(this).prop('disabled', 'disabled');
+		currentId = $(this).val();
 		testAndLoad();
 	})
 });
 
 
-function startWebGl(functionName) {
-	initShaders();
-	initBuffers();
-
+function startWebGl() {
 	gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	gl.enable(gl.DEPTH_TEST);
 
-	window[functionName]();
+    webgl[currentId].enter();
 }
 
 
@@ -68,12 +65,16 @@ function initGL(canvas) {
 
 
 function testAndLoad() {
-	var functionName = "enter" + currentId;
+    var functionName = webgl[currentId];
 	var path = "/js/webgl/" + currentId + ".js";
 
-	if (typeof window[functionName] == 'undefined') $.loadScript(path, function(){
-		startWebGl(functionName);
-	});
+	if (typeof functionName === 'undefined') {
+        $.loadScript(path, function(){
+    		startWebGl();
+    	});
+    } else {
+        startWebGl();
+    }
 }
 
 function loadShaders(gl, shaders) {
