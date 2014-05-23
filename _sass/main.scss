@@ -41,6 +41,16 @@ ul {
 
 img:not(.lb-image) { max-width: 100%; }
 
+canvas {
+  width: 100%; 
+}
+
+select {
+  width: 100%;
+  background-color: $bgcolor;
+  color: $accent;
+}
+
 a {
   color: $base;
   &:visited { color: $accent2; }
