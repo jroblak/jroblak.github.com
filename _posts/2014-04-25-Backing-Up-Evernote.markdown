@@ -8,9 +8,7 @@ I'm a big believer in frequent backups, and I realized I had one big weak spot: 
 
 While searching around the internet, I only came across a few manual solutions, so I quickly threw something together using Windows Task Scheduler which I'll walk through. The exact same thing could be done using OSX/UNIX via cron jobs and the like. Maybe I'll tackle that in another post.
 
-First, you're going to want to open Evernote to find where your Database is stored. The default is:
-C:\Users\[UserName]\AppData\Local\Evernote\Evernote\Databases. 
-However, you can find yours via Tools -> Options -> General
+First, you're going to want to open Evernote to find where your Database is stored. You can find yours via Tools -> Options -> General
 
 Now you're going to want to set up a folder where you want your backups to go. An external drive would be best, but something like Dropbox or Google Drive would also work. Create a folder named "EvernoteBackup" where ever you choose.
 
