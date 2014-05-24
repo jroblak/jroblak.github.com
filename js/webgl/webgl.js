@@ -1,8 +1,9 @@
 /* GLOBALS */
 var gl;
 var currentId = "one";
+var previousId = "";
 var webgl = {};
-
+var canvas = null;
 
 jQuery.loadScript = function (url, callback) {
     jQuery.ajax({
@@ -25,16 +26,16 @@ function enableSelector() {
 
 
 $(function() {
-	var canvas = document.getElementById("canvas");
+	canvas = document.getElementById("canvas");
     canvas.width = $('.content').width();
     canvas.height = 500;
-	initGL(canvas);
 
 	// Load default WebGL project
 	testAndLoad();
 
 	$("#rightValues").change(function() {
         $(this).prop('disabled', 'disabled');
+        previousId = currentId;
 		currentId = $(this).val();
 		testAndLoad();
 	})
@@ -42,16 +43,21 @@ $(function() {
 
 
 function startWebGl() {
+    gl = null;
+
+    initGL(canvas);
 	gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	gl.enable(gl.DEPTH_TEST);
 
+    // AND STOP THE PREVIOUS
+    if (previousId !== "") webgl[previousId].end();
     webgl[currentId].enter();
 }
 
 
 function initGL(canvas) {
     try {
-        gl = canvas.getContext("webgl");
+        gl = canvas.getContext("experimental-webgl");
         gl.viewportWidth = canvas.width;
         gl.viewportHeight = canvas.height;
     } catch (e) {

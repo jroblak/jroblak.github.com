@@ -18,12 +18,13 @@ var rPyramid = 0;
 var rCube = 0;
 
 var lastTick = 0;
+var rafid = -1;
 
 
 function enter() {
     initShaders();
     initBuffers();
-    
+
     enableSelector();
     tick();
 }
@@ -93,8 +94,8 @@ function initBuffers() {
     ];
     // and bind this data to the current buffer (our pyramidVertexPos..)
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-   
-    // set the size of our buffer   
+
+    // set the size of our buffer
     pyramidVertexPositionBuffer.itemSize = 3;
     pyramidVertexPositionBuffer.numItems = 12;
 
@@ -218,7 +219,7 @@ function mvPopMatrix() {
 
 
 function tick() {
-    requestAnimationFrame(tick);
+    rafid = requestAnimationFrame(tick);
     drawScene();
     animate();
 }
@@ -240,10 +241,10 @@ function drawScene() {
 
     gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, pyramidVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-    
+
     gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexColorBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, pyramidVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-    
+
     setMatrixUniforms();
     gl.drawArrays(gl.TRIANGLES, 0, pyramidVertexPositionBuffer.numItems);
 
@@ -280,8 +281,23 @@ function animate() {
     lastTick = tickNow;
 }
 
+
+function end() {
+    shaderProgram = null;
+    pyramidVertexPositionBuffer = null;
+    pyramidVertexColorBuffer = null;
+    cubeVertexPositionBuffer = null;
+    cubeVertexColorBuffer = null;
+    cubeVertexIndexBuffer = null;
+    rPyramid = 0;
+    rCube = 0;
+    lastTick = 0;
+    cancelAnimationFrame(rafid);
+}
+
 return {
-    enter: enter
+    enter: enter,
+    end: end
 }
 
 })();
