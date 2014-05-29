@@ -305,6 +305,14 @@ p img {
   border: 1px solid #ffb836;
   margin-top: 5px; }
 
+#webglwrap {
+  position: relative; }
+
+#textoverlay {
+  position: absolute;
+  left: 5px;
+  bottom: 5px; }
+
 @font-face {
   font-family: Canter;
   font-weight: normal;
