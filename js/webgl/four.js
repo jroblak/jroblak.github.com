@@ -259,13 +259,13 @@ webgl.four = (function() {
         shaderProgram = null;
         starVertexPositionBuffer = null;
         starVertexTextureCoordBuffer = null;
-        stars = null;
+        stars = [];
         lastTick = 0;
         thetexture = null;
         cancelAnimationFrame(rafid);
-        mvMatrix = null;
-        pMatrix = null;
-        mvMatrixStack = null;
+        mvMatrix = mat4.create();
+        pMatrix = mat4.create();
+        mvMatrixStack = [];
         rafid = -1;
 
         gl.disable(gl.BLEND);
