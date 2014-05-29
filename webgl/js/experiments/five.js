@@ -150,11 +150,13 @@ webgl.five = (function() {
 
 
     function handleKeyDown(event) {
+        event.preventDefault();
         currentlyPressedKeys[event.keyCode] = true;
     }
 
     
     function handleKeyUp(event) {
+        event.preventDefault();
         currentlyPressedKeys[event.keyCode] = false;
     }
 
