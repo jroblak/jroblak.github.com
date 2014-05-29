@@ -1,4 +1,4 @@
-webgl.two = (function() {
+webgl.three = (function() {
 
     /* GLOBALS */
     var shaderProgram = null;
@@ -21,11 +21,15 @@ webgl.two = (function() {
 
     var thetexture = null;
 
-
     function enter() {
         initShaders();
         initBuffers();
         initTextures();
+
+         // blending
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+        gl.enable(gl.BLEND);
+        gl.disable(gl.DEPTH_TEST);
     }
 
 
@@ -38,7 +42,7 @@ webgl.two = (function() {
             tick();
         }
 
-        thetexture.image.src = "/img/textures/" + currentId + "/2.gif";
+        thetexture.image.src = "/img/textures/" + currentId + "/3.gif";
     }
 
 
@@ -85,6 +89,7 @@ webgl.two = (function() {
         shaderProgram.ambientColorUniform = gl.getUniformLocation(shaderProgram, "uAmbientColor");
         shaderProgram.lightingDirectionUniform = gl.getUniformLocation(shaderProgram, "uLightingDirection");
         shaderProgram.directionalColorUniform = gl.getUniformLocation(shaderProgram, "uDirectionalColor");
+        shaderProgram.alphaUniform = gl.getUniformLocation(shaderProgram, "uAlpha");
     }
 
 
@@ -295,6 +300,9 @@ webgl.two = (function() {
         gl.uniform1i(shaderProgram.useLightingUniform, true); // always use lighting
         gl.uniform3fv(shaderProgram.ambientColorUniform, [0.7, 0.7, 0.7]);
 
+        gl.uniform1f(shaderProgram.alphaUniform, 0.5);
+
+        // lighting
         var adjustedLD = vec3.create();
         vec3.normalize(adjustedLD, [-0.8, -0.8, -1.0]); // normalizes (normally user input)
         vec3.scale(adjustedLD, adjustedLD, -1); // scales by -1 to change from where light is coming from to where it is going
@@ -338,6 +346,8 @@ webgl.two = (function() {
         pMatrix = mat4.create();
         mvMatrixStack = [];
         rafid = -1;
+
+        gl.disable(gl.BLEND);
     }
 
 
