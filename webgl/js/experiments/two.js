@@ -255,6 +255,7 @@ webgl.two = (function() {
 
         var normalMatrix = mat3.create();
         mat3.normalFromMat4(normalMatrix, mvMatrix);
+        gl.uniformMatrix3fv(shaderProgram.nMatrixUniform, false, normalMatrix);
     }
 
     function tick() {

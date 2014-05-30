@@ -16,7 +16,6 @@ webgl.five = (function() {
     var effectiveFps = 60 / 1000;
 
     var thetexture = null;
-    var texturecanvas = null;
 
     var pitch = 0;
     var pitchRate = 0;
@@ -276,13 +275,24 @@ webgl.five = (function() {
         shaderProgram = null;
         lastTick = 0;
         thetexture = null;
-        texturecanvas = null;
         cancelAnimationFrame(rafid);
         mvMatrix = mat4.create();
         pMatrix = mat4.create();
         mvMatrixStack = [];
         rafid = -1;
         $('#textoverlay').text('');
+        worldVertexPositionBuffer = null;
+        worldVertexTextureCoordBuffer = null;
+        pitch = 0;
+        pitchRate = 0;
+        yaw = 0;
+        yawRate = 0;
+        xPos = 0;
+        yPos = 0.4;
+        zPos = 0;
+        joggingAngle = 0;
+        speed = 0;
+        currentlyPressedKeys = {};
     }
 
 

@@ -1,6 +1,6 @@
 /* GLOBALS */
 var gl;
-var currentId = "one";
+var currentId = "five";
 var previousId = "";
 var webgl = {};
 var canvas = null;
