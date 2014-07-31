@@ -14,10 +14,10 @@ window.onload = function() {
     window.h = $(window).height();
     window.particles = [];
     window.maxParticles = 60;
-    window.colors = [{r:'255', g:'184', b:'54',  a:'0.4'},
-                     {r:'92',  g:'95',  b:'114', a:'0.4'},
-                     {r:'125', g:'127', b:'125', a:'0.4'},
-                     {r:'238', g:'239', b:'247', a:'0.4'}];
+    window.colors = [{r:'255', g:'184', b:'54',  a:'0.3'},
+                     {r:'92',  g:'95',  b:'114', a:'0.3'},
+                     {r:'125', g:'127', b:'125', a:'0.3'},
+                     {r:'238', g:'239', b:'247', a:'0.3'}];
     window.windStrength = 0;
     window.windDirection = 0;
     window.windTime = 0;
@@ -64,12 +64,13 @@ function move(particle) {
     var xDist = Math.abs(particle.x - currentMousePos.x);
     var yDist = Math.abs(particle.y - currentMousePos.y);
 
-    if (xDist <= 100 && yDist <= 100) {
-        particle.vx *= 2;
-        particle.color.a = 1;
+    if (xDist <= 70 && yDist <= 70 && !particle.glowing) {
+        particle.vx *= 1.5;
+        particle.color.a = 1.0;
         particle.glowing = true;
     } else if (particle.glowing) {
         particle.glowing = false;
+        particle.a = 0.3;
     }
 
     particle.x += particle.vx * particle.direction;
@@ -129,6 +130,8 @@ function loop() {
 };
 
 $(document).mousemove(function(event) {
-    currentMousePos.x = event.pageX;
-    currentMousePos.y = event.pageY;
+    if (typeof currentMousePos !== "undefined") {
+        currentMousePos.x = event.pageX;
+        currentMousePos.y = event.pageY;
+    }
 });
