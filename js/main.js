@@ -78,7 +78,7 @@ function move(particle) {
         particle.glowing = true;
     } else if (particle.glowing) {
         particle.glowing = false;
-        particle.a = 0.3;
+        particle.color.a = 0.3;
     }
 
     particle.x += particle.vx * particle.direction;
