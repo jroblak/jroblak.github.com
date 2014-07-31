@@ -14,10 +14,10 @@ window.onload = function() {
     window.h = $(window).height();
     window.particles = [];
     window.maxParticles = 60;
-    window.colors = [{r:'255', g:'184', b:'54',  a:'0.5'},
-                     {r:'92',  g:'95',  b:'114', a:'0.5'},
-                     {r:'125', g:'127', b:'125', a:'0.5'},
-                     {r:'238', g:'239', b:'247', a:'0.5'}];
+    window.colors = [{r:'255', g:'184', b:'54',  a:'0.4'},
+                     {r:'92',  g:'95',  b:'114', a:'0.4'},
+                     {r:'125', g:'127', b:'125', a:'0.4'},
+                     {r:'238', g:'239', b:'247', a:'0.4'}];
     window.windStrength = 0;
     window.windDirection = 0;
     window.windTime = 0;
@@ -107,22 +107,12 @@ function drawFallingParts() {
         if (particle.x > w || particle.y > h) {
             removals.push(i);
         } else {
-            var gradient = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, particle.radius);
-            gradient.addColorStop(0, "white");
-            gradient.addColorStop(0.4, "white");
-            gradient.addColorStop(0.4, 'rgba(' + particle.color.r +
-                                ',' + particle.color.g +
-                                ',' + particle.color.b +
-                                ',' + particle.color.a + 
-                                ')');
-            /*
             ctx.fillStyle = 'rgba(' + particle.color.r +
                                 ',' + particle.color.g +
                                 ',' + particle.color.b +
                                 ',' + particle.color.a + 
                                 ')';
-            */
-            ctx.fillStyle = gradient;
+
             ctx.beginPath();
             ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2, true);
             ctx.closePath();
