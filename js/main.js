@@ -40,19 +40,19 @@ function Particle() {
     this.vx = Math.random() * 0.5;
     this.y = -1 * Math.round((Math.random() * h) + 1);
     this.radius = Math.round(Math.random() * 1) + 1;
-    this.color = copy(colors[Math.round(Math.random() * 3)]);
+    this.color = clone(colors[Math.round(Math.random() * 3)]);
     this.changeTimer = Math.round((Math.random() * 50) + 1);
     this.glowing = false;
 };
 
 // recursive deep copy function
-function copy(obj) {
+function clone(obj) {
     if (null == obj || "object" != typeof obj) return obj;
 
     if (obj instanceof Array) {
         var copy = [];
         for (var i = 0, len = obj.length; i < len; i++) {
-            copy[i] = copy(obj[i]);
+            copy[i] = clone(obj[i]);
         }
         return copy;
     }
@@ -60,7 +60,7 @@ function copy(obj) {
     if (obj instanceof Object) {
         var copy = {};
         for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = copy(obj[attr]);
+            if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
         }
         return copy;
     }
