@@ -13,7 +13,7 @@ window.onload = function() {
     window.w = $(window).width();
     window.h = $(window).height();
     window.particles = [];
-    window.maxParticles = 50;
+    window.maxParticles = 60;
     window.colors = [{r:'255', g:'184', b:'54',  a:'0.5'},
                      {r:'92',  g:'95',  b:'114', a:'0.5'},
                      {r:'125', g:'127', b:'125', a:'0.5'},
@@ -21,6 +21,7 @@ window.onload = function() {
     window.windStrength = 0;
     window.windDirection = 0;
     window.windTime = 0;
+    window.currentMousePos = {};
 
     canvas.width = w;
     canvas.height = h;
@@ -33,7 +34,7 @@ window.onload = function() {
     loop();
 };
 
-function Particle(maxY) {
+function Particle() {
     this.direction = Math.floor(Math.random() * 2) == 1 ? 1 : -1;
     this.x = Math.round(Math.random() * w);
     this.vx = Math.random() * 0.5;
@@ -41,6 +42,7 @@ function Particle(maxY) {
     this.radius = Math.round(Math.random() * 1) + 1;
     this.color = colors[Math.round(Math.random() * 3)];
     this.changeTimer = Math.round((Math.random() * 50) + 1);
+    this.glowing = false;
 };
 
 function createParticles(count) {
@@ -59,20 +61,30 @@ function removeParticles(idxs) {
 };
 
 function move(particle) {
+    var xDist = Math.abs(particle.x - currentMousePos.x);
+    var yDist = Math.abs(particle.y - currentMousePos.y);
+
+    if (xDist <= 100 && yDist <= 100) {
+        particle.vx *= 2;
+        particle.color.a = 1;
+        particle.glowing = true;
+    } else if (particle.glowing) {
+        particle.glowing = false;
+    }
+
     particle.x += particle.vx * particle.direction;
     particle.changeTimer -= 1;
     particle.y += 1;
 
     if (particle.changeTimer <= 0) {
-        particle.vx = 0.5;
+        particle.vx = Math.random() * 0.5;
         particle.direction *= -1;
         particle.changeTimer = Math.round((Math.random() * 100) + 50);
     }
 };
 
-
 function draw() {
-    lightEffect();
+    // lightEffect();
     drawFallingParts();
 };
 
@@ -81,19 +93,12 @@ function lightEffect() {
     var x = offset.left;
     var y = offset.top;
     var width = $('.title a').width();
-
-    var text = 'JUSTINOBLAK';
-    ctx.fillStyle = "#ffffff";
-    ctx.font="30px Arial";
-    ctx.fillText("Hello World",10,50)
 };
 
 function drawFallingParts() {
     var removals = [];
     ctx.clearRect(0, 0, w, h);
     ctx.globalCompositeOperation = 'darker';
-
-    // todo - calculate wind based on mouse movement
 
     for(var i = 0; i < maxParticles; i++){
         var particle = particles[i];
@@ -103,13 +108,23 @@ function drawFallingParts() {
         if (particle.x > w || particle.y > h) {
             removals.push(i);
         } else {
+            var gradient = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, particle.radius);
+            gradient.addColorStop(0, "white");
+            gradient.addColorStop(0.4, "white");
+            gradient.addColorStop(0.4, 'rgba(' + particle.color.r +
+                                ',' + particle.color.g +
+                                ',' + particle.color.b +
+                                ',' + particle.color.a + 
+                                ')');
+            /*
             ctx.fillStyle = 'rgba(' + particle.color.r +
                                 ',' + particle.color.g +
                                 ',' + particle.color.b +
-                                ',' + particle.color.a + ')';
-            ctx.beginPath();
+                                ',' + particle.color.a + 
+                                ')';
+            */
+            ctx.fillStyle = gradient;
             ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2, true);
-            ctx.closePath();
             ctx.fill();
         }
     }
@@ -121,3 +136,8 @@ function loop() {
     draw();
     requestAnimationFrame(loop);
 };
+
+$(document).mousemove(function(event) {
+    currentMousePos.x = event.pageX;
+    currentMousePos.y = event.pageY;
+});
