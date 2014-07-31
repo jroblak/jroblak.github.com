@@ -99,7 +99,9 @@ function drawFallingParts() {
     var removals = [];
     ctx.clearRect(0, 0, w, h);
     ctx.globalCompositeOperation = 'darker';
-
+    ctx.fillStyle="rgba(0,0,0,1)";
+    ctx.fillRect(0, 0, w, h);
+    
     for(var i = 0; i < maxParticles; i++){
         var particle = particles[i];
 
@@ -124,7 +126,9 @@ function drawFallingParts() {
                                 ')';
             */
             ctx.fillStyle = gradient;
+            ctx.beginPath();
             ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2, true);
+            ctx.closePath();
             ctx.fill();
         }
     }
