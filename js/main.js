@@ -45,12 +45,25 @@ function Particle() {
     this.glowing = false;
 };
 
+// recursive deep copy function
 function copy(obj) {
-    var copy = {};
-    for (var attr in obj) {
-        if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+    if (null == obj || "object" != typeof obj) return obj;
+
+    if (obj instanceof Array) {
+        var copy = [];
+        for (var i = 0, len = obj.length; i < len; i++) {
+            copy[i] = copy(obj[i]);
+        }
+        return copy;
     }
-    return copy;
+
+    if (obj instanceof Object) {
+        var copy = {};
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = copy(obj[attr]);
+        }
+        return copy;
+    }
 }
 
 function createParticles(count) {
