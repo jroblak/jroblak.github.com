@@ -98,10 +98,7 @@ function lightEffect() {
 function drawFallingParts() {
     var removals = [];
     ctx.clearRect(0, 0, w, h);
-    ctx.globalCompositeOperation = 'darker';
-    ctx.fillStyle="rgba(0,0,0,1)";
-    ctx.fillRect(0, 0, w, h);
-    
+
     for(var i = 0; i < maxParticles; i++){
         var particle = particles[i];
 
