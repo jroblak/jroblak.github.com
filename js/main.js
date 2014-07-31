@@ -40,10 +40,18 @@ function Particle() {
     this.vx = Math.random() * 0.5;
     this.y = -1 * Math.round((Math.random() * h) + 1);
     this.radius = Math.round(Math.random() * 1) + 1;
-    this.color = colors[Math.round(Math.random() * 3)];
+    this.color = copy(colors[Math.round(Math.random() * 3)]);
     this.changeTimer = Math.round((Math.random() * 50) + 1);
     this.glowing = false;
 };
+
+function copy(obj) {
+    var copy = {};
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+    }
+    return copy;
+}
 
 function createParticles(count) {
     for(var i = 0; i < count; i++){
