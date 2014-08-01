@@ -14,7 +14,6 @@ jQuery.loadScript = function (url, callback) {
     });
 }
 
-
 function degToRad(degrees) {
     return degrees * Math.PI / 180;
 }
