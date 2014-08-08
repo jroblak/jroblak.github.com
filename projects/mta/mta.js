@@ -7,8 +7,6 @@ var mta = function() {
     this.h = 764;
     this.currentMousePos = {};
     this.currData = null;
-    this.ProtoBuf = dcodeIO.ProtoBuf;
-    this.transit = ProtoBuf.protoFromFile('gtfs-realtime.proto').build('transit_realtime');
 
     canvas.width = w;
     canvas.height = h;
@@ -56,36 +54,13 @@ var mta = function() {
     };
 
     function pingMta() {
-        var request = new createCORSRequest('GET', 'http://datamine.mta.info/mta_esi.php?key=ef80ff678028e7cc96ba474e6194b7d6');
-        if (!request) { return; }
-        
-        request.onload = function() {
-            var text = request.responseText;
-            console.log(text);
-            try {
-                console.log(transit.FeedMessage.decode(text))
-            } catch(e) {
-                console.log(e)
-            }
-        };
-        
-        request.send();
+        var request = $.ajax({
+            url: 'http://priv.justinoblak.com/mta-api/subway',
+            crossDomain: true
+        }).done(function(data) {
+            console.log(data);
+        });
     };
-
-    function createCORSRequest(method, url) {
-        var xhr = new XMLHttpRequest();
-        
-        if ("withCredentials" in xhr) {
-            xhr.open(method, url, true);
-        } else if (typeof XDomainRequest != "undefined") {
-            xhr = new XDomainRequest();
-            xhr.open(method, url);
-        } else {
-            xhr = null;
-        }
-    
-        return xhr;
-    }
 
     return {
         run: run
