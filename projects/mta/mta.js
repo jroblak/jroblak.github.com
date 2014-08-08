@@ -2,11 +2,11 @@ var mta = function() {
     var canvas = document.getElementById("mtacanvas");
 
     // set up globals explicitly
-    this.ctx = canvas.getContext("2d");
-    this.w = 611;
-    this.h = 764;
-    this.currentMousePos = {};
-    this.currData = null;
+    var ctx = canvas.getContext("2d");
+    var w = 611;
+    var h = 764;
+    var currentMousePos = {};
+    var currData = null;
 
     canvas.width = w;
     canvas.height = h;
@@ -14,7 +14,7 @@ var mta = function() {
     ctx.viewportWidth = canvas.width;
     ctx.viewportHeight = canvas.height;
 
-    drawNyc = function() {
+    function drawNyc() {
         ctx.beginPath();
         ctx.moveTo(141, 32);
         ctx.lineTo(163, 12);
@@ -44,12 +44,29 @@ var mta = function() {
         loop();
     }
 
+    var fourFiveSix = function() {
+        ctx.beginPath();
+        ctx.arc(400, 210, 5, 0, Math.PI * 2, true);
+        ctx.moveTo(398, 210);
+        ctx.lineTo(398, 750);
+        ctx.arc(400, 750, 5, 0, Math.PI * 2, true);
+        ctx.lineTo(403, 750);
+        ctx.lineTo(403, 210);
+        ctx.closePath();
+        if (currData.line[1].status !== "GOOD SERVICE") {
+            ctx.fillStyle = 'red';
+        } else ctx.fillStyle = '#00933C';
+        ctx.strokeStyle = '#005420';
+        ctx.fill();
+        ctx.stroke();
+    }
+
     function draw() {
+        if (currData === null) return;
+        fourFiveSix();
     };
 
     function loop() {
-        if (currData === null) return;
-
         draw();
         requestAnimationFrame(loop);
     };
@@ -59,7 +76,7 @@ var mta = function() {
             url: 'http://priv.justinoblak.com/mta-api/subway',
             crossDomain: true
         }).done(function(data) {
-            currData = data;
+            currData = $.parseJSON(data);
         });
     };
 
