@@ -37,6 +37,8 @@ var mta = function() {
         ctx.stroke();
         ctx.fill();
 
+        ctx.shadowBlur = 1;
+        ctx.shadowColor = "black";
         ctx.fillStyle = 'grey';
         ctx.fillRect(193, 230, 170, 190);
     }
@@ -51,22 +53,13 @@ var mta = function() {
         var color = '#00933C';
         var delaycolor = 'red';
         var changecolor = 'yellow';
+        ctx.shadowColor = "#00491C";
 
-        ctx.beginPath();
-        ctx.arc(400, 210, 5, 0, Math.PI * 2, true);
-        ctx.arc(400, 750, 5, 0, Math.PI * 2, true);
-        ctx.closePath();
-
-        if (currData.line[1].status !== "GOOD SERVICE") {
-            ctx.fillStyle = delaycolor;
-        } else ctx.fillStyle = color;
-        ctx.fill();
-
+        ctx.lineCap = 'round';
         ctx.lineWidth = 5;
         ctx.beginPath();
         ctx.moveTo(400, 210);
         ctx.lineTo(400, 750);
-        ctx.closePath();
 
         if (currData.line[1].status !== "GOOD SERVICE") {
             ctx.strokeStyle = delaycolor;
@@ -78,18 +71,9 @@ var mta = function() {
         var color = '#2850AD';
         var delaycolor = 'red';
         var changecolor = 'yellow';
+        ctx.shadowColor = "#1E3D7F";
 
-        ctx.beginPath();
-        ctx.arc(150, 5, 5, 0, Math.PI * 2, true);
-        ctx.arc(450, 690, 5, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.arc(435, 435, 5, 0, Math.PI * 2, true);
-        ctx.closePath();
-        if (currData.line[1].status !== "GOOD SERVICE") {
-            ctx.fillStyle = delaycolor;
-        } else ctx.fillStyle = color;
-        ctx.fill();
-
+        ctx.lineCap = 'round';
         ctx.lineWidth = 5;
         ctx.beginPath();
         ctx.moveTo(150, 5);
@@ -121,20 +105,9 @@ var mta = function() {
         var color = '#EE352E';
         var delaycolor = 'darkred';
         var changecolor = 'yellow';
+        ctx.shadowColor = "#821D1A";
 
-        ctx.beginPath();
-        ctx.arc(190, 5, 5, 0, Math.PI * 2, true);
-        ctx.arc(250, 723, 5, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.arc(245, 170, 5, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.arc(285, 165, 5, 0, Math.PI * 2, true);
-        ctx.closePath();
-        if (currData.line[1].status !== "GOOD SERVICE") {
-            ctx.fillStyle = delaycolor;
-        } else ctx.fillStyle = color;
-        ctx.fill();
-
+        ctx.lineCap = 'round';
         ctx.lineWidth = 5;
         ctx.beginPath();
         ctx.moveTo(190, 5);
@@ -152,6 +125,8 @@ var mta = function() {
         ctx.lineTo(255, 250);
         ctx.lineTo(255, 170);
         ctx.lineTo(245, 170);
+        ctx.stroke();
+
         ctx.lineTo(255, 170);
         ctx.lineTo(255, 180);
         ctx.lineTo(285, 165);
