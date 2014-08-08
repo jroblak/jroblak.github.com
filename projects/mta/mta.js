@@ -37,10 +37,11 @@ var mta = function() {
         ctx.stroke();
         ctx.fill();
 
-        ctx.shadowBlur = 1;
-        ctx.shadowColor = "black";
-        ctx.fillStyle = 'grey';
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = "green";
+        ctx.fillStyle = 'darkgreen';
         ctx.fillRect(193, 230, 170, 190);
+        ctx.shadowBlur = 1;
     }
 
     function run() {
