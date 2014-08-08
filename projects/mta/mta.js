@@ -45,10 +45,11 @@ var mta = function() {
     }
 
     function draw() {
-        //fourFiveSix();
     };
 
     function loop() {
+        if (currData === null) return;
+        
         draw();
         requestAnimationFrame(loop);
     };
@@ -58,7 +59,7 @@ var mta = function() {
             url: 'http://priv.justinoblak.com/mta-api/subway',
             crossDomain: true
         }).done(function(data) {
-            console.log(data);
+            currData = data;
         });
     };
 
