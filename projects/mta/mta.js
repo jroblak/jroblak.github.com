@@ -49,7 +49,7 @@ var mta = function() {
 
     function loop() {
         if (currData === null) return;
-        
+
         draw();
         requestAnimationFrame(loop);
     };
@@ -68,6 +68,6 @@ var mta = function() {
     };
 }();
 
-window.onload = function() {
+$(function() {
     mta.run();
-};
+});
