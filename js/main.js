@@ -40,7 +40,7 @@ function Particle() {
     this.vx = Math.random() * 0.5;
     this.y = -1 * Math.round((Math.random() * h) + 1);
     this.radius = Math.round(Math.random() * 1) + 1;
-    this.color = clone(window.colors[Math.round(Math.random() * 3)]);
+    this.color = clone(colors[Math.round(Math.random() * 3)]);
     this.changeTimer = Math.round((Math.random() * 50) + 1);
     this.glowing = false;
 };
@@ -68,22 +68,22 @@ function clone(obj) {
 
 function createParticles(count) {
     for(var i = 0; i < count; i++){
-        window.particles.push(new Particle);
+        particles.push(new Particle);
     }
 };
 
 function removeParticles(idxs) {
     var count = idxs.length;
     while (count--) {
-        window.particles.splice(idxs[count], 1);
+        particles.splice(idxs[count], 1);
     }
 
     createParticles(idxs.length);
 };
 
 function move(particle) {
-    var xDist = Math.abs(particle.x - window.currentMousePos.x);
-    var yDist = Math.abs(particle.y - window.currentMousePos.y);
+    var xDist = Math.abs(particle.x - currentMousePos.x);
+    var yDist = Math.abs(particle.y - currentMousePos.y);
 
     if (xDist <= 70 && yDist <= 70 && !particle.glowing) {
         particle.vx *= 1.5;
@@ -119,26 +119,26 @@ function lightEffect() {
 
 function drawFallingParts() {
     var removals = [];
-    window.ctx.clearRect(0, 0, w, h);
+    ctx.clearRect(0, 0, w, h);
 
-    for(var i = 0; i < window.maxParticles; i++){
-        var particle = window.particles[i];
+    for(var i = 0; i < maxParticles; i++){
+        var particle = particles[i];
 
         move(particle);
 
         if (particle.x > w || particle.y > h) {
             removals.push(i);
         } else {
-            window.ctx.fillStyle = 'rgba(' + particle.color.r +
+            ctx.fillStyle = 'rgba(' + particle.color.r +
                                 ',' + particle.color.g +
                                 ',' + particle.color.b +
                                 ',' + particle.color.a + 
                                 ')';
 
-            window.ctx.beginPath();
-            window.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2, true);
-            window.ctx.closePath();
-            window.ctx.fill();
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
         }
     }
 
