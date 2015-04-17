@@ -12,6 +12,7 @@ With Xamarin.Forms, Xamarin has abstracted the common interface elements for eac
 
 In order to customize any Xamarin control, a developer has to perform three steps:
 1. Create a custom control in the shared or PCL project (e.g. CustomButton). This is almost like an interface to the per-device implementation. You can include properties and methods here that will be exposed to the devices 'implementation' as well. So, lets say we want an entry whereby we can change the BorderStyle on iOS. We'd create the custom control:
+
 {% highlight csharp %}
 namespace ExampleApp.Controls
 {
@@ -38,6 +39,7 @@ namespace ExampleApp.Controls
 {% endhighlight %}
 
 2. Now we have to create the 'implementation' for each platform in the respective platform's project. Continuing our example, in ExampleApp.iOS:
+
 {% highlight csharp %}
 [assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
 namespace ExampleApp.iOS.CustomRenderers
@@ -68,7 +70,9 @@ namespace ExampleApp.iOS.CustomRenderers
     }
 }
 {% endhighlight %}
+
 3. And now we can finally create this entry anywhere in our shared code:
+
 {% highlight csharp %}
 var entry = new CustomEntry { BorderStyle = iOSBorderStyle.None };
 {% endhighlight %}
