@@ -11,7 +11,7 @@ Before _Xamarin.Forms_, the key selling point to the Xamarin suite was that one 
 With Xamarin.Forms, Xamarin has abstracted the common interface elements for each platform into a 'Xamarin.Forms' controls which can be shared across platforms, thus dramatically increasing code reuse. When compiled, Xamarin performs all of the cross-platform magic to ensure everything renders properly on each device. This is all great....until you have to customize anything. This leads one into the world of 'Custom Renderers', or, separate cross-platform UI code with less power.
 
 In order to customize any Xamarin control, a developer has to perform three steps:
-1. Create a custom control in the shared or PCL project (e.g. CustomButton). This is almost like an interface to the per-device implementation. You can include properties and methods here that will be exposed to the devices 'implementation' as well. So, lets say we want an entry whereby we can change the BorderStyle on iOS. We'd create the custom control:
+1.) Create a custom control in the shared or PCL project (e.g. CustomButton). This is almost like an interface to the per-device implementation. You can include properties and methods here that will be exposed to the devices 'implementation' as well. So, lets say we want an entry whereby we can change the BorderStyle on iOS. We'd create the custom control:
 
 {% highlight csharp %}
 namespace ExampleApp.Controls
@@ -38,7 +38,7 @@ namespace ExampleApp.Controls
 }
 {% endhighlight %}
 
-2. Now we have to create the 'implementation' for each platform in the respective platform's project. Continuing our example, in ExampleApp.iOS:
+2.) Now we have to create the 'implementation' for each platform in the respective platform's project. Continuing our example, in ExampleApp.iOS:
 
 {% highlight csharp %}
 [assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
@@ -71,7 +71,7 @@ namespace ExampleApp.iOS.CustomRenderers
 }
 {% endhighlight %}
 
-3. And now we can finally create this entry anywhere in our shared code:
+3.) And now we can finally create this entry anywhere in our shared code:
 
 {% highlight csharp %}
 var entry = new CustomEntry { BorderStyle = iOSBorderStyle.None };
