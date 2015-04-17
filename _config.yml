@@ -1,6 +1,5 @@
 name: justinoblak
 markdown: redcarpet
-highlighter: true
 safe: true
 production_url: justinoblak.com
 BASE_PATH: false
