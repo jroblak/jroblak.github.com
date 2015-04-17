@@ -11,6 +11,7 @@ Before _Xamarin.Forms_, the key selling point to the Xamarin suite was that one 
 With Xamarin.Forms, Xamarin has abstracted the common interface elements for each platform into a 'Xamarin.Forms' controls which can be shared across platforms, thus dramatically increasing code reuse. When compiled, Xamarin performs all of the cross-platform magic to ensure everything renders properly on each device. This is all great....until you have to customize anything. This leads one into the world of 'Custom Renderers', or, separate cross-platform UI code with less power.
 
 In order to customize any Xamarin control, a developer has to perform three steps:
+
 1.) Create a custom control in the shared or PCL project (e.g. CustomButton). This is almost like an interface to the per-device implementation. You can include properties and methods here that will be exposed to the devices 'implementation' as well. So, lets say we want an entry whereby we can change the BorderStyle on iOS. We'd create the custom control:
 
 {% highlight csharp %}
@@ -80,6 +81,7 @@ var entry = new CustomEntry { BorderStyle = iOSBorderStyle.None };
 So, as you can see, customization is far from trivial, especially when you start getting into more advanced customizations like maps, tables, lists, etc (perhaps subjects for further posts) where there is little documentation and/or the API coverage is incomplete.
 
 I suppose the lesson here is that Xamarin.Forms is great for applications that will:
+
 * Need to be cross-platform in a short time frame
 * Heavily leverage default platform controls
 * Have little, or no need for very customized elements, animations, etc
