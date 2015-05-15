@@ -395,7 +395,7 @@ div.site {
   margin-right: auto;
   font-size: 115%;
   text-align: justify;
-  margin: 2em auto 2em; }
+  margin: 2em auto 0em; }
   div.site:before, div.site:after {
     content: " ";
     display: table; }
