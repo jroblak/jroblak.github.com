@@ -1,14 +1,13 @@
 ---
 ---
 
-@import "bourbon/bourbon";
 @import "variables";
+@import "bourbon/bourbon";
 @import "neat/neat";
 @import "syntax";
 @import "blog";
 @import "post";
 @import "portfolio";
-@import "webgl";
 
 @include font-face(Canter, 'fonts/Canter Bold');
 
@@ -57,7 +56,7 @@ ul {
 img:not(.lb-image) { max-width: 100%; }
 
 canvas {
-  width: 100%; 
+  width: 100%;
   margin-top: 5px;
 }
 
@@ -274,4 +273,3 @@ div.site {
 .site .footer .contact a {
   color: $accent2;
 }
-

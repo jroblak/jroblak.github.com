@@ -1,9 +1,0 @@
----
-require:
-- jekyll-compass
-project_path: /Users/jroblak/projects/jroblak.github.com
-http_path: /
-css_path: css
-sass_dir: _sass
-images_dir: img
-javascripts_dir: js

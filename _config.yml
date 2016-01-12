@@ -5,3 +5,5 @@ production_url: justinoblak.com
 BASE_PATH: false
 gems:
 - jekyll-compass
+sass:
+  sass_dir: css
