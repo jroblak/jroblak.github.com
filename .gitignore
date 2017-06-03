@@ -1,7 +1,3 @@
-.DS_Store
-'deploy'
-_plugins
-.sass-cache
 _site
-_sass
-_data
+.sass-cache
+.jekyll-metadata

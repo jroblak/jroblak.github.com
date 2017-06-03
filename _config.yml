@@ -1,9 +1,22 @@
-name: justinoblak
-markdown: redcarpet
-safe: true
-production_url: justinoblak.com
-BASE_PATH: false
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: Justin Oblak | Builder, breaker, developer, architect
+email: hello@justinoblak.com
+description: >
+  Justin has a proven track record of building and scaling engineering teams
+baseurl: "/"
+url: "https://www.justinoblak.com"
+twitter_username: jroblak
+github_username:  jroblak
+
+# Build settings
+markdown: kramdown
 gems:
-- jekyll-compass
-sass:
-  sass_dir: css
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
