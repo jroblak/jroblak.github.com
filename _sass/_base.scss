@@ -1,0 +1,22 @@
+html, body {
+    background-color: $background;
+    color: $primary-text;
+    font-family: $monospace;
+}
+
+.main-container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+a, a:visited {
+    color: $link;
+}
+
+a:hover, a:active {
+    color: $link-hover;
+}
+
+.nav-link:first-child {
+    padding-left: 0;
+}
