@@ -1,19 +1,24 @@
 /// COLORS
 
-$background: #000;
+$background: #010000;
 
-$primary-text: #00ff00;
-$secondary-text: #008800;
-$tertiary-text: #bbb;
+$blue: #59a3ce;
+$yellow: #f0ad44;
+$red: #f82380;
+$light-red: #ea5e95;
+$purple: #9077d8;
+$tan: #f8a391;
 
-$link: #109CFF;
-$link-hover: #fff;
-$link-visited: #fff;
-$link-active: #fff;
+$primary-text: #f6f6f6;
+$secondary-text: $purple;
+$tertiary-text: #666666;
 
-$primary: green;
-$secondary: red;
-$tertiary: blue;
+$link: $purple;
+$link-hover: $blue;
+$link-visited: $blue;
+$link-active: $blue;
+
+
 
 // FONTS
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");

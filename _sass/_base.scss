@@ -4,6 +4,27 @@ html, body {
     font-family: $monospace;
 }
 
+header {
+    border-bottom: 3px solid $light-red;
+    padding: 5px;
+    margin-bottom: 20px;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+#post-contain {
+    img:not(.header-img) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #666;
+    }
+}
 
 a, a:visited {
     color: $link;
@@ -16,6 +37,7 @@ a:hover, a:active {
 .main-container {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+    max-width: 700px;
 }
 
 .header {

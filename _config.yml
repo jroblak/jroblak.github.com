@@ -17,6 +17,7 @@ github_username:  jroblak
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 gems:
   - jekyll-feed
 exclude:

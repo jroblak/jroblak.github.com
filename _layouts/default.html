@@ -7,14 +7,13 @@
         <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
         <meta name="keywords" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
         <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
         <link rel="stylesheet" href="{{ "css/lib/tether.min.css" | relative_url }}">
         <link rel="stylesheet" href="{{ "css/lib/bootstrap.min.css" | relative_url }}">
         <link rel="stylesheet" href="{{ "css/main.css" | relative_url }}">
-
+        <link rel="stylesheet" href="{{ "css/code.css" | relative_url }}">
         <script src="{{ "js/lib/modernizr-2.8.3.min.js" | relative_url }}"></script>
     </head>
     <body>
@@ -23,12 +22,14 @@
         <![endif]-->
         <div class="container main-container">
             <header class="header">
-                <h2>Justin Oblak</h2>
+                <a href="/"><img src="{{ "img/logo2.png" | relative_url }}"/></a>
             </header>
             
             {{ content }}
 
             <footer>
+                <a href="/essays.html">Essays</a><br>
+                <a href="/writeups.html">CTF Write Ups</a><br>
                 <a href="https://github.com/jroblak">GitHub</a><br>
                 <a href="https://keybase.io/jroblak">Keybase</a><br>
                 <a href="https://www.linkedin.com/in/justinoblak">LinkedIn</a>
