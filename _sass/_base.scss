@@ -3,7 +3,6 @@ html, body {
     color: $primary-text;
     font-family: $monospace;
 }
-
 header {
     border-bottom: 3px solid $light-red;
     padding: 5px;
@@ -13,7 +12,6 @@ header {
         max-width: 100%;
     }
 }
-
 img {
     max-width: 100%;
 }
@@ -29,7 +27,6 @@ img {
 a, a:visited {
     color: $link;
 }
-
 a:hover, a:active {
     color: $link-hover;
 }
@@ -39,7 +36,6 @@ a:hover, a:active {
     padding-bottom: 1.5rem;
     max-width: 700px;
 }
-
 .header {
     padding-bottom: 1rem;
 }
