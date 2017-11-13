@@ -49,17 +49,17 @@ so let's put sqlmap on the case, and keep moving forward:
 {% highlight shell %}
 ~ » sqlmap -u "http://charon.htb/singlepost.php?id=10" --level=5 --risk=3 --technique=U
 {% endhighlight %}
-(Bizarely, sqlmap fails on this simple injection. In any case, this database isn't useful to us.)
+(Bizarrely, sqlmap fails on this simple injection. In any case, this database isn't useful to us.)
 
 Moving onwards, what should stick out to you is that the footer indicates this site is powered by "SuperCMS." That means we should definitely start looking for the login portal for "SuperCMS." This doesn't appear to be an actual CMS system, so we'll have to fall back to dirbuster to enumerate. I used the default wordlist `directory-list-2.3-medium.txt` which pretty quickly hits `/cmsdata/login.php`.
 
-This leads us to a login page that appears not to be vulnerable to SQL injection, and a "Forgot Password" page that looks like it might be. The reasoning here is that the Login page returns the same error messages no matter what is passed, and has no decernable blind SQLi vulnerabilities. Meanwhile, the forgot password page gives at least 2 different types of errors:
+This leads us to a login page that appears not to be vulnerable to SQL injection, and a "Forgot Password" page that looks like it might be. The reasoning here is that the Login page returns the same error messages no matter what is passed, and has no discernible blind SQLi vulnerabilities. Meanwhile, the forgot password page gives at least 2 different types of errors:
 ```
 ' -> Incorrect format
 x@x.c -> User not found with that email!
 ```
 
-A handy tricky for running / debugging sqlmap is to run it through Burpsuite:
+A handy trick for running / debugging sqlmap is to run it through Burpsuite:
 {% highlight shell %}
 ~ » sqlmap -u "http://charon.htb/cmsdata/forgot.php" --data="email=x@x.c"  --level=5 --risk=3 --proxy=http://localhost:8080
 {% endhighlight %}
