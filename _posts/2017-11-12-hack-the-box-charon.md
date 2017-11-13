@@ -16,7 +16,7 @@ Host is up (0.022s latency).
 Not shown: 998 filtered ports
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; p
-| ssh-hostkey: 
+| ssh-hostkey:
 |   2048 09:c7:fb:a2:4b:53:1a:7a:f3:30:5e:b8:6e:ec:83:ee (RSA)
 |   256 97:e0:ba:96:17:d4:a1:bb:32:24:f4:e5:15:b4:8a:ec (ECDSA)
 |_  256 e8:9e:0b:1c:e7:2d:b6:c9:68:46:7c:b3:32:ea:e9:ef (EdDSA)
@@ -49,15 +49,15 @@ so let's put sqlmap on the case, and keep moving forward:
 {% highlight shell %}
 ~ » sqlmap -u "http://charon.htb/singlepost.php?id=10" --level=5 --risk=3 --technique=U
 {% endhighlight %}
-(strangely sqlmap fails on this simple case...in any case, this database isn't useful to us)
+(Bizarely, sqlmap fails on this simple injection. In any case, this database isn't useful to us.)
 
 Moving onwards, what should stick out to you is that the footer indicates this site is powered by "SuperCMS." That means we should definitely start looking for the login portal for "SuperCMS." This doesn't appear to be an actual CMS system, so we'll have to fall back to dirbuster to enumerate. I used the default wordlist `directory-list-2.3-medium.txt` which pretty quickly hits `/cmsdata/login.php`.
 
 This leads us to a login page that appears not to be vulnerable to SQL injection, and a "Forgot Password" page that looks like it might be. The reasoning here is that the Login page returns the same error messages no matter what is passed, and has no decernable blind SQLi vulnerabilities. Meanwhile, the forgot password page gives at least 2 different types of errors:
 ```
 ' -> Incorrect format
-x@x.c -> User not found with that email! 
-``` 
+x@x.c -> User not found with that email!
+```
 
 A handy tricky for running / debugging sqlmap is to run it through Burpsuite:
 {% highlight shell %}
@@ -104,7 +104,7 @@ After logging in, there a few possible vulnerabilities: we can edit existing pag
 
 It renames the file for us! This lets us rename our "image" to a `.php` file and the web server will execute it as PHP and give us a reverse shell.
 
-Once on the box, we quickly `cd` to `/home/decoder` and find a public key and encrypted password. 
+Once on the box, we quickly `cd` to `/home/decoder` and find a public key and encrypted password.
 {% highlight shell %}
 $ cat decoder.pub
 -----BEGIN PUBLIC KEY-----
