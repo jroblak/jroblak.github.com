@@ -53,7 +53,7 @@ so let's put sqlmap on the case, and keep moving forward:
 
 Moving onwards, what should stick out to you is that the footer indicates this site is powered by "SuperCMS." That means we should definitely start looking for the login portal for "SuperCMS." This doesn't appear to be an actual CMS system, so we'll have to fall back to dirbuster to enumerate. I used the default wordlist `directory-list-2.3-medium.txt` which pretty quickly hits `/cmsdata/login.php`.
 
-This leads us to a login page that appears to be not vulnerable to SQL injection, and a "Forgot Password" page that looks like it might be. The reasoning here is that the Login page returns the same error messages no matter what is passed, and has no decernable blind SQLi vulnerabilities. Meanwhile, the forgot password page gives at least 2 different types of errors:
+This leads us to a login page that appears not to be vulnerable to SQL injection, and a "Forgot Password" page that looks like it might be. The reasoning here is that the Login page returns the same error messages no matter what is passed, and has no decernable blind SQLi vulnerabilities. Meanwhile, the forgot password page gives at least 2 different types of errors:
 ```
 ' -> Incorrect format
 x@x.c -> User not found with that email! 
@@ -81,7 +81,7 @@ but something that sticks out right away are the responses for UNION based injec
 
 Their response size and error message were drastically different than the rest, so let's take a closer look.
 
-Working our way down the WAF Bypassing Strings <a href="https://www.owasp.org/index.php/SQL_Injection_Bypassing_WAF">here</a>, we quickly find that changing the casing on `UNION` gets us past the error. Using the limitations that we know of (the queryset must return an email), and slowly expanding our unions, we hit the jackpot on:
+Working our way down the  <a href="https://www.owasp.org/index.php/SQL_Injection_Bypassing_WAF">WAF Bypassing Strings list</a>, we quickly find that changing the casing on `UNION` gets us past the error. Using the limitations that we know of (the queryset must return an email), and expanding the union count, we hit the jackpot on:
 `' UnION SELECT 'x@x.c', 'x@x.c', 'x@x.c', 'x@x.c`
 <img src="{{ "img/charon/bingo.png" | relative_url }}" />
 
