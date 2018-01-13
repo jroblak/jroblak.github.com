@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Hack the Box - Going to Jail"
-date:   2015-01-13 18:16:01 -0600
-categories: hackthebox reversing bof nfs sharing network file pwntools bof overflow PIE
+date:   2018-01-12 12:16:01 -0600
+categories: hackthebox writeup reversing bof nfs sharing network file pwntools bof overflow PIE
 ---
 
 <img class="header-img" src="{{ "img/jail/home.png" | relative_url }}" />
@@ -242,8 +242,8 @@ int main(int argc, char *argv[]) {
 {% endhighlight %}
 
 It's pretty clear that this code is vulnerable to a simple buffer overflow. `handle` calls `auth`
-and passes in `username` and `password`, both of which are 256 bytes arrays. In `auth`, however,
-`password` is copied into a 16 bytes array, meaning we have 256 - 16 bytes of overflow. Since we're
+and passes in `username` and `password`, both of which are 256 byte arrays. In `auth`, however,
+`password` is copied into a 16 byte array, meaning we have 256 - 16 bytes of overflow. Since we're
 calling this binary remotely, we need to execute some code which connects back to us, or binds a port
 which we can then connect to. 
 
@@ -272,8 +272,7 @@ PIE       : ENABLED
 RELRO     : Partial
 {% endhighlight %}
 
-Once again (how coincidental :)), this binary presents an easy way around the challenge. If we set `debugmode` 
-and try to authenticate, it will tell us where the buffer is located. Now that we have all the pieces we need,
+Once again (how coincidental :)), this binary presents an easy way around the challenge. If we set `debugmode` (by sending "DEBUG") and try to authenticate, it will tell us where the buffer is located. Now that we have all the pieces we need,
 lets get <a href="https://pwntools.com">pwntooling</a>
 
 First, lets import pwntools and set our context:
@@ -289,9 +288,9 @@ PORT = 7411
 r = remote(HOST, PORT)
 {% endhighlight %}
 
-One of the many awesome things about pwntools, is that it can do a lot of the annoying shellcode work for us. It has a 
+One of the many awesome things about pwntools is that it can do a lot of the annoying shellcode work for us. It has a 
 module called <a href="http://docs.pwntools.com/en/stable/shellcraft.html">shellcraft</a> which has architecture specific
-shellcode for common needs. In this case, we want to find an open socket and open a shell on it, and then jumping into
+shellcode for common needs. In this case, we want to find an open socket and open a shell on it, and then jump into
 that shellcode (address of buffer plus an offset into our <a href="https://en.wikipedia.org/wiki/NOP_slide">NOP-sled</a>):
 {% highlight python %}
 buf = asm(shellcraft.findpeersh())
@@ -383,7 +382,7 @@ drwxr-xr-x.  2 root root     6 Nov  5  2016 yp
 {% endhighlight %}
 
 They correctly exported their directorys as `root_squash`, however `no_all_squash` could be our way in. Due to the 
-NFS security model, this means that we can create a user with the same UID/GID as `frank` on the jail box locally,
+NFS security model, this means that we can create a local user with the same UID/GID as `frank` on the jail box,
 mount the nfs share, and use it as if we were `frank`. 
 {% highlight shell %}
 $ cat /etc/passwd
@@ -401,14 +400,15 @@ $ cat /etc/passwd
 ...
 frank:x:1000:1000::/home/frank:/bin/bash
 ...
+$ su frank
 {% endhighlight %}
 
-Now we should be able to upload and control files on the `jail` server as if we were `frank`. The easiest way in 
-from here would be to upload a key to `authorized_keys` so we can SSH in as `frank`, since we saw port `22` was open
+Now we should be able to upload files onto the `jail` server as if we were `frank`. The easiest way in 
+from here would be to upload a key to `authorized_keys` so that we can SSH in as `frank`, since we saw port `22` was open
 in our `nmap` scan.
 
 Since we can upload _any_ kind of file as frank, the way forward is to write a file in C with suid as frank, which 
-prints our public key into `/home/frank/.ssh/authorized_keys`. Since this is relatively simple, and this is already a long 
+writes our public key into `/home/frank/.ssh/authorized_keys`. Since this is relatively simple, and this is already a long 
 post, I'll leave that as an exercise to the reader.
 
 Now we can ssh in as `frank` and can poke around for priv-esc. Once again, `sudo -l` shows us the way:
@@ -441,7 +441,7 @@ and `.local`:
 .frank
 {% endhighlight %}
 
-Opening `note.txt` gives us an encrypted message. Due to all of the repition, it looks like a simple substituion cipher, and it is 
+Opening `note.txt` gives us an encrypted message. Due to all of the repetition, it looks like a simple substituion cipher, and it is 
 (<a href="https://quipqiup.com/">quipqiup</a> suffices):
 {% highlight shell %}
 Szszsz! Mlylwb droo tfvhh nb mvd kzhhdliw! Lmob z uvd ofxpb hlfoh szev Vhxzkvw uiln Zoxzgiza zorev orpv R wrw!!!
@@ -455,11 +455,9 @@ Note from Administrator:
 Frank, for the last time, your password for anything encrypted must be your last name followed by a 4 digit number and a symbol.
 {% endhighlight %}
 
-Finally, we can open `keys.rar` and re-save it anywhere `/opt` or `/tmp` for example, so we can access it. We now have a password 
-protected `rar` with a password we know is of the form [lastname][\d\d\d\d][special]. Using the encrypted hint, we find a `Frank Morris` 
-who attempted an Alcatraz escape and was never found. That gives us `Morris[\d\d\d\d][special]` which is trivially easy to brute force.
+Finally, we can open `keys.rar` (with `:e` again) and re-save it anywhere `/opt` or `/tmp` for example (`:w`) so we can access it. We now have a password 
+protected `rar` with a password of the form `[lastname?][\d\d\d\d][special]`. Using the encrypted hint, we can Google around and find a `Frank Morris` who attempted an Alcatraz escape and was never found. That gives us `Morris[\d\d\d\d][!|?|@|$|%|^]` which is trivially easy to brute force, especially if you guess the most common four digit number would be a year (1900-2018).
 
-When we unrar the file, we get a single public key. From here it seems obvious we need to break the public key, and so we use `RsaCtfTool` 
-and the rest is easy. 
+When we unrar the file, we get a single public key. From here it seems obvious we need to break the public key, so we use `RsaCtfTool`, and the rest is easy. 
 
 _fin_

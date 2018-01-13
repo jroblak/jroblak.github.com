@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hack the Box - Let's Take a Holiday"
-date:   2015-11-19 16:16:01 -0600
+date:   2017-11-19 16:16:01 -0600
 categories: hackthebox xss html sqli node npm hacking wildcard writeup
 ---
 

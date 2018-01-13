@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hack the Box - Charon"
-date:   2015-11-17 16:16:01 -0600
+date:   2017-11-17 16:16:01 -0600
 categories: hackthebox sqli html escape hacking writeup
 ---
 
@@ -185,3 +185,5 @@ From there, it's simple:
 $ supershell "/bin/ls \$(cat /root/root.txt)"
 /bin/ls: cannot access 'REDACTED': No such file or directory
 {% endhighlight %}
+
+_fin_

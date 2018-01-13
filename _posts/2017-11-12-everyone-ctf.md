@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Why everyone should CTF"
-date:   2015-11-17 16:16:01 -0600
+date:   2017-11-17 16:16:01 -0600
 categories: essay
 ---
 I've become a big proponent of Capture the Flags, and I know that they've made me a better programmer. I would recommend anyone who hasn't given them a try to do so (p.s. I think you could probably extend these same arguments outside of the non-programming world to things like escape rooms as well). Why? Well...
