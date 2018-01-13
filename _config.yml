@@ -17,6 +17,7 @@ github_username:  jroblak
 
 # Build settings
 markdown: kramdown
+permalink: /:year/:month/:day/:title.html
 highlighter: rouge
 gems:
   - jekyll-feed
