@@ -9,18 +9,30 @@ email: hello@justinoblak.com
 description: >
   Justin Oblak is a New York City based developer, architect, team builder, and breaker. 
   He has a proven track record of building and scaling engineering teams
-keywords: "Justin Oblak, Justin, Oblak, Software Engineer, Developer, New York City, VP of Engineering, DgDean, Teampay"
+keywords: "Justin Oblak, Justin, Oblak, Software Engineer, Developer, New York City, VP of Engineering, DgDean, Teampay, security, pentest, penetration testing, hacking, white hat, white hat hacking, consulting, consultant"
 baseurl: ""
 url: "https://www.justinoblak.com"
 twitter_username: jroblak
 github_username:  jroblak
+twitter:
+  username: jroblak
+logo: /img/logo2.png
+social:
+  name: Justin Oblak
+  links:
+    - https://twitter.com/jroblak
+    - https://www.facebook.com/oblak
+    - https://www.linkedin.com/in/justinoblak
+    - https://github.com/jroblak
+    - https://keybase.io/jroblak
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Build settings
 markdown: kramdown
 permalink: /:year/:month/:day/:title.html
 highlighter: rouge
-gems:
-  - jekyll-feed
 exclude:
   - Gemfile
   - Gemfile.lock
