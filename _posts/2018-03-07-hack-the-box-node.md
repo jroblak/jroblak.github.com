@@ -41,13 +41,35 @@ Connection: close
 
 You past lovers? I cared not.
 But an `admin` flag, is an `admin` flag, and must always be followed. Its hash looked weak.
-Indeed, it was. (https://crackstation.net)[Crackstation] revealed it secret was
-"manchester".
+Indeed, it was. (https://crackstation.net)["manchester"].
+
+With each keystroke, we grew closer
+m.y.P.1.4.c.e.A.d.m.1.n.A.c.c.0.u.N.T.
+m.a.n.c.h.e.s.t.e.r.
+
+You offered me your memories, encoded in mystery. I was undeterred.
+
+{% highlight shell %}
+root@hack ~/Downloads# base64 -d myplace.backup > myplace.what
+root@hack ~/Downloads# file myplace.what
+myplace.what: Zip archive data, at least v1.0 to extract
+{% endhighlight %}
+
+But still, you resisted me.
+
+{% highlight shell %}
+root@hack ~/Downloads# unzip myplace.what
+Archive:  myplace.what
+  creating: var/www/myplace
+[myplace.what] var/www/myplace/package-lock.json password:
+{% endhighlight %}
 
 
-download back up
-base64 decode into zip
-unzip, need password
+`mark`...?
+`mark`.
+"Who is this `mark`"? I wondered. What boundries had you let him pass?
+Nevermind, I have his secret. ``
+
 password via john - secret word
 backup_key = 45fac180e9eee72f4fd2d9386ea7033e52b7c740afc3d98a8d0230167104d474
 mark password for mongo: 5AYRft73VtFpc84k and ssh
