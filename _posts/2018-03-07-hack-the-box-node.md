@@ -7,10 +7,10 @@ categories: hackthebox nosql webapp reversing mongo mongodb hacking writeup
 
 <img class="header-img" src="{{ "img/node/home.png" | relative_url }}" />
 
-Node was a special box to me. It was a special box because it was my first "first blood" (and first love), and it got me truely addicted to (https://hackthebox.eu)[hackthebox]. In light of this, I'm going to make the following writeup a love note to Node:
+Node was a special box to me. It was a special box because it was my first "first blood", and it got me truely addicted to (https://hackthebox.eu)[hackthebox]. In light of this, I'm going mix things up and bit and make the following writeup a love note to Node:
 
-Oh, Node, 
-it has been some time since we last spoke. 
+Oh, Node,
+it has been some time since we last spoke.
 It's been a while since my sweet TCP packets,
 probed your open ports.
 
@@ -19,11 +19,11 @@ root@hack ~# nmap -p- -T4 node.htb
 {% endhighlight %}
 
 You rebuffed my attempts on 80. On 8080, 443, and more.
-But you invited me into your space, into yourplace, into port 3000. 
+But you invited me into your space, into yourplace, into port 3000.
 Yes, you did.
 
 I dug into your deepest secrets.
-And into the APIs which b(urp)queathed your user sequence.
+And into the APIs which b(urp)equeathed your user sequence.
 I saw you clearly, inside and out; cut through your defences:
 turned `/api/users/latest` to `/api/users` and saw your sweet response:
 

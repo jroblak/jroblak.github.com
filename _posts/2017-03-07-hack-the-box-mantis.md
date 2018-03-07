@@ -43,16 +43,16 @@ Scanning mantis.htb (10.10.10.52) [65535 ports]
 50255/tcp open  unknown
 {% endhighlight %}
 
-That is....a lot. The theme of this box is clearly patience and enumeration. There are a ton of rabbit holes we could go down to start, but it looks like `1337` and `8080` are serving HTTP, so let's start by scanning there. I usually start with `dirb` since it's quick and dirty and we can always bust out the bigger guns / bigger lists if need be. 
+That is....a lot. The theme of this box is clearly patience and enumeration. There are a ton of rabbit holes we could go down to start, but it looks like `1337` and `8080` are serving HTTP, so let's start by scanning there. I usually start with `dirb` since it's quick and dirty, and we can always bust out the bigger guns / bigger lists if need be.
 
 {% highlight shell %}
 root@hack ~# dirb http://mantis.htb:1337
 root@hack ~# dirb http://mantis.htb:8080
 {% endhighlight %}
 
-Unfortunately, this is one of thoses cases. `8080` comes back with some basic CMS-y stuff, but not much else. Some lightweight manual testing seems to indicate there's no SQLi here, and OrchardCMS looks up-to-date, so that looks like a dead end. Make a note to review the Orchard source code if we can't find anything else, and bust out some bigger scans (widen the search radius) with `dirbuster`/`gobuster` and a larger list, like `directory-list-2.3-medium.txt`.
+Unfortunately, this is one of thoses cases. `8080` comes back with some basic CMS-y stuff, but not much else. Some lightweight manual testing seems to indicate there's no SQLi here, and OrchardCMS looks up-to-date, so that looks like a dead end. Make a note to review the Orchard source code if we can't find anything else, and bust out some bigger scans with `dirbuster`/`gobuster` and a larger list, like `directory-list-2.3-medium.txt`.
 
-While that runs, we can looks at some of the other ports here. There is definitely some interesting stuff, especially the exposed Active Directory, Kerberos, MSSQL Server:
+While that runs, we can look at some of the other open ports. There is definitely some interesting stuff, especially the exposed Active Directory, Kerberos, MSSQL Server:
 {% highlight shell %}
 root@hack ~# searchsploit kerberos
 -------------------------------------------------------------------------------------------
@@ -73,11 +73,12 @@ root@hack ~# searchsploit active directory
 Nothing useful pops out from the Active Directory search, but Kerberos brought back a few interesting leads. Why don't you go read up on them. I'll wait here.
 
 Back? Good.
+
 It looks like our scans are done, and this time a super suspicious directory pops out at us:
-`secure_notes`, which has two files:
+`secure_notes` on port `1337`, which has two files:
 - `dev_notes_NmQyNDI0NzE2YzVmNTM0MDVmNTA0MDczNzM1NzMwNzI2NDIx.txt.txt`
 - `web.config`
-`web.config` just leads to a `500` error, but `dev_notes` talks about database set up, and something is definitely strange about that file name. Yup, its' base64:
+`web.config` just leads to a `500` error, but `dev_notes` talks about database set up, and something is definitely strange about that file name. Yup, it's base64:
 {% highlight shell %}
 root@hack ~# echo NmQyNDI0NzE2YzVmNTM0MDVmNTA0MDczNzM1NzMwNzI2NDIx | base64 -d
 6d2424716c5f53405f504073735730726421
@@ -87,16 +88,16 @@ And that looks a lot like hex:
 root@hack ~# echo NmQyNDI0NzE2YzVmNTM0MDVmNTA0MDczNzM1NzMwNzI2NDIx | base64 -d | xxd -r -p
 m$$ql_S@_P@ssW0rd!
 {% endhighlight %}
-Hmmm, I wonder what this is for? With this password and the username (it's in the `dev_notes` file), you can either connect to the database and poke around manually, or use something like sqlmap to pull down the contents and search. Whichever you prefer, you'll come out with another username and password, and a quick test with `rpcclient` should confirm their use (since SMB is clearly running on port `445`. (https://pen-testing.sans.org/blog/2013/07/24/plundering-windows-account-info-via-authenticated-smb-sessions)[SANS has a great article on some of the fun things you can do with `rpcclient`]:
+Hmmm, I wonder what this is for? With this password and the username (it's in the `dev_notes` file), you can either connect to the database and poke around manually, or use something like sqlmap to pull down the contents. Whichever you prefer, you'll come out with another username and password, and a quick test with `rpcclient` should confirm their use. (https://pen-testing.sans.org/blog/2013/07/24/plundering-windows-account-info-via-authenticated-smb-sessions)[SANS has a great article on some of the fun things you can do with `rpcclient`]:
 {% highlight shell %}
 root@hack ~# rpcclient -Ujames mantis.htb
 rpcclient $> srvinfo
-10.10.10.52    Wk Sv Sql PDC Tim NT 
+10.10.10.52    Wk Sv Sql PDC Tim NT
 platform_id     : 500
 os version      : 6.1
 server type     : 0x80102f
 {% endhighlight %}
-From here, it's time to get box access / escalate. Did you do you research on some of our possible options? If you did you'd see that both `MS16-101` and `MS16-014` seems a little farfetched, as they required running applications on the host, something we can't do yet. `MS14-068` looks super interesting, however, since it could elevate our privleges to DA and probably get us code execution on the box. 
+From here, it's time to get box access / escalate. Did you do you research on some of our possible options? If you did, you saw that both `MS16-101` and `MS16-014` seem a little farfetched, as they require running applications on the host which something we can't do yet. `MS14-068` looks super interesting, however, since it could elevate our privleges to DA and get us full access to the SMB shares (did you notice that was running on `445`? You should connect via smbclient with james and poke around to see what exists and what he has access to).
 
 One of my favorite tools for working with Windows and its various networking protocols is (https://github.com/CoreSecurity/impacket)[impacket], and it has a great script for exploiting `MS14-068`. This is brain-dead simple, so I'll leave the rest as an exercise to the reader, but if you have any trouble, remember that you need all of the appropriate hostnames to resolve.
 
