@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hack the Box - Mantis"
+title:  "Hack the Box - (Praying) Mantis"
 date:   2018-03-07 16:16:01 -0600
 categories: hackthebox windows ad active directory escape hacking writeup
 ---

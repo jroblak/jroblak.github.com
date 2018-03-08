@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hack the Box - Node"
+title:  "Hack the Box - A Love Node"
 date:   2018-03-07 16:16:01 -0600
 categories: hackthebox nosql webapp reversing mongo mongodb hacking writeup
 ---
@@ -16,6 +16,7 @@ probed your open ports.
 
 {% highlight shell %}
 root@hack ~# nmap -p- -T4 node.htb
+3000/tcp    open  
 {% endhighlight %}
 
 You rebuffed my attempts on 80. On 8080, 443, and more.
