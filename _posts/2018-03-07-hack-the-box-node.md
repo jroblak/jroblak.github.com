@@ -155,7 +155,6 @@ You still had more secrets to find, like `/usr/local/bin/backup`.
 In reversing it, I `unzip`ed your last garment -
 unveiling your inner soul, `root.txt`, in whole.
 You were so beautiful, so clever, and so true.
-
 How I loved your mysteries -- unfortunately, there were more boxes to do.
 
 your dearest,
