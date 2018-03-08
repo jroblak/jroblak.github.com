@@ -73,7 +73,7 @@ rock@hack ~/Downloads# head -n 11 var/www/myplace/app.js | tail -n 1
 const url        = 'mongodb://mark:5AYRft73VtFpc84k@localhost:27017/myplace?authMechanism=DEFAULT&authSource=myplace';
 {% endhighlight %}
 
-Who was this `mark`?" I wondered. What boundries had you let him pass?
+Who was this `mark`? I wondered. What boundries had you let him pass?
 Nevermind. I had his secret, and he made a mistake, leaving this behind.
 
 {% highlight shell %}
