@@ -7,7 +7,7 @@ categories: hackthebox nosql webapp reversing mongo mongodb hacking writeup
 
 <img class="header-img" src="{{ "img/node/home.png" | relative_url }}" />
 
-Node was a special box to me. It was a special box because it was my first "first blood", and it got me truely addicted to (https://hackthebox.eu)[hackthebox]. In light of this, I'm going mix things up and bit and make the following writeup a love note to Node:
+Node was a special box to me. It was a special box because it was my first "first blood", and it got me truely addicted to [https://hackthebox.eu](hackthebox). In light of this, I'm going mix things up and bit and make the following writeup a love note to Node:
 
 Oh, Node,
 it has been some time since we last spoke.
@@ -42,7 +42,7 @@ Connection: close
 
 Were these your past lovers? I cared not.
 But an `admin` flag, is an `admin` flag, and must be followed. Its hash looked weak.
-Indeed, it was. (https://crackstation.net)["manchester"].
+Indeed, it was. [https://crackstation.net]("manchester").
 
 With each keystroke, we grew closer
 m.y.P.1.4.c.e.A.d.m.1.n.A.c.c.0.u.N.T.
