@@ -143,12 +143,6 @@ switched to db scheduler
 WriteResult({ "nInserted" : 1 })
 {% endhighlight %}
 
-{% highlight shell %}
-root@hack ~# nc -lvvvp 4444
-$ whomai
-tom
-{% endhighlight %}
-
 ...and I tasted your luscious blood. 
 
 {% highlight shell %}
