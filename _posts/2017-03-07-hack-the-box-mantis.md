@@ -88,7 +88,7 @@ And that looks a lot like hex:
 root@hack ~# echo NmQyNDI0NzE2YzVmNTM0MDVmNTA0MDczNzM1NzMwNzI2NDIx | base64 -d | xxd -r -p
 m$$ql_S@_P@ssW0rd!
 {% endhighlight %}
-Hmmm, I wonder what this is for? With this password and the username (it's in the `dev_notes` file), you can either connect to the database and poke around manually, or use something like sqlmap to pull down the contents. Whichever you prefer, you'll come out with another username and password, and a quick test with `rpcclient` should confirm their use. [https://pen-testing.sans.org/blog/2013/07/24/plundering-windows-account-info-via-authenticated-smb-sessions](SANS has a great article on some of the fun things you can do with `rpcclient`):
+Hmmm, I wonder what this is for? With this password and the username (it's in the `dev_notes` file), you can either connect to the database and poke around manually, or use something like sqlmap to pull down the contents. Whichever you prefer, you'll come out with another username and password, and a quick test with `rpcclient` should confirm their use. [SANS has a great article on some of the fun things you can do with `rpcclient`](https://pen-testing.sans.org/blog/2013/07/24/plundering-windows-account-info-via-authenticated-smb-sessions):
 {% highlight shell %}
 root@hack ~# rpcclient -Ujames mantis.htb
 rpcclient $> srvinfo
@@ -99,6 +99,6 @@ server type     : 0x80102f
 {% endhighlight %}
 From here, it's time to get box access / escalate. Did you do you research on some of our possible options? If you did, you saw that both `MS16-101` and `MS16-014` seem a little farfetched, as they require running applications on the host which something we can't do yet. `MS14-068` looks super interesting, however, since it could elevate our privleges to DA and get us full access to the SMB shares (did you notice that was running on `445`? You should connect via smbclient with james and poke around to see what exists and what he has access to).
 
-One of my favorite tools for working with Windows and its various networking protocols is [https://github.com/CoreSecurity/impacket](impacket), and it has a great script for exploiting `MS14-068`. This is brain-dead simple, so I'll leave the rest as an exercise to the reader, but if you have any trouble, remember that you need all of the appropriate hostnames to resolve.
+One of my favorite tools for working with Windows and its various networking protocols is [impacket](https://github.com/CoreSecurity/impacket), and it has a great script for exploiting `MS14-068`. This is brain-dead simple, so I'll leave the rest as an exercise to the reader, but if you have any trouble, remember that you need all of the appropriate hostnames to resolve.
 
 _fin_
