@@ -147,7 +147,7 @@ WriteResult({ "nInserted" : 1 })
 root@hack ~# nc -lvvvp 4444
 $ whomai
 tom
-{% endhighlight $}
+{% endhighlight %}
 
 ...and I tasted your luscious blood. 
 
