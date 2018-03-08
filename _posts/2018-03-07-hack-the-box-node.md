@@ -7,7 +7,7 @@ categories: hackthebox nosql webapp reversing mongo mongodb hacking writeup
 
 <img class="header-img" src="{{ "img/node/home.png" | relative_url }}" />
 
-Node was a special box to me. It was a special box because it was my first "first blood", and it got me truely addicted to [hackthebox](https://hackthebox.eu). In light of this, I'm going mix things up and bit and make the following writeup a love note to Node:
+Node was a special box for me. It was a special box because it was my first "first blood", and thus got me truly addicted to [hackthebox](https://hackthebox.eu). In light of this, I'm going mix things up and bit and make the following writeup a "love" note to Node:
 
 Oh, Node,
 it has been some time since we last spoke.
