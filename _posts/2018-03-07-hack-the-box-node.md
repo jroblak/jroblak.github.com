@@ -155,7 +155,7 @@ tom
 root@hack ~# nc -lvvvp 4444
 $ whomai
 tom
-{% endhighlight $}
+{% endhighlight %}
 
 You still had more secrets to find, like `/usr/local/bin/backup`.
 In reversing it, I `unzip`ed your last garment -
