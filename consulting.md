@@ -7,7 +7,7 @@ layout: default
   I believe in right-sized solutions and engagements based on client needs.
   <br/>
   <br/>
-  I'm <a href="https://www.offensive-security.com/information-security-certifications/oscp-offensive-security-certified-professional/">OSCP-certified</a>, experienced with HIPPA- and PCI-compliant environments, all common and uncommon web vulnerabilities (including the OWASP Top 10), and much more.
+  I'm <a href="https://www.youracclaim.com/badges/9d3c4943-c02b-44eb-a7c0-329d2381f542/linked_in_profile">OSCP-certified</a>, experienced with HIPPA- and PCI-compliant environments, all common and uncommon web vulnerabilities (including the OWASP Top 10), and much more.
   <br/>
   <br/>
   You can contact me at <a href="mailto:hello@justinoblak.com">hello@justinoblak.com</a> to set something up.
