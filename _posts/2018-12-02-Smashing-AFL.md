@@ -86,6 +86,7 @@ return 0;
     }
 
     // === Code snipped for brevity ===
+
 {% endhighlight %}
 
 The fix for this is extremely simple: remove the problems! Simply comment out the call to `fork` and
@@ -120,6 +121,7 @@ int process(int fd, struct sockaddr_in *clientaddr){
     }
 
     // === Code snipped for brevity ===
+
 {% endhighlight %}
 
 The reason I opted for a `raise(SIGSTOP)` instead of removing the infinite loop is that it
