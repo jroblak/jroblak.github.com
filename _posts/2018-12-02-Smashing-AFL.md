@@ -126,7 +126,8 @@ allows AFL to continue to running the same process until a potential issue, grea
 the number of attempts per second. Otherwise, it would have to spin up a new process on every
 single iteration.
 
-That's all the changes we have to make to the code. Pretty easy right? Build the AFL-ified server:
+That's all the changes we have to make to the code. Pretty easy right? Build the AFL-ified server (after you
+install afl, of course):
 {% highlight shell %}
 ➜  make
 {% endhighlight %}
