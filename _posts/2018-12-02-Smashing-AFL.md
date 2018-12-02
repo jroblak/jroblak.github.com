@@ -104,6 +104,7 @@ int process(int fd, struct sockaddr_in *clientaddr){
     return 1;
   //}
 //return 0;
+}
 
 // === Code snipped for brevity ===
 
