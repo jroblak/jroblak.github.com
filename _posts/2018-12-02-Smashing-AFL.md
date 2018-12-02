@@ -171,3 +171,5 @@ Range: bytes=1-99
 
 Pretty awesome, right? This may seem like a lot of work to find a simple buffer overflow, but once you
 have these basics down, the required changes often only take ten minutes, and the output can be awesome.
+
+Happy fuzzing!
