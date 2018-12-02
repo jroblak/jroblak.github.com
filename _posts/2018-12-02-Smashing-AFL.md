@@ -156,7 +156,7 @@ point of known "good" input that it can mutate. It also needs somewhere to put i
 ➜  mkdir findings
 {% endhighlight %}
 
-And with that, we're readying. Simply launch AFL, use `LD_PRELOAD` to overwrite the networking calls,
+And with that, we're ready! Simply launch AFL, use `LD_PRELOAD` to overwrite the networking calls,
 and specify the appropriate directories:
 {% highlight shell %}
 ➜  LD_PRELOAD=preeny/x86_64-pc-linux-gnu/desock.so afl-fuzz -i testcases -o findings ./tiny-fuzzy
