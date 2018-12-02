@@ -147,7 +147,8 @@ Ok, almost there! As I mentionned earlier, AFL works by passing input into our t
 mutating that as it detects (or doesn't detect) irregular behavior. In order to do this, it needs a starting
 point of known "good" input that it can mutate. It also needs somewhere to put its findings:
 {% highlight shell %}
-mkdir testcases
+➜  mkdir findings
+➜  mkdir testcases
 ➜  cat << EOF > testcases/in.txt
 ➜  > GET /index.html HTTP/1.1
 ➜  > Range: bytes=1-999999
