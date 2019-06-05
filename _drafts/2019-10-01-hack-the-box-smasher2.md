@@ -336,6 +336,7 @@ A couple important facts on Python:
 1. Everything on Python is managed on a private heap, managed internally by Python
 2. Python's memory manager has different segments for each type of object. So integers, lists, dictionaries, etc. are all managed differently, but together, within the private heap
 3. These separate areas are managed as (or like) (fast bins)[https://heap-exploitation.dhavalkapil.com/diving_into_glibc_heap/bins_chunks.html#fast-bins]: last in, first out. Once an object is deallocated, the pointer to the heap moves back the size of that object (plus metadata).
+4. This can be seen by reviewing the source code for (various)[https://github.com/python/cpython/blob/master/Objects/dictobject.c#L1974] (deallocators)[https://github.com/python/cpython/blob/master/Objects/listobject.c#L360] -- if there is space on the `free_list`, it adds the pointer to the deallocated object to the `free_list` for that type of object.
  
 Knowing all of this, we can successfully exploit this code, or at least potentially read items we shouldn't be able to read. Remember: this code path does _not_ check the data type of `"data"` from our JSON. It also deallocs that type of object from memory, meaning that pointer is now pointing to a different object of the same _type_ of `"data"`. Lastly, `ses.so` returns that object to `auth.py`, which prints it to the user. So, by passing in various types of `"data"`, we can read the last item of that type created in Python's heap.
 
@@ -374,11 +375,10 @@ results in
 {% end highlight %}
 The last `list` loaded onto Python's heap before the list we send is the list used to initiate the `SessionManager`, which contains the API key we need!
 
-To verify this in `gdb`
-`python auth.py`
-`gdb python $(ps aux | grep auth.py | grep -v grep | awk '{print $2}')`
-`break* SessionManager_check_login+1281`
-`python exploit.py`
+We can verify this in `gdb` by stepping through the deallocation code. In one terminal, start our local Flask server: `python auth.py`. In another, connect to it via `gdb`: `gdb python $(ps aux | grep auth.py | grep -v grep | awk '{print $2}')`. Set a breakpoint on the deallocation call: `break* SessionManager_check_login+1281`, and continue the program: `c`. In another terminal, kick off our exploit: `python exploit.py` and go back to the `gdb` window.
+
+The address of our `free_list` for lists: x
+
 `x/x $rbp-0x50` <- data "list"
 1, `x/x $rbp-0x58` <- return "list" 
 `print *(PyListObject*)[1 address]`
