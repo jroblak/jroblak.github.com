@@ -375,17 +375,65 @@ results in
 {% end highlight %}
 The last `list` loaded onto Python's heap before the list we send is the list used to initiate the `SessionManager`, which contains the API key we need!
 
-We can verify this in `gdb` by stepping through the deallocation code. In one terminal, start our local Flask server: `python auth.py`. In another, connect to it via `gdb`: `gdb python $(ps aux | grep auth.py | grep -v grep | awk '{print $2}')`. Set a breakpoint on the deallocation call: `break* SessionManager_check_login+1281`, and continue the program: `c`. In another terminal, kick off our exploit: `python exploit.py` and go back to the `gdb` window.
+We can verify this in `gdb` by stepping through the deallocation code. In one terminal, start our local Flask server: `python auth.py`. In another, connect to it via `gdb`: `gdb python $(ps aux | grep auth.py | grep -v grep | awk '{print $2}')`. Set a breakpoint on the deallocation call: `break* SessionManager_check_login+1281`, and continue the program: `c`. In another terminal, kick off our exploit: `python exploit.py` and go back to the `gdb` window. Step into the `list_dealloc` function with `s`. 
 
-The address of our `free_list` for lists: x
-
-`x/x $rbp-0x50` <- data "list"
-1, `x/x $rbp-0x58` <- return "list" 
-`print *(PyListObject*)[1 address]`
-`x (*(PyListObject*)[1 address])->ob_item[0]`
-2. `x (*(PyListObject*)[1 address])->ob_item[1]`
-`print *(PyListObject*)[2 address]`c
-`x/32x [that address]`
+`gdb` makes it really easy to debug Python objects. We can cast objects to `PyObject*` to view their data and members, print local variable names like `op`, and more. (list_dealloc)[https://github.com/python/cpython/blob/master/Objects/listobject.c#L360] has a local variable `op`, which is the `PyListObject*` we're deallocating:
+{% highlight shell %}
+gdb-peda$ p (*(PyListObject*)op)
+$23 = {
+  ob_refcnt = 0x0, 
+  ob_type = 0x55bbf70e2280 <PyList_Type>, 
+  ob_size = 0x0, 
+  ob_item = 0x0, 
+  allocated = 0x0
+}
+{% endhighlight %}
+Futhermore, `PyListObject` inherits from `PyObject`, which we can find implemented (here)[https://github.com/python/cpython/blob/master/Include/object.h#L104]. Clearly this struct has more members above `ob_refcnt`, via the define `_PyObject_HEAD_EXTRA`. This defines extra pointers to support a doubly-linked list of all live heap objects. So, looking at the start of `list_dealloc`:
+{% highlight shell %}
+0x000055bbf6e7ebe2 <+18>:	mov    rdx,QWORD PTR [rdi-0x20]
+0x000055bbf6e7ebe6 <+22>:	mov    rcx,QWORD PTR [rdi-0x18]
+{% endhighlight %}
+Is the logic to retreive the forward and backwards looking pointers for the doubly-linked list, and that can be verified by inspecting the data:
+{% highlight shell %}
+gdb-peda$ x op-0x20
+0x7f2430d34738:	0x00007f2430d31378
+gdb-peda$ p *(PyObject *)(0x7f2430d31378+0x20)
+$33 = {
+  ob_refcnt = 0x4, 
+  ob_type = 0x55bbf70e1da0 <PyDict_Type>
+}
+gdb-peda$ p *(PyObject *)(0x00007f2430d22d50+0x20)
+$35 = {
+  ob_refcnt = 0x1, 
+  ob_type = 0x55bbf70deb40 <PyMethod_Type>
+}
+{% endhighlight %}
+It then updates the `next` and `prev` pointers for the items on that list, effectively "cutting out" the object we're freeing. It then zeros out the `next` pointer for the f (if anyone can enlighten me on what the `0xfffffffffffffffe` checks and `mov`s are, I'd be fascinated to know):
+{% highlight shell %}
+0x000055bbf6e7ebe2 <+18>:	mov    rdx,QWORD PTR [rdi-0x20]
+0x000055bbf6e7ebe6 <+22>:	mov    rcx,QWORD PTR [rdi-0x18]
+0x000055bbf6e7ebea <+26>:	mov    QWORD PTR [rdi-0x10],0xfffffffffffffffe
+0x000055bbf6e7ebf2 <+34>:	mov    QWORD PTR [rcx],rdx
+0x000055bbf6e7ebf5 <+37>:	mov    rbx,QWORD PTR [rdi-0x20]
+0x000055bbf6e7ebf9 <+41>:	mov    rsi,QWORD PTR [rdi-0x18]
+0x000055bbf6e7ebfd <+45>:	mov    QWORD PTR [rbx+0x8],rsi
+0x000055bbf6e7ec01 <+49>:	mov    QWORD PTR [rdi-0x20],0x0
+{% endhighlight %}
+It then verifies that our list is empty and continues to the `free_list` check (if it wasn't, it would have to run through the list and deallocate each item in the list -- if you want to try it, pass a non-empty list through and step through):
+{% endhighlight %}
+   0x55bbf6e7ecfa <list_dealloc+298>:	nop    WORD PTR [rax+rax*1+0x0]
+   0x55bbf6e7ed00 <list_dealloc+304>:	
+    movsxd r9,DWORD PTR [rip+0x2c0919]        # 0x55bbf713f620 <numfree.lto_priv.44>
+   0x55bbf6e7ed07 <list_dealloc+311>:	mov    r10,QWORD PTR [rbp+0x8]
+=> 0x55bbf6e7ed0b <list_dealloc+315>:	cmp    r9d,0x4f
+   0x55bbf6e7ed0f <list_dealloc+319>:	jg     0x55bbf6e7ed40 <list_dealloc+368>
+   0x55bbf6e7ed11 <list_dealloc+321>:	cmp    r10,QWORD PTR [rip+0x248090]        # 0x55bbf70c6da8
+   0x55bbf6e7ed18 <list_dealloc+328>:	jne    0x55bbf6e7ed40 <list_dealloc+368>
+   0x55bbf6e7ed1a <list_dealloc+330>:	lea    r11d,[r9+0x1]
+gdb-peda$ p numfree
+$48 = 0x3
+{% highlight shell %}
+Clearly, `numfree` is less than the `PyList_MAXFREELIST`, so Python will use that route, and will add the pointer to `op` to the `freelist`: `free_list[numfree++] = op;`.
 
 
 https://stackoverflow.com/questions/41628588/is-there-any-way-to-access-python-object-in-gdb-by-given-object-address
