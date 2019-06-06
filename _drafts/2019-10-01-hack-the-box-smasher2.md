@@ -432,12 +432,40 @@ It then verifies that our list is empty and continues to the `free_list` check (
    0x55bbf6e7ed1a <list_dealloc+330>:	lea    r11d,[r9+0x1]
 gdb-peda$ p numfree
 $48 = 0x3
-{% highlight shell %}
+{% endhighlight %}
 Clearly, `numfree` is less than the `PyList_MAXFREELIST`, so Python will use that route, and will add the pointer to `op` to the `freelist`: `free_list[numfree++] = op;`.
 
+As to the specifics as to _why_ the list that's passed to `SessionManager_init` needs to be re-allocated (and thus re-uses the pointer that we just freed), I'm not 100% sure. If someone is more familiar with Python internals, I would love to know. But, we can clearly see it happening if we set watchpoints on that memory in `gdb`:
+{% highlight shell %}
+gdb-peda$ awatch *0x7facbab56bd8  # This is the address of `op` from above, when we were in the list_dealloc function
+gdb-peda$ awatch *0x7facbab56bd8-0x20
+gdb-peda$ c
+{% endhighlight %}
+_Step through until the end of `PyList_New` completes allocation, plus assignment._
+{% highlight shell %}
+gdb-peda$ print *(PyListObject*)0x7facbab56bd8
+$13 = {
+  ob_refcnt = 0x1, 
+  ob_type = 0x55d10570a280 <PyList_Type>, 
+  ob_size = 0x3, 
+  ob_item = 0x7facb4022b20, 
+ allocated = 0x3
+}
 
-https://stackoverflow.com/questions/41628588/is-there-any-way-to-access-python-object-in-gdb-by-given-object-address
+gdb-peda$ print *(PyStringObject*)(*(PyListObject*)0x7facbab56bd8)->ob_item[1]
+$16 = {
+  ob_refcnt = 0x2, 
+  ob_type = 0x55d105709f40 <PyString_Type>, 
+  ob_size = 0x40, 
+  ob_shash = 0xffffffffffffffff, 
+  ob_sstate = 0x0, 
+  ob_sval = "1"
+}
+gdb-peda$ x/32s (*(PyStringObject*)(*(PyListObject*)0x7facbab56bd8)->ob_item[1])->ob_sval
+0x7facbab91bb4:	"1e18cb7c2be07907d12f52e505404081bd902e3af0fd6fd4437275bb71d7fe15"
+{% endhighlight %}
 
+TODO: final part
 http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device/
 https://labs.mwrinfosecurity.com/publications/kernel-driver-mmap-handler-exploitation/
 
