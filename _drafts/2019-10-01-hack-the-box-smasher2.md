@@ -271,14 +271,14 @@ Notice the line `*data = *data + 1;` which is missing in the second code path. F
 
 Python uses [reference counting](https://docs.python.org/2.7/c-api/refcounting.html) in addition to garbage collection. Reference counting is a way for the Python runtime to determine when it's safe to deallocate objects. Once an object's reference count hits 0, the object’s type’s deallocation function is invoked. These counts are increased by the `Py_INCREF` macro, and decreased by the `Py_DECREF` macro. 
 
-In our case, `*data = *data + 1;` is `Py_INCREF` increasing the number of references to our `data` dictionary, since it's being put into the `return_list` variable, and so it shouldn't be deallocated. However, the same thing is happening in the other code path, but there is no `Py_INCREF`! Furthermore, all of this code ends up hitting this:
+In our case, `*data = *data + 1;` is `Py_INCREF` increasing the number of references to our `data` dictionary, since it's being put into the `return_list` variable, and so it shouldn't be deallocated. However, in the other code path there is no `Py_INCREF`! Afterwards, the code reaches this:
 {% highlight c %}
 *data = *data + -1;
 if (*data == 0) {
   (**(code **)(data[1] + 0x30))(data);
 }
 {% endhighlight %}
-Can you guess what that is? It's `Py_DECREF`. It's decreasing the number of references (since this function is returning and no longer needs to reference that variable), and if the number of references is `0`, it calls `(**(code **)(data[1] + 0x30))(data);` We know `data` is a dictionary, which is `PyDict_Type` in CPython. By looking at the [source](https://github.com/python/cpython/blob/a8b89cd0611f2732491a72b37651f110fb0ed8ec/Objects/dictobject.c#L3194), we can see that `0x30` into the type structure is the deallocator, `dict_dealloc`, just as we'd expect.
+Can you guess what that is? It's `Py_DECREF`. It's decreasing the number of references (since this function is returning and no longer needs to reference that variable), and if the number of references is `0`, it calls `(**(code **)(data[1] + 0x30))(data);` We know `data` is a dictionary, which is `PyDict_Type` in CPython. By looking at the [source](https://github.com/python/cpython/blob/a8b89cd0611f2732491a72b37651f110fb0ed8ec/Objects/dictobject.c#L3194), we can see that `0x30` into the type structure is the deallocator, `dict_dealloc`, just as we'd expect. And that's exactly what will happen if we go down this code path. There is no `Py_INCREF`, so when `Py_DECREF` is called, the reference count hits `0`, and what we've passed gets deallocated.
 
 Using this, we can build a quick POC:
 {% highlight python %}
