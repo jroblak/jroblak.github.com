@@ -8,6 +8,7 @@ categories: hackthebox python heap internals py_decref py_incref reversing hacki
 <img class="header-img" src="{{ "img/smasher2/home.png" | relative_url }}" />
 
 The start of this box requires very basic enumeration:
+
 1. `nmap`, discover port `53` and `80`
 2. `dirb` port 80, discover `/backup`
 3. `dig AXFR smasher2.htb @smasher2.htb`, discover `wonderfulsessionmanager.smasher2.htb`
@@ -211,7 +212,7 @@ Can you spot the difference? If not, that's the point -- `get_internal_pwd` is a
 
 There isn't anything obvious sticking out, so it's time to fire up some dynamic analysis with fuzzing. We have pretty much everything needed to run `auth.py`, we just need to create a `templates` directory with `index.html` and `login.html` files to keep Flask happy. From there, one can simply run `python auth.py`. 
 
-The first idea I had was (type confusion)[https://cwe.mitre.org/data/definitions/843.html]. Although this is a common route to exploit interpretered language interop, `ses.so` has pretty robust type checking. Passing `{"data": []}`, `{}`, `{"data":{}}`, etc. all result in valid, safe exits. After poking around a little more, though, I found that `{"data": {"username": [], "password": "X"}}` caused a crash! 
+The first idea I had was [type confusion](https://cwe.mitre.org/data/definitions/843.html). Although this is a common route to exploit interpretered language interop, `ses.so` has pretty robust type checking. Passing `{"data": []}`, `{}`, `{"data":{}}`, etc. all result in valid, safe exits. After poking around a little more, though, I found that `{"data": {"username": [], "password": "X"}}` caused a crash!
 
 Now that we were onto something, it's time to break out `gdb` to see what's happening. In a separate terminal, we connect to the running application. A simple shell command I use to make attaching to the running PID easy: `gdb python $(ps aux | grep auth.py | grep -v grep | awk '{print $2}')`. Once attached, we can set breakpoints as in any other application, e.g. `break *SessionManager_check_login+1110`.
 
@@ -234,9 +235,10 @@ password = (char *)PyString_AsString(password_raw);
 private_username = (char *)get_internal_usr(session_manager.self);
 username_matches = strcmp(username,private_username);
 {% endhighlight %}
-We can see our list that we passed as `username` is getting passed into `PyString_AsString`. The (documentation)[https://docs.python.org/2/c-api/string.html#c.PyString_AsString] for this method makes it pretty clear what's happening. Since `username_raw` is not a `PyString`, `PyString_AsString` is returning `NULL`, and `strcmp` is failed since it's first parameter, `username`, is `NULL`. Hrm, back to the drawing board.
+We can see our list that we passed as `username` is getting passed into `PyString_AsString`. The [documentation](https://docs.python.org/2/c-api/string.html#c.PyString_AsString) for this method makes it pretty clear what's happening. Since `username_raw` is not a `PyString`, `PyString_AsString` is returning `NULL`, and `strcmp` is failed since it's first parameter, `username`, is `NULL`. Hrm, back to the drawing board.
 
 I didn't want to completely give up on type confusion, so my next step was to look for potential code paths where our `data` dictionary's type wasn't checked, or was still used after it was checked. There were two scenarios where that could happen:
+
 1. If the user is blocked
 2. If the user is _about_ to be blocked
 
@@ -265,9 +267,9 @@ The only problem is that `data` is not actually used in any of those code paths,
   *(long **)(return_list[3] + 8) = data;
   ...
 {% endhighlight %}
-Notice the line `*data = *data + 1;` which is missing in the second code path. Further investigating shows that every other non-exception based code path _also_ has that line. So, what's it for? Time to dive into (Python internals)[https://docs.python.org/2.7/c-api/index.html].
+Notice the line `*data = *data + 1;` which is missing in the second code path. Further investigating shows that every other non-exception based code path _also_ has that line. So, what's it for? Time to dive into [Python internals](https://docs.python.org/2.7/c-api/index.html).
 
-Python uses (reference counting)[https://docs.python.org/2.7/c-api/refcounting.html] in addition to garbage collection. Reference counting is a way for the Python runtime to determine when it's safe to deallocate objects. Once an object's reference count hits 0, the object’s type’s deallocation function is invoked. These counts are increased by the `Py_INCREF` macro, and decreased by the `Py_DECREF` macro. 
+Python uses [reference counting](https://docs.python.org/2.7/c-api/refcounting.html) in addition to garbage collection. Reference counting is a way for the Python runtime to determine when it's safe to deallocate objects. Once an object's reference count hits 0, the object’s type’s deallocation function is invoked. These counts are increased by the `Py_INCREF` macro, and decreased by the `Py_DECREF` macro. 
 
 In our case, `*data = *data + 1;` is `Py_INCREF` increasing the number of references to our `data` dictionary, since it's being put into the `return_list` variable, and so it shouldn't be deallocated. However, the same thing is happening in the other code path, but there is no `Py_INCREF`! Furthermore, all of this code ends up hitting this:
 {% highlight c %}
@@ -276,7 +278,7 @@ if (*data == 0) {
   (**(code **)(data[1] + 0x30))(data);
 }
 {% endhighlight %}
-Can you guess what that is? It's `Py_DECREF`. It's decreasing the number of references (since this function is returning and no longer needs to reference that variable), and if the number of references is `0`, it calls `(**(code **)(data[1] + 0x30))(data);` We know `data` is a dictionary, which is `PyDict_Type` in CPython. By looking at the (source)[https://github.com/python/cpython/blob/a8b89cd0611f2732491a72b37651f110fb0ed8ec/Objects/dictobject.c#L3194], we can see that `0x30` into the type structure is the deallocator, `dict_dealloc`, just as we'd expect.
+Can you guess what that is? It's `Py_DECREF`. It's decreasing the number of references (since this function is returning and no longer needs to reference that variable), and if the number of references is `0`, it calls `(**(code **)(data[1] + 0x30))(data);` We know `data` is a dictionary, which is `PyDict_Type` in CPython. By looking at the [source](https://github.com/python/cpython/blob/a8b89cd0611f2732491a72b37651f110fb0ed8ec/Objects/dictobject.c#L3194), we can see that `0x30` into the type structure is the deallocator, `dict_dealloc`, just as we'd expect.
 
 Using this, we can build a quick POC:
 {% highlight python %}
@@ -327,13 +329,14 @@ and we successfully get a crash:
 Fatal Python error: deletion of interned string failed
 [1]    21191 segmentation fault (core dumped)  python auth.py
 {% endhighlight %}
-Ok, so we seem to have some sort of heap-based SIGSEV. The dictionary that Python is expected to be there is now `free`'d / deallocated, and its causing a crash. How can we exploit this? We gotta (dive deeper)[https://docs.python.org/2.7/c-api/memory.html].
+Ok, so we seem to have some sort of heap-based SIGSEV. The dictionary that Python is expected to be there is now `free`'d / deallocated, and its causing a crash. How can we exploit this? We gotta [dive deeper](https://docs.python.org/2.7/c-api/memory.html).
 
 A couple important facts on Python:
+
 1. Everything on Python is managed on a private heap, managed internally by Python
 2. Python's memory manager has different segments for each type of object. So integers, lists, dictionaries, etc. are all managed differently, but together, within the private heap
-3. These separate areas are managed as (or like) (fast bins)[https://heap-exploitation.dhavalkapil.com/diving_into_glibc_heap/bins_chunks.html#fast-bins]: last in, first out. Once an object is deallocated, the pointer to the heap moves back the size of that object (plus metadata).
-4. This can be seen by reviewing the source code for (various)[https://github.com/python/cpython/blob/master/Objects/dictobject.c#L1974] (deallocators)[https://github.com/python/cpython/blob/master/Objects/listobject.c#L360] -- if there is space on the `free_list`, it adds the pointer to the deallocated object to the `free_list` for that type of object.
+3. These separate areas are managed as (or like) [fast bins](https://heap-exploitation.dhavalkapil.com/diving_into_glibc_heap/bins_chunks.html#fast-bins): last in, first out.
+4. This can be seen by reviewing the source code for [various](https://github.com/python/cpython/blob/master/Objects/dictobject.c#L1974] (deallocators)[https://github.com/python/cpython/blob/master/Objects/listobject.c#L360) -- if there is space on the `free_list`, it adds the pointer to the deallocated object to the `free_list` for that type of object.
  
 Knowing all of this, we can successfully exploit this code, or at least potentially read items we shouldn't be able to read. Remember: this code path does _not_ check the data type of `"data"` from our JSON. It also deallocs that type of object from memory, meaning that pointer is now pointing to a different object of the same _type_ of `"data"`. Lastly, `ses.so` returns that object to `auth.py`, which prints it to the user. So, by passing in various types of `"data"`, we can read the last item of that type created in Python's heap.
 
@@ -374,7 +377,7 @@ The last `list` loaded onto Python's heap before the list we send is the list us
 
 We can verify this in `gdb` by stepping through the deallocation code. In one terminal, start our local Flask server: `python auth.py`. In another, connect to it via `gdb`: `gdb python $(ps aux | grep auth.py | grep -v grep | awk '{print $2}')`. Set a breakpoint on the deallocation call: `break* SessionManager_check_login+1281`, and continue the program: `c`. In another terminal, kick off our exploit: `python exploit.py` and go back to the `gdb` window. Step into the `list_dealloc` function with `s`. 
 
-`gdb` makes it really easy to debug Python objects. We can cast objects to `PyObject*` to view their data and members, print local variable names like `op`, and more. (list_dealloc)[https://github.com/python/cpython/blob/master/Objects/listobject.c#L360] has a local variable `op`, which is the `PyListObject*` we're deallocating:
+`gdb` makes it really easy to debug Python objects. We can cast objects to `PyObject*` to view their data and members, print local variable names like `op`, and more. [list_dealloc](https://github.com/python/cpython/blob/master/Objects/listobject.c#L360) has a local variable `op`, which is the `PyListObject*` we're deallocating:
 {% highlight shell %}
 gdb-peda$ p (*(PyListObject*)op)
 $23 = {
@@ -385,7 +388,7 @@ $23 = {
   allocated = 0x0
 }
 {% endhighlight %}
-Futhermore, `PyListObject` inherits from `PyObject`, which we can find implemented (here)[https://github.com/python/cpython/blob/master/Include/object.h#L104]. Clearly this struct has more members above `ob_refcnt`, via the define `_PyObject_HEAD_EXTRA`. This defines extra pointers to support a doubly-linked list of all live heap objects. So, looking at the start of `list_dealloc`:
+Futhermore, `PyListObject` inherits from `PyObject`, which we can find implemented [here](https://github.com/python/cpython/blob/master/Include/object.h#L104). Clearly this struct has more members above `ob_refcnt`, via the define `_PyObject_HEAD_EXTRA`. This defines extra pointers to support a doubly-linked list of all live heap objects. So, looking at the start of `list_dealloc`:
 {% highlight shell %}
 0x000055bbf6e7ebe2 <+18>:	mov    rdx,QWORD PTR [rdi-0x20]
 0x000055bbf6e7ebe6 <+22>:	mov    rcx,QWORD PTR [rdi-0x18]
