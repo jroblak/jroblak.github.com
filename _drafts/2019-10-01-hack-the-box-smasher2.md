@@ -2,7 +2,7 @@
 layout: post
 title:  "Hack the Box - Smasher2"
 date:   2018-10-01 16:16:01 -0600
-categories: hackthebox python heap internals py_decref py_incref reversing hacking writeup
+categories: hackthebox python heap internals pydecref pyincref reversing hacking writeup
 ---
 
 <img class="header-img" src="{{ "img/smasher2/home.png" | relative_url }}" />
