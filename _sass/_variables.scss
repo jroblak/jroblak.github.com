@@ -21,10 +21,5 @@ $link-active: $blue;
 
 
 // FONTS
-@font-face {
-	font-family: "undefined-medium";
-	src: url("fonts/undefined-medium.woff") format("woff"),
-	     url("fonts/undefined-medium.ttf") format("truetype");
-}
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
-$monospace: "undefined-medium", "Inconsolata", monospace;
+$monospace: "Inconsolata", monospace;
