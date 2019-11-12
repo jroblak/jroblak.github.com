@@ -8,18 +8,17 @@ categories: hackthebox python heap internals pydecref pyincref reversing hacking
 <img class="header-img" src="{{ "img/smasher2/home.png" | relative_url }}" />
 ![Real First Blood? :)](/img/smasher2/1st.png)
 
-
-Smasher2 is the follow up to one of the best, and hardest boxes, Smasher. So buckle up, shit's about to get hard.
+Smasher2 was the follow up to one of the best, hardest boxes, Smasher. Buckle up, shit's about to get hard.
 
 The start of this box required very basic enumeration:
 
 1. `nmap` to discover port `53` and `80`
-2. `dirb` on port 80 to discover `/backup`
+2. `dirb`/`rustbuster`/`gobuster` on port 80 to discover `/backup`
 3. `dig AXFR smasher2.htb @smasher2.htb` to discover `wonderfulsessionmanager.smasher2.htb`
 
-`/backup` was protected by Basic HTTP auth, and there weren't any hints or leads on a username; however, basic fuzzing of `wonderfulsessionmanager.smasher2.htb` didn't bring up any leads either. So, I kicked off `hydra` against `/backup` with a username of `admin`, a password list of `rockyou.txt` and waited*. A while. After an hour or two, the password: `clarabibi` came back.
+`/backup` was protected by Basic HTTP authentication, and there weren't any hints or leads on a username; however, basic fuzzing of `wonderfulsessionmanager.smasher2.htb` didn't bring up any leads either. So, I kicked off `hydra` against `/backup` with a username of `admin`, a password list of `rockyou.txt` and waited*. A while. After an hour or two, the password: `clarabibi` came back.
 
-**note: frankly, I wouldn't recommended bruteforcing HTTP authentication with such a huge password list, especially without a known username. this part was weird.*
+**Note: I wouldn't recommended bruteforcing HTTP authentication with such a huge password list, especially without a known username. This part was weird, and the box creator had to lead people to this point.*
 
 Once authenticated, I had access to two files: `auth.py` and `ses.so`. After looking at the files, it appeared that this is what was powering `wonderfulsessionmanager.smasher2.htb`. Unfortunately, `auth.py` had its credentials removed, so some reversing was in order.
 
