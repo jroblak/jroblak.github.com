@@ -466,6 +466,4 @@ gdb-peda$ x/32s (*(PyStringObject*)(*(PyListObject*)0x7facbab56bd8)->ob_item[1])
 
 With the API token, it was trivial to run a bash job and get an initial shell, and `user.txt`.
 
-The final part of Smasher2 was a pretty fun kernel module exploit, but this post is long enough, so check out [Snowscan's](https://snowscan.io) write up for the rest!
-
-_fin_
+The final part of Smasher2 was a fun kernel module exploit, but this post is long enough, so check out [Snowscan's](https://snowscan.io/htb-writeup-smasher2/) write up for the rest!
