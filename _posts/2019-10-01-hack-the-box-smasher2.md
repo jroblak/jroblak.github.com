@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hack the Box - Smasher2"
-date:   2018-10-01 16:16:01 -0600
+date:   2019-10-01 16:16:01 -0600
 categories: hackthebox python heap internals pydecref pyincref reversing hacking writeup
 ---
 
