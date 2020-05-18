@@ -101,7 +101,9 @@ internal void Unprotect(string filename)
 {% endhighlight %}
 
 The first, obvious approach was cracking the `SHA` hash. I started `hashcat` against it while I did more research. The fact that we had a `SHA1` hash, and the key derivation formula was based on `SHA` seemed like a potential avenue, and I was quickly able to find [this post](https://mathiasbynens.be/notes/pbkdf2-hmac) describing the following:
-`PBKDF2_HMAC_SHA1(chosen_password) == PBKDF2_HMAC_SHA1(HEX_TO_STRING(SHA1(chosen_password)))` _if_ the chosen_password is larger than 64 bytes. 
+```
+PBKDF2_HMAC_SHA1(chosen_password) == PBKDF2_HMAC_SHA1(HEX_TO_STRING(SHA1(chosen_password)))```
+_if_ the chosen_password is larger than 64 bytes. 
 
 From there, I took the decompilation from dnSpy and created my own solution in Visual Studio which copied the `Unprotect` and `CreateAes` functions. Luckily, `Rfc2898DeriveBytes` had a defintion which accepted two byte arrays, plus an interation count, so I simply updated `CreateAes` to be:
 {% highlight csharp %}
