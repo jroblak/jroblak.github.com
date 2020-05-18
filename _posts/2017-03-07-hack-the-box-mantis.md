@@ -100,5 +100,3 @@ server type     : 0x80102f
 From here, it's time to get box access / escalate. Did you do you research on some of our possible options? If you did, you saw that both `MS16-101` and `MS16-014` seem a little farfetched, as they require running applications on the host which something we can't do yet. `MS14-068` looks super interesting, however, since it could elevate our privleges to DA and get us full access to the SMB shares (did you notice that was running on `445`? You should connect via smbclient with james and poke around to see what exists and what he has access to).
 
 One of my favorite tools for working with Windows and its various networking protocols is [impacket](https://github.com/CoreSecurity/impacket), and it has a great script for exploiting `MS14-068`. This is brain-dead simple, so I'll leave the rest as an exercise to the reader, but if you have any trouble, remember that you need all of the appropriate hostnames to resolve.
-
-_fin_

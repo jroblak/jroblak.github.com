@@ -185,5 +185,3 @@ From there, it's simple:
 $ supershell "/bin/ls \$(cat /root/root.txt)"
 /bin/ls: cannot access 'REDACTED': No such file or directory
 {% endhighlight %}
-
-_fin_

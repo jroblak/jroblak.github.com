@@ -459,5 +459,3 @@ Finally, we can open `keys.rar` (with `:e` again) and re-save it anywhere `/opt`
 protected `rar` with a password of the form `[lastname?][\d\d\d\d][special]`. Using the encrypted hint, we can Google around and find a `Frank Morris` who attempted an Alcatraz escape and was never found. That gives us `Morris[\d\d\d\d][!|?|@|$|%|^]` which is trivially easy to brute force, especially if you guess the most common four digit number would be a year (1900-2018).
 
 When we unrar the file, we get a single public key. From here it seems obvious we need to break the public key, so we use `RsaCtfTool`, and the rest is easy. 
-
-_fin_
