@@ -40,7 +40,6 @@ The interesting part of this function is it's use of the `Rfc2898DeriveBytes` cl
 
 Next, `Protect`. This function encrypted a file using the derived keys from `CreateAes`. Interestingly, it also prepended the plaintext `SHA` hash to the encrypted file. 
 {% highlight csharp %}
-private void CreateAes()
 internal void Protect(string filename)
 {
   using (Stream stream = this.GetStream(filename))
@@ -68,7 +67,6 @@ internal void Protect(string filename)
 
 Finally, `Unprotect`. This checked if the password passed via `STDIN` matched the hash of the password stored in the encrypted file. Then it performed a simple decryption.
 {% highlight csharp %}
-private void CreateAes()
 internal void Unprotect(string filename)
 {
   using (Stream stream = this.GetStream(filename))
