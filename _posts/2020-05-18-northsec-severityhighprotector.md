@@ -36,7 +36,7 @@ private void CreateAes()
   this._aes.IV = rfc2898DeriveBytes.GetBytes(16);
 }
 {% endhighlight %}
-The interesting part of this function is it's use of the `Rfc2898DeriveBytes` class. This class uses PBKDF2 to derive keys, using `HMACSHA1`.
+The interesting part of this function is it's use of the `Rfc2898DeriveBytes` class. This class uses `PBKDF2` to derive keys, using `HMACSHA1`.
 
 Next, `Protect`. This function encrypted a file using the derived keys from `CreateAes`. Interestingly, it also appened the `SHA` hash at the start of the encrypted file in plaintext. 
 {% highlight csharp %}
