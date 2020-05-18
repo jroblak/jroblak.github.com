@@ -18,23 +18,23 @@ After skimming the code, it was obvious the most important pieces were in the `P
 First, `CreateAes`:
 {% highlight csharp %}
 private void CreateAes()
-		{
-			Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(this.password, new byte[]
-			{
-				42,
-				42,
-				42,
-				42,
-				7,
-				7,
-				7,
-				7
-			});
-			this._aes = Aes.Create();
-			this._aes.Mode = CipherMode.ECB;
-			this._aes.Key = rfc2898DeriveBytes.GetBytes(16);
-			this._aes.IV = rfc2898DeriveBytes.GetBytes(16);
-		}
+{
+  Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(this.password, new byte[]
+  {
+    42,
+    42,
+    42,
+    42,
+    7,
+    7,
+    7,
+    7
+  });
+  this._aes = Aes.Create();
+  this._aes.Mode = CipherMode.ECB;
+  this._aes.Key = rfc2898DeriveBytes.GetBytes(16);
+  this._aes.IV = rfc2898DeriveBytes.GetBytes(16);
+}
 {% endhighlight %}
 The interesting part of this function is it's use of the `Rfc2898DeriveBytes` class. This class uses PBKDF2 to derive keys, using `HMACSHA1`.
 
