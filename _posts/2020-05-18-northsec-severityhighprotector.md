@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "NorthSec 2020 - Severity High Protector"
-date:   2019-10-01 16:16:01 0600
+date:   2020-05-18 16:16:01 0600
 categories: northsec csharp reversing crypto sha hacking writeup
 ---
 
