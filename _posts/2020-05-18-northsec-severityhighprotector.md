@@ -38,7 +38,7 @@ private void CreateAes()
 {% endhighlight %}
 The interesting part of this function is it's use of the `Rfc2898DeriveBytes` class. This class uses `PBKDF2` to derive keys, using `HMACSHA1`.
 
-Next, `Protect`. This function encrypted a file using the derived keys from `CreateAes`. Interestingly, it also prepended the `SHA` hash at the start of the encrypted file in plaintext. 
+Next, `Protect`. This function encrypted a file using the derived keys from `CreateAes`. Interestingly, it also prepended the plaintext `SHA` hash to the encrypted file. 
 {% highlight csharp %}
 private void CreateAes()
 internal void Protect(string filename)
@@ -66,7 +66,7 @@ internal void Protect(string filename)
 }
 {% endhighlight %}
 
-Finally, `Unprotect`. First, this checked if the password passed via `STDIN` matched the hash of the password stored in the encrypted file. Next, it performed a simple decryption.
+Finally, `Unprotect`. This checked if the password passed via `STDIN` matched the hash of the password stored in the encrypted file. Then it performed a simple decryption.
 {% highlight csharp %}
 private void CreateAes()
 internal void Unprotect(string filename)
@@ -102,9 +102,10 @@ internal void Unprotect(string filename)
 }
 {% endhighlight %}
 
-The first, obvious approach was cracking the `SHA` hash. I started doing that while I did more research. I thought the fact that we had a `SHA1` hash, and the key derivation formula being based on `SHA` could be a potential avenue, and quickly able to find [this post](https://mathiasbynens.be/notes/pbkdf2-hmac) describing the following `PBKDF2_HMAC_SHA1(chosen_password) == PBKDF2_HMAC_SHA1(HEX_TO_STRING(SHA1(chosen_password)))` _if_ the chosen_password is larger than 64 bytes. 
+The first, obvious approach was cracking the `SHA` hash. I started `hashcat` against it while I did more research. The fact that we had a `SHA1` hash, and the key derivation formula was based on `SHA` seemed like a potential avenue, and I was quickly able to find [this post](https://mathiasbynens.be/notes/pbkdf2-hmac) describing the following:
+`PBKDF2_HMAC_SHA1(chosen_password) == PBKDF2_HMAC_SHA1(HEX_TO_STRING(SHA1(chosen_password)))` _if_ the chosen_password is larger than 64 bytes. 
 
-From there, I took the decompilation from dnSpy, and created my own solution in Visual Studio, which copied the `Unprotect` and `CreateAes` functions. Luckily, `Rfc2898DeriveBytes` had a defintion which accepted two byte arrays, plus an interation count, so I simple updated `CreateAes` to be:
+From there, I took the decompilation from dnSpy and created my own solution in Visual Studio which copied the `Unprotect` and `CreateAes` functions. Luckily, `Rfc2898DeriveBytes` had a defintion which accepted two byte arrays, plus an interation count, so I simply updated `CreateAes` to be:
 {% highlight csharp %}
 private void CreateAes()
 		{
