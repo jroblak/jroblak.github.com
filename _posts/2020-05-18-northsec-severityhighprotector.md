@@ -108,23 +108,23 @@ The first, obvious approach was cracking the `SHA` hash. I started `hashcat` aga
 From there, I took the decompilation from dnSpy and created my own solution in Visual Studio which copied the `Unprotect` and `CreateAes` functions. Luckily, `Rfc2898DeriveBytes` had a defintion which accepted two byte arrays, plus an interation count, so I simply updated `CreateAes` to be:
 {% highlight csharp %}
 private void CreateAes()
-		{
-			Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(sha1_bytes,  // sha1 hash expressed in raw byte form
-      new byte[]    // original salt
-			{
-				42,
-				42,
-				42,
-				42,
-				7,
-				7,
-				7,
-				7
-			}, 1000);  // Default interation count is 1000, and required in this overload
-			this._aes = Aes.Create();
-			this._aes.Mode = CipherMode.ECB;
-			this._aes.Key = rfc2898DeriveBytes.GetBytes(16);
-			this._aes.IV = rfc2898DeriveBytes.GetBytes(16);
-		}
+{
+  Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(sha1_bytes,  // sha1 hash expressed in raw byte form
+  new byte[]    // original salt
+  {
+    42,
+    42,
+    42,
+    42,
+    7,
+    7,
+    7,
+    7
+  }, 1000);  // Default interation count is 1000, and required in this overload
+  this._aes = Aes.Create();
+  this._aes.Mode = CipherMode.ECB;
+  this._aes.Key = rfc2898DeriveBytes.GetBytes(16);
+  this._aes.IV = rfc2898DeriveBytes.GetBytes(16);
+}
 {% endhighlight %}
 I deleted the password hash check from `Unprotect`, compiled, ran, and got the flag!
