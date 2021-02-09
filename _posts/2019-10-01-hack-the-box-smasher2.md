@@ -8,7 +8,7 @@ categories: hackthebox python heap internals pydecref pyincref reversing hacking
 <img class="header-img" src="{{ "img/smasher2/home.png" | relative_url }}" />
 ![Real First Blood? :)](/img/smasher2/1st.png)
 
-Smasher2 was the follow up to one of the best, hardest boxes, Smasher. Buckle up, shit's about to get hard.
+Smasher2 was the follow up to one of the best, hardest boxes, Smasher. Buckle up, shit's about to get difficult.
 
 The start of this box required very basic enumeration:
 
