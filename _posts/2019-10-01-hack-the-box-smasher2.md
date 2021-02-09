@@ -26,7 +26,7 @@ Once authenticated, I had access to two files: `auth.py` and `ses.so`. After loo
 
 I decided to start with some basic static analysis. This has because much easier for those of us without tens of thousands of dollars to spend on IDA Pro with the release of [GHIDRA](https://ghidra-sre.org). GHIDRA is a free reverse engineering tool from the NSA with a pretty powerful disassembler / decompiler.
 
-After loading the file in GHIDRA, I started by finding the most interesting looking items in the `Functions` window. In this case, those were the two functions called from the Flask app: `SessionManager__init`, and `SessionManager_check_login`. `SessionManager__init` turned out to be innocuous, so my focus fell upon SessionManager_check_login`. To get a more thourough understanding of the function, I renamed functions and variables as I discovered their use. Here's what GHIDRA looked after my first pass:
+After loading the file in GHIDRA, I started by finding the most interesting looking items in the `Functions` window. In this case, those were the two functions called from the Flask app: `SessionManager__init`, and `SessionManager_check_login`. `SessionManager__init` turned out to be innocuous, so my focus fell upon `SessionManager_check_login`. To get a more thourough understanding of the function, I renamed functions and variables as I discovered their use. Here's what GHIDRA looked after my first pass:
 
 {% highlight c %}
 long * SessionManager_check_login(undefined8 uParm1,undefined8 uParm2)
