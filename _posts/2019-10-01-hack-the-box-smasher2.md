@@ -8,7 +8,7 @@ categories: hackthebox python heap internals pydecref pyincref reversing hacking
 <img class="header-img" src="{{ "img/smasher2/home.png" | relative_url }}" />
 ![Real First Blood? :)](/img/smasher2/1st.png)
 
-Smasher2 was the follow up to one of the best, hardest boxes, Smasher. Buckle up, shit's about to get difficult.
+Smasher2 was the follow up to one of the best, hardest boxes. Things are about to get difficult. :)
 
 The start of this box required very basic enumeration:
 
@@ -22,7 +22,7 @@ The start of this box required very basic enumeration:
 
 Once authenticated, I had access to two files: `auth.py` and `ses.so`. After looking at the files, it appeared that this is what was powering `wonderfulsessionmanager.smasher2.htb`. Unfortunately, `auth.py` had its credentials removed, so some reversing was in order.
 
-`auth.py` was a very basic Flask application that had two endpoints. The first was a simple authentication API which returned an API token on a successfuly auth. The other allowed the executution of `bash` jobs with a valid API token. There were no obvious bugs or exploitable issues with the Flask app itself, so I investigated the `ses.so` file. This was a CPython extension which was imported by `auth.py`. It provided the actual authentication for `auth.py`.
+`auth.py` was a very basic Flask application that had two endpoints. The first was a simple authentication API which returned an API token on a successful auth. The other allowed the executution of `bash` jobs with a valid API token. There were no obvious bugs or exploitable issues with the Flask app itself, so I investigated the `ses.so` file. This was a CPython extension which was imported by `auth.py`. It provided the actual authentication for `auth.py`.
 
 I decided to start with some basic static analysis. This has because much easier for those of us without tens of thousands of dollars to spend on IDA Pro with the release of [GHIDRA](https://ghidra-sre.org). GHIDRA is a free reverse engineering tool from the NSA with a pretty powerful disassembler / decompiler.
 
