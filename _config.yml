@@ -4,10 +4,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Justin Oblak | Security and Engineering leader
+title: Justin Oblak | Engineering & security leader
 email: hello@justinoblak.com
 description: >
-  Justin Oblak is a New York City based developer, architect, team builder, and breaker. 
+  Justin Oblak is a New York City based engineer, architect, team builder, and breaker. 
   He has a proven track record of building and scaling engineering teams
 keywords: "Justin Oblak, Justin, Oblak, Software Engineer, Developer, New York City, VP of Engineering, DgDean, Teampay, security, pentest, penetration testing, hacking, white hat, white hat hacking, consulting, consultant, leader, VP, Directory"
 baseurl: ""
