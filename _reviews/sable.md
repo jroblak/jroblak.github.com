@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "sable (6/10)"
+title: "sable (6/10)"
 categories: review game
 ---
 
