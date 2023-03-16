@@ -1,9 +1,9 @@
 ---
 layout: post
 ---
-{% assign games = site.reviews | where: "type", "games" %}
-{% assign films = site.reviews | where:'films', films.type %}
-{% assign other = site.reviews | where:'other', other.type %}
+{% assign games = site.reviews | where: "type", "game" %}
+{% assign films = site.reviews | where: "type", "film"  %}
+{% assign other = site.reviews | where: "type", "other" %}
 
 <h5>films</h5>
 {% for film in films %}
