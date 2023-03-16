@@ -1,11 +1,9 @@
 ---
-layout: post
+layout: review
 title: "sable (6/10)"
 score: 6
 categories: review game
 ---
-
-{{ score }}/10
 
 - great soundtrack
 - ok worldbuilding
