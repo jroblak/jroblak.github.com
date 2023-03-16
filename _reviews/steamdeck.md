@@ -1,6 +1,6 @@
 ---
 layout: review
-title: "steamdeck"
+title: "steamdeck (9/10)"
 score: 9
 type: other
 categories: review
