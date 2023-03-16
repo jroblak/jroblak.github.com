@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "sable (6/10)"
+date: "2023-01-01"
 categories: game review
 ---
 
