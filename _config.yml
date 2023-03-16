@@ -28,7 +28,6 @@ social:
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
-collections_dir: _collections
 collections:
   reviews:
     output: true
