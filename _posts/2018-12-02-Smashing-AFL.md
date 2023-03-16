@@ -2,7 +2,7 @@
 layout: post
 title:  "Smashing American Fuzzy Lop with Hack the Box"
 date:   2018-12-02 16:16:01 -0600
-categories: hackthebox essay afl american fuzzy lop fuzzing c programming tutorial smasher
+categories: hackthebox writeup afl american fuzzy lop fuzzing c programming tutorial smasher
 ---
 Fuzzing is something that everyone has heard about, but isn't used nearly as often
 as it should be. I think one of the reasons is that it has a reputation for being harder
