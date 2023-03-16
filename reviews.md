@@ -6,9 +6,9 @@ layout: post
 {% assign other = site.reviews | where:'other', other.type %}
 
 <h5>films</h5>
-{% for review in films %}
+{% for film in films %}
   <div class="post">
-    <a href="{{ review.url }}">{{ review.title }}</a>
+    <a href="{{ film.url }}">{{ film.title }}</a>
   </div>
 {% endfor %}
 <br/>
@@ -22,8 +22,8 @@ layout: post
 <br/>
 
 <h5>other</h5>
-{% for review in other %}
+{% for thing in other %}
   <div class="post">
-    <a href="{{ review.url }}">{{ review.title }}</a>
+    <a href="{{ thing.url }}">{{ thing.title }}</a>
   </div>
 {% endfor %}
