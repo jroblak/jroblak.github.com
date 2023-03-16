@@ -30,9 +30,12 @@ plugins:
   - jekyll-sitemap
 collections_dir: _collections
 collections:
-  - reviews
-  - essays
-  - writeups
+  reviews:
+    output: true
+  essays:
+    output: true
+  writeups:
+    output: true
 
 # Build settings
 markdown: kramdown
