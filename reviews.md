@@ -1,7 +1,7 @@
 ---
 layout: post
 ---
-{% assign games = site.reviews | where:'games', games.type %}
+{% assign games = site.reviews | where:'type', 'games' %}
 {% assign films = site.reviews | where:'films', films.type %}
 {% assign other = site.reviews | where:'other', other.type %}
 
