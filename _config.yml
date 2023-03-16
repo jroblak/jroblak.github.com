@@ -28,6 +28,10 @@ social:
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+collections:
+  - reviews
+  - essays
+  - writeups
 
 # Build settings
 markdown: kramdown
