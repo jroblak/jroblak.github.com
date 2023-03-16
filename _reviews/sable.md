@@ -2,6 +2,7 @@
 layout: review
 title: "sable (6/10)"
 score: 6
+type: game
 categories: review game
 ---
 - great soundtrack
