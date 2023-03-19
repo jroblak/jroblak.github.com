@@ -29,7 +29,6 @@ class AirtableTable {
         </tr>
       </thead>
     `;
-    console.log(this.records);
     const tbody = document.createElement('tbody');
     this.records.forEach((record, index) => {
       const row = document.createElement('tr');
@@ -37,7 +36,7 @@ class AirtableTable {
         <td>${record.fields.Date}</td>
         <td>${record.fields.Predictor}</td>
         <td>${record.fields.Prediction}</td>
-        <td>${record.fields.Prediction_Date}</td>
+        <td>${record.fields["Prediction Date"]}</td>
         <td>${record.fields.Result}</td>
       `;
       tbody.appendChild(row);
