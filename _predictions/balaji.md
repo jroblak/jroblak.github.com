@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "u.s. will enter hyperinflation within 90 days"
+title: "balaji: u.s. will enter hyperinflation within 90 days"
 who: other
 categories: prediction
 ---
