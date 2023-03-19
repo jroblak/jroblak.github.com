@@ -5,10 +5,8 @@ layout: post
 {% assign others = site.predictions | where: "who", "others"  %}
 
 <div id="quote">
-<p>
-<i>*It’s frightening to think that you might not know something, but more frightening to think that, by and large, the world is run by people who have faith that they know exactly what’s going on.*<i>
-- Amos Tversky
-<p>
+  <p><i>It’s frightening to think that you might not know something, but more frightening to think that, by and large, the world is run by people who have faith that they know exactly what’s going on.<i><br/>
+- Amos Tversky</p>
 </div>
 
 <h5>my predictions</h5>
