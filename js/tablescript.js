@@ -1,5 +1,5 @@
 const airtableApiKey = 'patUblTA3oYVPVVV7.7fdb6dc19b94ad6f6f8b7c91fe4ab11616dfad7242cfe40a834e186a4356b022';
-const airtableBaseId = 'Predictions';
+const airtableBaseId = 'appaK45tGSHaDJBnU';
 const airtableTableName = 'Predictions';
 
 class AirtableTable {
