@@ -9,4 +9,4 @@ layout: post
 
 <div id="table-container"></div>
 <script src="{{ "js/tablescript.js" | relative_url }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.0/tablesort.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/Sortable@1.13.0/Sortable.min.js"></script>
