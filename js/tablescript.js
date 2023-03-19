@@ -29,6 +29,7 @@ class AirtableTable {
         </tr>
       </thead>
     `;
+    console.log(this.records);
     const tbody = document.createElement('tbody');
     this.records.forEach((record, index) => {
       const row = document.createElement('tr');
