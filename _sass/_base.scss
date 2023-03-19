@@ -56,3 +56,55 @@ blockquote {
     line-height: 22px;
     margin-top: 10px;
   }
+
+table {
+  border-collapse: collapse;
+  border: none;
+  width: 100%;
+  margin-top: 20px;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+th {
+  background-color: $blue;
+  color: $primary-text;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+th:hover {
+  background-color: $secondary-text;
+}
+
+th.sorting-asc::after {
+  content: " ▲";
+}
+
+th.sorting-desc::after {
+  content: " ▼";
+}
+
+td {
+  border: none;
+  border-bottom: 1px solid $primary-text;
+  color: $primary-text;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+tr:nth-child(odd) {
+  background-color: $red;
+}
+
+tr:nth-child(even) {
+  background-color: $light-red;
+}
+
+tr:hover {
+  background-color: $secondary-text;
+  color: $primary-text;
+}
