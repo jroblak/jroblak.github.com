@@ -36,6 +36,9 @@ collections:
     output: true
   writeups:
     output: true
+  predictions:
+    output: true
+    sort_by: who
 
 # Build settings
 markdown: kramdown
