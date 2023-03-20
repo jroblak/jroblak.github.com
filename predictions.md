@@ -7,6 +7,6 @@ layout: post
 <span>- Amos Tversky</span></p>
 </blockquote>
 
-<div id="table-container">Loading...</div>
+<div id="table-container"><div id="loading">Loading...</div></div>
 <script src="{{ "js/tablescript.js" | relative_url }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
