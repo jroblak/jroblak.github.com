@@ -49,6 +49,8 @@ class AirtableTable {
   async render() {
     await this.getData();
     const tableContainer = document.querySelector('#table-container');
+    const loader = document.querySelector('#loading');
+    loader.style.display = 'none';
     tableContainer.appendChild(this.generateTable());
     new Sortable(document.querySelector('.sortable'), {
       animation: 150,
