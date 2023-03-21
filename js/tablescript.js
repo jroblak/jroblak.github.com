@@ -24,7 +24,7 @@ class AirtableTable {
           <th>Date</th>
           <th>Predictor</th>
           <th>Prediction</th>
-          <th>Date</th>
+          <th>End Date</th>
           <th>Source</th>
           <th>Result</th>
         </tr>
