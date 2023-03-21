@@ -25,6 +25,7 @@ class AirtableTable {
           <th>Predictor</th>
           <th>Prediction</th>
           <th>Prediction Date</th>
+          <th>Source</th>
           <th>Result</th>
         </tr>
       </thead>
@@ -37,6 +38,7 @@ class AirtableTable {
         <td>${record.fields.Predictor}</td>
         <td>${record.fields.Prediction}</td>
         <td>${record.fields["Prediction Date"]}</td>
+        <td><a href="${record.fields.Source}">Link</a></td>
         <td>${record.fields.Result}</td>
       `;
       tbody.appendChild(row);
