@@ -44,14 +44,14 @@
         <script src="{{ "js/lib/tether.min.js" | relative_url }}"></script>
         <script src="{{ "js/lib/bootstrap.min.js" | relative_url }}"></script>
         <script src="{{ "js/main.js" | relative_url }}"></script>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-542WQKJJCJ"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
 
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-34413759-1','auto');ga('send','pageview');
+	  gtag('config', 'G-542WQKJJCJ');
         </script>
     </body>
 </html>
