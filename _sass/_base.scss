@@ -57,17 +57,17 @@ img { max-width: 100%; height: auto; }
 .site-shell { width: min(100% - 48px, 1440px); margin: 0 auto; }
 
 .site-header {
-  display: grid;
-  grid-template-columns: 34px minmax(440px, 1fr) auto;
-  gap: .85rem;
+  display: flex;
   align-items: center;
-  min-height: 118px;
+  justify-content: space-between;
+  min-height: 96px;
   border-bottom: 1px solid $line;
   font-family: $mono;
   font-size: .72rem;
   letter-spacing: .02em;
   text-transform: uppercase;
 }
+.brand-cluster { display: flex; align-items: center; gap: .85rem; min-width: 0; }
 
 .wordmark-mark {
   position: relative;
@@ -98,7 +98,7 @@ img { max-width: 100%; height: auto; }
 .site-header nav { display: flex; justify-content: flex-end; gap: clamp(1rem, 3vw, 3rem); }
 .site-header nav a { text-decoration: none; }
 .site-header nav a:hover { box-shadow: inset 0 -6px 0 $acid; }
-.header-right { display: grid; gap: .65rem; justify-items: end; }
+.header-right { display: flex; align-items: center; gap: clamp(2rem, 4vw, 4.5rem); }
 .header-meta { display: flex; align-items: center; gap: .65rem; color: $muted; }
 .hero { position: relative; padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(3.5rem, 6vw, 5.5rem); }
 .eyebrow, .contact-kicker {
@@ -112,7 +112,7 @@ img { max-width: 100%; height: auto; }
 }
 .mode-line { display: flex; gap: .65em; margin: .3rem 0 0; color: $muted; font-family: $mono; font-size: .6rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
 .mode-label { flex: 0 0 auto; color: $acid; }
-.status-rotation { position: relative; display: inline-block; width: min(34em, calc(100vw - 34rem)); height: 1.65em; overflow: hidden; }
+.status-rotation { position: relative; display: inline-block; width: 34em; height: 1.65em; overflow: hidden; }
 .status-rotation > span { position: absolute; inset: 0 auto auto 0; opacity: 0; animation: status-cycle 12.8s infinite; }
 .status-rotation > span:nth-child(2) { animation-delay: 3.2s; }
 .status-rotation > span:nth-child(3) { animation-delay: 6.4s; }
@@ -177,14 +177,12 @@ img { max-width: 100%; height: auto; }
 .page-content th, .page-content td { padding: .75rem; border: 1px solid $line; text-align: left; }
 
 @media (max-width: 1050px) {
-  .site-header { grid-template-columns: 34px minmax(280px, 1fr) auto; }
   .header-meta { display: none; }
-  .status-rotation { width: min(34em, calc(100vw - 32rem)); }
 }
 
 @media (max-width: 760px) {
   .site-shell { width: min(100% - 32px, 1440px); }
-  .site-header { grid-template-columns: 34px 1fr auto; min-height: 82px; }
+  .site-header { min-height: 82px; }
   .identity-name { font-size: .65rem; }
   .identity .mode-line { display: none; }
   .header-right { display: block; }
