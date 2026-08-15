@@ -30,16 +30,27 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="site-shell">
       <header class="site-header">
-        <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="Justin Oblak, home">
-          <span class="wordmark-mark" data-mark="JO" aria-hidden="true">JO</span>
-          <span>Justin Oblak</span>
-        </a>
-        <div class="header-meta"><span class="status-dot" aria-hidden="true"></span> New York · Engineering / AI / Security</div>
-        <nav aria-label="Primary navigation">
-          <a href="{{ '/#about' | relative_url }}">Readme</a>
-          <a href="{{ '/patents.html' | relative_url }}">Patents</a>
-          <a href="https://www.linkedin.com/in/justinoblak">LinkedIn <span aria-hidden="true">↗</span></a>
-        </nav>
+        <a class="wordmark-mark" href="{{ '/' | relative_url }}" data-mark="JO" aria-label="Justin Oblak, home">JO</a>
+        <div class="identity">
+          <a class="identity-name" href="{{ '/' | relative_url }}">Justin Oblak</a>
+          <div class="mode-line" aria-label="Currently: teaching agents to clean up after themselves">
+            <span class="mode-label">CURRENTLY:</span>
+            <span class="status-rotation" aria-hidden="true">
+              <span>teaching agents to clean up after themselves</span>
+              <span>making the complicated thing legible</span>
+              <span>turning prototypes into dependable systems</span>
+              <span>asking whether this really needs another service</span>
+            </span>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="header-meta"><span class="status-dot" aria-hidden="true"></span> New York · Engineering / AI / Security</div>
+          <nav aria-label="Primary navigation">
+            <a href="{{ '/#about' | relative_url }}">Readme</a>
+            <a href="{{ '/patents.html' | relative_url }}">Patents</a>
+            <a href="https://www.linkedin.com/in/justinoblak">LinkedIn <span aria-hidden="true">↗</span></a>
+          </nav>
+        </div>
       </header>
 
       {% unless page.home %}<main id="main" class="page-content">{% endunless %}
