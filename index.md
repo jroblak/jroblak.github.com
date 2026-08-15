@@ -8,7 +8,8 @@ description: Justin Oblak is a New York-based engineering executive building AI-
 <main id="main" class="home">
   <section class="hero" aria-labelledby="hero-title">
     <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> New York · Engineering / AI / Security</div>
-    <h1 id="hero-title">I build the systems<br>behind the <em>next shift.</em></h1>
+    <p class="mode-line">CURRENTLY: teaching agents to clean up after themselves</p>
+    <h1 id="hero-title">I build things<br>that make other<br><em>things work.</em></h1>
     <div class="hero-grid">
       <p class="hero-deck">Engineering executive, builder, and breaker working where artificial intelligence meets real products, resilient platforms, and ambitious teams.</p>
       <div class="career-stack" aria-label="Career history">
@@ -26,13 +27,13 @@ description: Justin Oblak is a New York-based engineering executive building AI-
         </ol>
       </div>
     </div>
-    <a class="scroll-cue" href="#about">Read the story <span aria-hidden="true">↓</span></a>
+    <a class="scroll-cue" href="#about">Open the readme <span aria-hidden="true">↓</span></a>
   </section>
 
   <section id="about" class="about section-grid" aria-labelledby="about-title">
     <header class="section-label">
       <span>01</span>
-      <h2 id="about-title">About</h2>
+      <h2 id="about-title">Readme</h2>
     </header>
     <div class="story">
       <p class="story-lead">I’ve spent my career turning emerging technology into dependable systems—and small, determined groups into organizations that can carry them forward.</p>
@@ -44,6 +45,8 @@ description: Justin Oblak is a New York-based engineering executive building AI-
       <p>Now my focus is the AI-native company: not AI as a feature bolted onto yesterday’s process, but as a new material for products and for the way teams work. At Inspiren, that means leading engineering across AI/ML, data, software, platform, and quality; deploying intelligence across tens of thousands of edge devices; and building agentic systems that ship production code and reduce the burden on caregivers.</p>
 
       <p>I’m interested in the point where a promising model becomes a trusted product. That requires more than model performance. It takes strong architecture, security instincts, fast feedback loops, thoughtful teams, and the willingness to redesign the surrounding system. My work connects those pieces.</p>
+
+      <p class="personal-note"><span>// off the clock</span> I’m usually breaking software on purpose, playing games, or developing unnecessarily specific opinions about tools. Some of that ends up in the <a href="/writeups.html">security writeups</a> and <a href="/reviews.html">reviews</a> on this site.</p>
 
     </div>
   </section>

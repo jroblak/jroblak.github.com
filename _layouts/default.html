@@ -31,11 +31,11 @@
     <div class="site-shell">
       <header class="site-header">
         <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="Justin Oblak, home">
-          <span class="wordmark-mark">JO</span>
+          <span class="wordmark-mark" data-mark="JO" aria-hidden="true">JO</span>
           <span>Justin Oblak</span>
         </a>
         <nav aria-label="Primary navigation">
-          <a href="{{ '/#about' | relative_url }}">About</a>
+          <a href="{{ '/#about' | relative_url }}">Readme</a>
           <a href="{{ '/patents.html' | relative_url }}">Patents</a>
           <a href="https://www.linkedin.com/in/justinoblak">LinkedIn <span aria-hidden="true">↗</span></a>
         </nav>
@@ -46,7 +46,7 @@
       {% unless page.home %}</main>{% endunless %}
 
       <footer class="site-footer">
-        <p>Justin Oblak <span>© <span id="year">2026</span></span></p>
+        <p>Justin Oblak <span>© <span id="year">2026</span> · Built in New York, mostly by hand.</span></p>
         <a href="mailto:hello@justinoblak.com">hello@justinoblak.com</a>
       </footer>
     </div>

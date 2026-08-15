@@ -93,6 +93,7 @@ img { max-width: 100%; height: auto; }
   letter-spacing: .08em;
   text-transform: uppercase;
 }
+.mode-line { margin: .55rem 0 0 1.05rem; color: $muted; font-family: $mono; font-size: .58rem; letter-spacing: .035em; }
 .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: $acid; box-shadow: 0 0 0 3px rgba(183,255,42,.18); }
 
 .hero h1 {
@@ -127,6 +128,9 @@ img { max-width: 100%; height: auto; }
 .story { max-width: 920px; }
 .story p, .signal-copy p { max-width: 780px; margin: 0 0 2rem; font-size: clamp(1rem, 1.3vw, 1.22rem); }
 .story .story-lead, .signal-copy .story-lead { max-width: 900px; margin-bottom: 2.75rem; font-family: $mono; font-size: clamp(1.7rem, 3vw, 3rem); font-weight: 300; line-height: 1.15; letter-spacing: -.045em; }
+.story .personal-note { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px dashed $line; color: $muted; font-family: $mono; font-size: .8rem; line-height: 1.7; }
+.personal-note span { display: block; margin-bottom: .65rem; color: $acid; font-size: .62rem; text-transform: uppercase; }
+.personal-note a { color: $ink; }
 
 .site-footer { display: flex; justify-content: space-between; padding: 1.5rem 0; border-top: 1px solid $line; font-family: $mono; font-size: .62rem; text-transform: uppercase; }
 .site-footer p { margin: 0; }
