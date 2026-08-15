@@ -36,7 +36,7 @@ description: Justin Oblak is a New York-based engineering executive building AI-
     <div class="story">
       <p class="story-lead">I’ve spent my career turning emerging technology into dependable systems—and small, determined groups into organizations that can carry them forward.</p>
 
-      <p>I started as a hands-on founding engineer, building healthcare and financial products from a blank repository: HIPAA-compliant marketplaces, real-time card authorization, and rules engines that became patented technology. That early work shaped how I still operate. Stay close to the system. Understand the constraints. Make the complicated thing clear enough to build.</p>
+      <p>I started as a hands-on founding engineer, building healthcare and financial products from a blank repository: HIPAA-compliant marketplaces, real-time card authorization, and rules engines that became patented technology. That early work shaped how I still operate: stay close to the system (and the business), understand the constraints, and make the complicated thing clear enough to build.</p>
 
       <p>As the scale changed, so did the work. At Maven Clinic and 1Password, I built and led platform, security, data, infrastructure, and developer-experience organizations ranging from a dozen people to more than 180. We modernized critical infrastructure without downtime, supported software serving more than a billion requests a day, and built operating systems for engineering that made reliability, speed, and good judgment repeatable.</p>
 
