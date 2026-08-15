@@ -95,6 +95,7 @@ img { max-width: 100%; height: auto; }
 .site-header nav { display: flex; gap: clamp(1rem, 3vw, 3rem); }
 .site-header nav a { text-decoration: none; }
 .site-header nav a:hover { box-shadow: inset 0 -6px 0 $acid; }
+.header-meta { display: flex; align-items: center; gap: .65rem; margin: 0 auto; color: $muted; }
 .hero { position: relative; padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(3.5rem, 6vw, 5.5rem); }
 .eyebrow, .contact-kicker {
   display: flex;
@@ -105,7 +106,7 @@ img { max-width: 100%; height: auto; }
   letter-spacing: .08em;
   text-transform: uppercase;
 }
-.mode-line { display: flex; gap: .65em; margin: .55rem 0 0 1.05rem; color: $muted; font-family: $mono; font-size: .66rem; font-weight: 400; letter-spacing: 0; }
+.mode-line { display: flex; gap: .65em; margin: 0; color: $muted; font-family: $mono; font-size: .66rem; font-weight: 400; letter-spacing: 0; }
 .mode-label { flex: 0 0 auto; color: $acid; }
 .status-rotation { position: relative; display: inline-block; width: min(34em, calc(100vw - 9rem)); height: 1.65em; overflow: hidden; }
 .status-rotation > span { position: absolute; inset: 0 auto auto 0; opacity: 0; animation: status-cycle 12.8s infinite; }
@@ -176,6 +177,7 @@ img { max-width: 100%; height: auto; }
   .site-header { min-height: 82px; }
   .wordmark > span:last-child { display: none; }
   .site-header nav { gap: 1.1rem; }
+  .header-meta { display: none; }
   .site-header nav a:nth-child(2) { display: none; }
   .hero { padding-top: 3.5rem; }
   .hero h1 { margin: 3rem 0 2.75rem; font-size: clamp(3.15rem, 15vw, 5.4rem); }
