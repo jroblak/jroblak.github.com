@@ -44,8 +44,6 @@ description: Justin Oblak is a New York-based engineering executive building AI-
 
       <p>I’m interested in the point where a promising model becomes a trusted product. That requires more than model performance. It takes strong architecture, security instincts, fast feedback loops, thoughtful teams, and the willingness to redesign the surrounding system. My work connects those pieces.</p>
 
-      <p class="personal-note"><span>// off the clock</span> I’m usually breaking software on purpose, playing games, or developing unnecessarily specific opinions about tools. Some of that ends up in the <a href="/writeups.html">security writeups</a> and <a href="/reviews.html">reviews</a> on this site.</p>
-
     </div>
   </section>
 </main>
