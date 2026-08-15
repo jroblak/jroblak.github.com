@@ -8,8 +8,8 @@ description: Justin Oblak is a New York-based engineering executive building AI-
 <main id="main" class="home">
   <section class="hero" aria-labelledby="hero-title">
     <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> New York · Engineering / AI / Security</div>
-    <p class="mode-line">CURRENTLY: teaching agents to clean up after themselves</p>
-    <h1 id="hero-title">I build things<br>that make other<br><em>things work.</em></h1>
+    <p class="mode-line"><span>CURRENTLY:</span> <span id="rotating-status">teaching agents to clean up after themselves</span></p>
+    <h1 id="hero-title">I build the systems<br>behind the <em>next shift.</em></h1>
     <div class="hero-grid">
       <p class="hero-deck">Engineering executive, builder, and breaker working where artificial intelligence meets real products, resilient platforms, and ambitious teams.</p>
       <div class="career-stack" aria-label="Career history">

@@ -70,6 +70,7 @@ img { max-width: 100%; height: auto; }
 
 .wordmark { display: flex; align-items: center; gap: .8rem; text-decoration: none; font-weight: 500; }
 .wordmark-mark {
+  position: relative;
   display: grid;
   width: 34px;
   height: 34px;
@@ -78,6 +79,17 @@ img { max-width: 100%; height: auto; }
   background: $ink;
   color: $acid;
   font-size: .65rem;
+}
+.wordmark-mark::after { position: absolute; inset: 0; display: none; place-items: center; color: $acid; content: "JO"; }
+.wordmark:hover .wordmark-mark { color: transparent; }
+.wordmark:hover .wordmark-mark::after { display: grid; animation: mark-scramble .38s steps(1, end) forwards; }
+@keyframes mark-scramble {
+  0% { content: "01"; }
+  20% { content: "<_"; }
+  40% { content: "/0"; }
+  60% { content: "1>"; }
+  80% { content: "_1"; }
+  100% { content: "JO"; }
 }
 
 .site-header nav { display: flex; gap: clamp(1rem, 3vw, 3rem); }
@@ -93,7 +105,8 @@ img { max-width: 100%; height: auto; }
   letter-spacing: .08em;
   text-transform: uppercase;
 }
-.mode-line { margin: .55rem 0 0 1.05rem; color: $muted; font-family: $mono; font-size: .58rem; letter-spacing: .035em; }
+.mode-line { margin: .55rem 0 0 1.05rem; color: $muted; font-family: $mono; font-size: .66rem; font-weight: 400; letter-spacing: 0; }
+.mode-line > span:first-child { color: $acid; }
 .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: $acid; box-shadow: 0 0 0 3px rgba(183,255,42,.18); }
 
 .hero h1 {
@@ -163,4 +176,7 @@ img { max-width: 100%; height: auto; }
   .site-footer { gap: 1rem; }
 }
 
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .wordmark:hover .wordmark-mark::after { animation: none; }
+}
