@@ -105,8 +105,19 @@ img { max-width: 100%; height: auto; }
   letter-spacing: .08em;
   text-transform: uppercase;
 }
-.mode-line { margin: .55rem 0 0 1.05rem; color: $muted; font-family: $mono; font-size: .66rem; font-weight: 400; letter-spacing: 0; }
-.mode-line > span:first-child { color: $acid; }
+.mode-line { display: flex; gap: .65em; margin: .55rem 0 0 1.05rem; color: $muted; font-family: $mono; font-size: .66rem; font-weight: 400; letter-spacing: 0; }
+.mode-label { flex: 0 0 auto; color: $acid; }
+.status-rotation { position: relative; display: inline-block; width: min(34em, calc(100vw - 9rem)); height: 1.65em; overflow: hidden; }
+.status-rotation > span { position: absolute; inset: 0 auto auto 0; opacity: 0; animation: status-cycle 12.8s infinite; }
+.status-rotation > span:nth-child(2) { animation-delay: 3.2s; }
+.status-rotation > span:nth-child(3) { animation-delay: 6.4s; }
+.status-rotation > span:nth-child(4) { animation-delay: 9.6s; }
+@keyframes status-cycle {
+  0%, 20% { opacity: 1; transform: translateY(0); }
+  25%, 95% { opacity: 0; transform: translateY(-.45em); }
+  96% { opacity: 0; transform: translateY(.45em); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: $acid; box-shadow: 0 0 0 3px rgba(183,255,42,.18); }
 
 .hero h1 {
@@ -179,4 +190,6 @@ img { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .wordmark:hover .wordmark-mark::after { animation: none; }
+  .status-rotation > span { display: none; animation: none; }
+  .status-rotation > span:first-child { display: inline; opacity: 1; }
 }
