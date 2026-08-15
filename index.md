@@ -34,7 +34,7 @@ description: Justin Oblak is a New York-based engineering executive building AI-
       <h2 id="about-title">Readme</h2>
     </header>
     <div class="story">
-      <p class="story-lead">I’ve spent my career turning emerging technology into dependable systems—and small, determined groups into organizations that can carry them forward.</p>
+      <p class="story-lead">I’ve spent my career turning emerging technology into dependable systems, and small, determined groups into organizations that can carry them forward.</p>
 
       <p>I started as a hands-on founding engineer, building healthcare and financial products from a blank repository: HIPAA-compliant marketplaces, real-time card authorization, and rules engines that became patented technology. That early work shaped how I still operate: stay close to the system (and the business), understand the constraints, and make the complicated thing clear enough to build.</p>
 
