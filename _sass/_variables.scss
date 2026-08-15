@@ -1,25 +1,9 @@
-/// COLORS
-
-$background: #010000;
-
-$blue: #59a3ce;
-$yellow: #f0ad44;
-$red: #f82380;
-$light-red: #ea5e95;
-$purple: #9077d8;
-$tan: #f8a391;
-
-$primary-text: #f6f6f6;
-$secondary-text: $purple;
-$tertiary-text: #666666;
-
-$link: $purple;
-$link-hover: $light-red;
-$link-visited: $tertiary-text;
-$link-active: $light-red;
-
-
-
-// FONTS
-@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,700");
-$monospace: "Inconsolata", monospace;
+$paper: #111411;
+$ink: #ddded8;
+$muted: #858b83;
+$line: rgba(231, 232, 226, .16);
+$acid: #91b76f;
+$dark: #0b0e0b;
+$sans: "Manrope", Arial, sans-serif;
+$mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
+$serif: "Newsreader", Georgia, serif;

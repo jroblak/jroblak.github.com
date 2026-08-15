@@ -4,12 +4,12 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Justin Oblak | Engineering & security leader
+title: Justin Oblak | AI, engineering & technology leader
 email: hello@justinoblak.com
 description: >
-  Justin Oblak is a New York City based engineer, architect, team builder, and breaker. 
-  He has a proven track record of building and scaling engineering teams
-keywords: "Justin Oblak, Justin, Oblak, Software Engineer, Developer, New York City, VP of Engineering, DgDean, Teampay, security, pentest, penetration testing, hacking, white hat, white hat hacking, consulting, consultant, leader, VP, Directory"
+  Justin Oblak is a New York-based engineering executive and AI leader building
+  intelligent products, resilient platforms, and high-performing technology organizations.
+keywords: "Justin Oblak, AI leader, artificial intelligence, engineering executive, VP Engineering, agentic AI, AI-native engineering, machine learning, platform engineering, software architecture, application security, New York City"
 baseurl: ""
 url: "https://www.justinoblak.com"
 twitter_username: jroblak
