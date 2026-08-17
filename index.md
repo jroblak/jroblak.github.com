@@ -42,7 +42,7 @@ description: Justin Oblak is a New York-based engineering executive building AI-
 
       <p>Now my focus is the AI-native company: not AI as a feature bolted onto yesterday’s process, but as a new material for products and for the way teams work. At Inspiren, that means leading engineering across AI/ML, data, software, platform, and quality; deploying intelligence across tens of thousands of edge devices; and building agentic systems that ship production code and reduce the burden on caregivers.</p>
 
-      <p>I’m interested in the point where a promising model becomes a trusted product. That requires more than model performance. It takes strong architecture, security instincts, fast feedback loops, thoughtful teams, and the willingness to redesign the surrounding system. My work connects those pieces.</p>
+      <p>I’m interested in the point where a promising model becomes a trusted product. That requires more than model performance. It takes strong architecture, security instincts, fast feedback loops, thoughtful teams, and the willingness to redesign the surrounding system.</p>
 
     </div>
   </section>
