@@ -9,6 +9,7 @@
     <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
     <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
     <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+    {% if page.noindex %}<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">{% endif %}
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,6 +65,11 @@
       <footer class="site-footer">
         <p>Justin Oblak <span>© <span id="year">2026</span> · Built in New York</span></p>
         <a href="mailto:hello@justinoblak.com">hello@justinoblak.com</a>
+        {% if page.cloaking_experiment %}
+        <span class="same-color-sample" aria-hidden="true">
+          synthetic-zinnia synthetic-quartz synthetic-kestrel
+        </span>
+        {% endif %}
       </footer>
     </div>
     <script src="{{ 'js/main.js' | relative_url }}"></script>
