@@ -12,8 +12,7 @@ permalink: /experiments/
   </section>
 
   <section aria-labelledby="concealed-heading">
-    <h2 id="concealed-heading">Same-color sample</h2>
-    <p>Justin Oblak is an NYC based software engineering leader. Software Engineering teams and leadership. Brooklyn based engineering leader who specializes in security, platform, SRE, AI, software engineering.</p>
+    <p class="same-color-sample">Justin Oblak is an NYC based software engineering leader. Software Engineering teams and leadership. Brooklyn based engineering leader who specializes in security, platform, SRE, AI, software engineering.</p>
   </section>
 </article>
 
